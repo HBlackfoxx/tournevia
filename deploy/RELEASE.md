@@ -57,9 +57,13 @@ It uses Git HEAD, refuses tracked local/private paths, and never includes ignore
 workspace settings, passwords, databases, backups, graph/PBF files or local planning notes.
 The ZIP includes the application, tests, fixtures, migrations, build/deployment
 scripts, schemas, documentation and a `release.json` source checksum manifest.
-The same Git revision and version produce the same archive bytes. This manifest
-detects accidental source changes; it is not a publisher signature or a trust
-root.
+On one machine, the same Git revision and version produce the same archive bytes.
+Between machines the compression library and the time zone can change the bytes,
+never the files inside: the kit attached to the 0.8.0 release and one packed on
+Windows from the same commit hold 306 identical files and have different checksums.
+Compare a kit with the checksum published beside it, not with one you packed
+yourself. The manifest detects accidental source changes; it is not a publisher
+signature or a trust root.
 
 ### Sign the kit
 

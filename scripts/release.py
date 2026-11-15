@@ -69,7 +69,8 @@ def pack(root: Path, version: str, output: Path) -> Path:
     manifest = {'version': version, 'revision': revision, 'status': 'local-release-candidate',
                 'platform_tested': 'linux/amd64', 'files': {key: digest(value) for key, value in sorted(files.items())}}
     output.mkdir(parents=True, exist_ok=True)
-    # Git's committed timestamps plus sorted entries make the same revision deterministic.
+    # Git's committed timestamps plus sorted entries repeat the same bytes on one machine; another
+    # time zone or compression library changes the bytes, not the content.
     stamp = source.infolist()[0].date_time
     with zipfile.ZipFile(archive, 'x', compression=zipfile.ZIP_DEFLATED) as result:
         for filename, content in sorted({**files, 'release.json': (json.dumps(manifest, indent=2)+'\n').encode()}.items()):
