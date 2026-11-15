@@ -1,0 +1,10 @@
+{
+  "code": "PARIS-DEMO",
+  "name": "Synthetic Paris depot",
+  "location": {
+    "latitude": 48.835,
+    "longitude": 2.375,
+    "reviewed": true
+  },
+  "timezone": "Europe/Paris"
+}

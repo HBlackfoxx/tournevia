@@ -1,0 +1,54 @@
+# Optional overlay. Compose 2.24.4+; certificates are supplied by the operator.
+# Paths resolve relative to docker-compose.example.yml (this directory).
+services:
+  postgres:
+    ports: !reset []
+  setup:
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+  worker:
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+  api:
+    ports: !reset []
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+      # The bundled nginx overwrites X-VRP-Client with the connecting address.
+      TRUST_PROXY_CLIENT_HEADER: "true"
+  https:
+    image: nginx:1.30.5-alpine@sha256:bf3201ab56f23e5954646379c775d511fc466e9f11376d9725361064ad07ed35
+    entrypoint: ["nginx", "-g", "daemon off;"]
+    user: "101:101"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,nosuid,noexec,size=16m,mode=1777
+    ports:
+      - "127.0.0.1:${HTTPS_PORT:-8443}:8443"
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+      - type: bind
+        source: ${TLS_CERT_DIR:?Set TLS_CERT_DIR to an absolute private certificate directory}
+        target: /etc/nginx/certs
+        read_only: true
+        bind:
+          create_host_path: false
+    depends_on:
+      api:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped
+    mem_limit: 128m
+    pids_limit: 32
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"

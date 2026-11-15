@@ -1,0 +1,2 @@
+# Fixture-generation tooling only, not application runtime.
+osmium==4.3.1

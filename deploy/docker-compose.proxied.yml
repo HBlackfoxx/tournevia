@@ -1,0 +1,85 @@
+# Optional overlay for a server whose ports 80 and 443 already belong to an HTTPS reverse
+# proxy, such as the Traefik of Coolify or Dokploy, Caddy or nginx. Apply it instead of
+# docker-compose.https.yml and docker-compose.vps.yml (after docker-compose.routing.yml
+# if used). Compose 2.24.4+. Paths resolve relative to docker-compose.example.yml.
+#
+# The bundled nginx keeps its body limit, sign-in rate limit and header rules but serves
+# plain HTTP on port 8080 of the proxy's Docker network only; nothing is published on the
+# host. The proxy terminates TLS for TLS_PUBLIC_ORIGIN and must send the visitor's address
+# in X-Forwarded-For (see nginx.proxied.conf). The labels let a Traefik that watches Docker
+# route PROXY_HOST here and obtain its certificate; other proxies ignore them and forward
+# PROXY_HOST to http://edge:8080 on PROXY_NETWORK.
+services:
+  postgres:
+    ports: !reset []
+  setup:
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+  worker:
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+  api:
+    ports: !reset []
+    environment:
+      APP_MODE: shared
+      PUBLIC_ORIGIN: ${TLS_PUBLIC_ORIGIN:?Set TLS_PUBLIC_ORIGIN to the exact HTTPS origin}
+      # The edge nginx overwrites X-VRP-Client with the visitor address.
+      TRUST_PROXY_CLIENT_HEADER: "true"
+    networks:
+      default:
+        aliases: [tournevia-api]
+  edge:
+    image: nginx:1.30.5-alpine@sha256:bf3201ab56f23e5954646379c775d511fc466e9f11376d9725361064ad07ed35
+    entrypoint: ["nginx", "-g", "daemon off;"]
+    user: "101:101"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,nosuid,noexec,size=16m,mode=1777
+    volumes:
+      - type: bind
+        source: ./nginx.proxied.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    networks: [default, proxy]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${PROXY_NETWORK:?Set PROXY_NETWORK to the HTTPS proxy's Docker network}"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}.rule=Host(`${PROXY_HOST:?Set PROXY_HOST to the public hostname}`)"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}.entrypoints=${PROXY_HTTPS_ENTRYPOINT:-https}"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}.tls=true"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}.tls.certresolver=${PROXY_CERT_RESOLVER:-letsencrypt}"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}.service=${PROXY_ROUTER:-tournevia}"
+      - "traefik.http.services.${PROXY_ROUTER:-tournevia}.loadbalancer.server.port=8080"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}-http.rule=Host(`${PROXY_HOST:?Set PROXY_HOST to the public hostname}`)"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}-http.entrypoints=${PROXY_HTTP_ENTRYPOINT:-http}"
+      - "traefik.http.routers.${PROXY_ROUTER:-tournevia}-http.middlewares=${PROXY_ROUTER:-tournevia}-https"
+      - "traefik.http.middlewares.${PROXY_ROUTER:-tournevia}-https.redirectscheme.scheme=https"
+    depends_on:
+      api:
+        condition: service_healthy
+        restart: true
+    # Through this server to the API, with the public hostname the API accepts. Lets
+    # `up --wait` (and the launcher) return only once the site answers again.
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--header", "Host: ${PROXY_HOST:?Set PROXY_HOST to the public hostname}", "http://127.0.0.1:8080/api/v1/ready"]
+      interval: 5s
+      timeout: 4s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+    mem_limit: 128m
+    pids_limit: 32
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  proxy:
+    name: ${PROXY_NETWORK:?Set PROXY_NETWORK to the HTTPS proxy's Docker network}
+    external: true

@@ -1,0 +1,22 @@
+sequenceDiagram
+  participant User as Dispatcher
+  participant API as API
+  participant DB as PostgreSQL
+  participant Worker as Worker and VROOM
+  participant Router as Valhalla
+  User->>API: Select owned inputs and objective
+  API->>DB: Copy inputs and queue job
+  Worker->>DB: Claim job
+  Worker->>Router: Profile-specific directed matrices
+  Worker->>Worker: Solve and reject forbidden arcs
+  Worker->>Router: Actual selected route legs
+  Worker->>Worker: Recompute and independently validate
+  Worker->>DB: Save draft and job result
+  User->>API: Edit assignments with current version
+  API->>DB: Same plan becomes DRAFT/PENDING
+  Worker->>Router: Re-route edited plan
+  Worker->>Worker: Validate without optimization
+  Worker->>DB: Update same plan at reserved version
+  User->>API: Mark current valid result READY
+  API->>DB: Check version, inputs and validation
+  User->>API: Export current routes

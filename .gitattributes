@@ -1,0 +1,9 @@
+* text=auto eol=lf
+# Generated from the application models; regenerate instead of editing by hand.
+backend/openapi.json linguist-generated=true
+backend/spike-*.schema.json linguist-generated=true
+schemas/*.schema.json linguist-generated=true
+web/src/api-types.ts linguist-generated=true
+web/src/field-limits.json linguist-generated=true
+web/src/csv-columns.json linguist-generated=true
+web/src/locales/server-messages.json linguist-generated=true

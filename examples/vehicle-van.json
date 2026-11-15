@@ -1,0 +1,50 @@
+{
+  "fleet_number": "VAN-DEMO-01",
+  "active": true,
+  "routing": {
+    "height_mm": 2700,
+    "width_mm": 2100,
+    "length_mm": 6200,
+    "gross_weight_kg": 3500,
+    "axle_load_kg": 2000,
+    "axle_count": 2
+  },
+  "capacity": {
+    "weight_kg": 1200,
+    "volume_dm3": 13000,
+    "pallet_eur_units": 5,
+    "pallet_ind_units": 0,
+    "loading_length_mm": 3000
+  },
+  "skills": [],
+  "hours": {
+    "monday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "tuesday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "wednesday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "thursday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "friday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "saturday": null,
+    "sunday": null
+  },
+  "cost": {
+    "currency": "EUR",
+    "fixed_minor": 4000,
+    "per_km_minor": 48,
+    "per_hour_minor": 2900
+  }
+}

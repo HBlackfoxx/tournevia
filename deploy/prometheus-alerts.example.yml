@@ -1,0 +1,34 @@
+# Example Prometheus alert rules for GET /api/v1/metrics (see deploy/README.md "Monitoring").
+# Scrape with: authorization: { type: Bearer, credentials_file: /etc/prometheus/tournevia-token }
+groups:
+  - name: tournevia
+    rules:
+      - alert: TourneviaUnreachable
+        expr: up{job="tournevia"} == 0
+        for: 5m
+        annotations:
+          summary: The planner did not answer its metrics endpoint for 5 minutes.
+      - alert: TourneviaDatabaseNotReady
+        expr: tournevia_database_ready == 0
+        for: 2m
+        annotations:
+          summary: The database is unreachable or its schema does not match this application.
+      - alert: TourneviaWorkerStopped
+        expr: tournevia_worker_running == 0
+        for: 5m
+        annotations:
+          summary: No calculation worker holds the guard; new calculations will wait.
+      - alert: TourneviaRoutingUnavailable
+        expr: tournevia_routing_available == 0
+        for: 5m
+        annotations:
+          summary: The routing service does not answer; calculations and road checks fail.
+      - alert: TourneviaCalculationsWaiting
+        expr: tournevia_oldest_queued_job_age_seconds > 600
+        for: 5m
+        annotations:
+          summary: A calculation has waited more than 10 minutes for the worker.
+      - alert: TourneviaCalculationsFailing
+        expr: tournevia_jobs_failed_last_hour > 3
+        annotations:
+          summary: More than three calculations failed or were cancelled in the last hour.

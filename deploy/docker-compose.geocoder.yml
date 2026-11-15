@@ -1,0 +1,98 @@
+# Optional overlay: address lookup through the installation's own copy of the Base Adresse
+# Nationale (BAN), served by addok. Apply after docker-compose.example.yml (and before the
+# HTTPS overlays):
+#   docker compose -f docker-compose.example.yml -f docker-compose.geocoder.yml up -d
+# First unpack the BAN addok bundle into deploy/runtime/geocoder/addok-data (README "Address
+# lookup"). The geocoder publishes no port and keeps no request log, so looked-up delivery
+# addresses never leave this installation or reach a log file. Only the API reaches it.
+services:
+  addok-redis:
+    image: etalab/addok-redis@sha256:8161cfba73ab83d1475705040145c17da5533b56f8091de7b00669ed09a3a7ee
+    # The image's configuration saves nothing (save "", appendonly no): the index is read-only.
+    user: "999:999"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,nosuid,noexec,size=16m
+    volumes:
+      - type: bind
+        source: ./runtime/geocoder/addok-data/dump.rdb
+        target: /data/dump.rdb
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [geocoder]
+    mem_limit: ${GEOCODER_MEMORY:-8g}
+    pids_limit: 64
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 180s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+  addok:
+    image: etalab/addok@sha256:5eff377a5bbf609bc7e093828c1941cc4ebf9d6a39ccb12767edcb2ff29b4b7c
+    # Not the image's entrypoint: it logs every request line, and so every looked-up address.
+    entrypoint: ["sh", "-c"]
+    command:
+      # The bundled addok.conf has no final newline; add one before appending the log directory.
+      - 'cp /etc/addok/addok.conf /tmp/addok.conf && echo >> /tmp/addok.conf && echo "LOG_DIR = ''/tmp''" >> /tmp/addok.conf && exec gunicorn -w ${GEOCODER_WORKERS:-2} --timeout 30 -b 0.0.0.0:7878 addok.http.wsgi'
+    environment:
+      ADDOK_CONFIG_MODULE: /tmp/addok.conf
+      REDIS_HOST: addok-redis
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,nosuid,noexec,size=32m
+    volumes:
+      - type: bind
+        source: ./runtime/geocoder/addok-data/addok.conf
+        target: /etc/addok/addok.conf
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./runtime/geocoder/addok-data/addok.db
+        target: /data/addok.db
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [geocoder]
+    depends_on:
+      addok-redis:
+        condition: service_healthy
+    mem_limit: 1g
+    pids_limit: 64
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:7878/search/?q=paris&limit=1', timeout=5)"]
+      interval: 15s
+      timeout: 8s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+  api:
+    environment:
+      GEOCODER_URL: http://addok:7878
+    networks: [default, geocoder]
+    depends_on:
+      addok:
+        condition: service_healthy
+
+networks:
+  # No route out of this network: the geocoder is reachable only from the API.
+  geocoder:
+    internal: true

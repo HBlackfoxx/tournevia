@@ -1,0 +1,6 @@
+# Lint only (no reformatting): undefined names, unused imports/variables and syntax errors.
+target-version = "py311"
+extend-exclude = ["web", ".venv", "deploy/runtime", ".pytest-tmp*"]
+
+[lint]
+select = ["F", "E9"]

@@ -1,0 +1,21 @@
+name: Question
+description: How to install, configure or use Tournevia.
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The [first route on your computer](../blob/main/deploy/README.md#first-route-on-your-computer)
+        guide and the [developer guide](../blob/main/docs/developer/README.md) answer many questions.
+        Use fictional data in examples, and never paste passwords, setup links or real records.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: What you tried
+      description: Commands you ran, what you expected and what you saw, and how Tournevia is installed.

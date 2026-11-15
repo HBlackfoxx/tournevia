@@ -1,0 +1,93 @@
+{
+  "additionalProperties": false,
+  "description": "A saved vehicle: weekly working hours and dated exceptions, not one dated window.",
+  "properties": {
+    "fleet_number": {
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Fleet Number",
+      "type": "string"
+    },
+    "active": {
+      "title": "Active",
+      "type": "boolean"
+    },
+    "routing": {
+      "$ref": "common.schema.json#/$defs/Truck"
+    },
+    "capacity": {
+      "$ref": "common.schema.json#/$defs/Capacity"
+    },
+    "skills": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_]{0,39}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Skills",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "cost": {
+      "$ref": "common.schema.json#/$defs/Rates"
+    },
+    "limits": {
+      "$ref": "common.schema.json#/$defs/VehicleLimits"
+    },
+    "start": {
+      "anyOf": [
+        {
+          "maxLength": 40,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Code of the depot or place where the vehicle starts its day and is loaded; null: the main depot.",
+      "title": "Start"
+    },
+    "end": {
+      "anyOf": [
+        {
+          "maxLength": 40,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Code of the depot or place where it ends its day; null: where it started.",
+      "title": "End"
+    },
+    "hours": {
+      "$ref": "common.schema.json#/$defs/WeeklyHours"
+    },
+    "exceptions": {
+      "description": "Days off and days with other hours, at most one per date; they replace the weekly hours on that date.",
+      "items": {
+        "$ref": "common.schema.json#/$defs/DayException"
+      },
+      "maxItems": 100,
+      "title": "Exceptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "fleet_number",
+    "active",
+    "routing",
+    "capacity",
+    "skills",
+    "cost",
+    "hours"
+  ],
+  "title": "VehicleSource",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/vehicle.schema.json"
+}

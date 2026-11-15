@@ -1,0 +1,20 @@
+# Proposes dependency updates as pull requests; nothing merges without review and CI.
+# backend/requirements.lock is refreshed deliberately with its hashes (see its header).
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /backend
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly

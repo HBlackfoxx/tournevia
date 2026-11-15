@@ -1,0 +1,656 @@
+{
+  "$defs": {
+    "Capacity": {
+      "additionalProperties": false,
+      "properties": {
+        "weight_kg": {
+          "minimum": 0,
+          "title": "Weight Kg",
+          "type": "integer"
+        },
+        "volume_dm3": {
+          "minimum": 0,
+          "title": "Volume Dm3",
+          "type": "integer"
+        },
+        "pallet_eur_units": {
+          "minimum": 0,
+          "title": "Pallet Eur Units",
+          "type": "integer"
+        },
+        "pallet_ind_units": {
+          "minimum": 0,
+          "title": "Pallet Ind Units",
+          "type": "integer"
+        },
+        "loading_length_mm": {
+          "minimum": 0,
+          "title": "Loading Length Mm",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "weight_kg",
+        "volume_dm3",
+        "pallet_eur_units",
+        "pallet_ind_units",
+        "loading_length_mm"
+      ],
+      "title": "Capacity",
+      "type": "object"
+    },
+    "DepotInput": {
+      "additionalProperties": false,
+      "description": "A depot, or another place a vehicle starts or ends its day at, such as a driver's home.",
+      "properties": {
+        "code": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "default": "DEPOT",
+          "description": "DEPOT: goods are loaded there and deliveries can ship from it. PLACE: another start or end of a vehicle's day, such as a driver's home; a vehicle starting there leaves already loaded.",
+          "enum": [
+            "DEPOT",
+            "PLACE"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "address": {
+          "default": "",
+          "description": "Postal address of the depot; empty when unknown.",
+          "maxLength": 500,
+          "title": "Address",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "timezone": {
+          "const": "Europe/Paris",
+          "title": "Timezone",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "location",
+        "timezone"
+      ],
+      "title": "DepotInput",
+      "type": "object"
+    },
+    "DepotRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "organization_id": {
+          "format": "uuid",
+          "title": "Organization Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "main": {
+          "default": false,
+          "description": "The main depot: where a vehicle without another start begins and ends its day.",
+          "title": "Main",
+          "type": "boolean"
+        },
+        "example": {
+          "default": false,
+          "description": "An example: fictional, planned only with other examples, and removed with them.",
+          "title": "Example",
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/$defs/DepotInput"
+        }
+      },
+      "required": [
+        "id",
+        "organization_id",
+        "version",
+        "data"
+      ],
+      "title": "DepotRecord",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "reviewed": {
+          "title": "Reviewed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "reviewed"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "OrderInput": {
+      "additionalProperties": false,
+      "properties": {
+        "external_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "External Id",
+          "type": "string"
+        },
+        "service_date": {
+          "format": "date",
+          "title": "Service Date",
+          "type": "string"
+        },
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "address": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Address",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Location"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "time_window": {
+          "$ref": "#/$defs/Window"
+        },
+        "service_seconds": {
+          "maximum": 28800,
+          "minimum": 0,
+          "title": "Service Seconds",
+          "type": "integer"
+        },
+        "demand": {
+          "$ref": "#/$defs/Capacity"
+        },
+        "required_skills": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,39}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Required Skills",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "instructions": {
+          "maxLength": 1000,
+          "title": "Instructions",
+          "type": "string"
+        },
+        "priority": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Priority",
+          "type": "integer"
+        },
+        "customer": {
+          "anyOf": [
+            {
+              "maxLength": 40,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Code of the saved customer this delivery is for; a delivery at its reviewed entrance needs no new review.",
+          "title": "Customer"
+        },
+        "ships_from": {
+          "anyOf": [
+            {
+              "maxLength": 40,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Code of the depot this delivery is loaded at: only vehicles starting there carry it. Null: any vehicle.",
+          "title": "Ships From"
+        }
+      },
+      "required": [
+        "external_id",
+        "service_date",
+        "active",
+        "address",
+        "location",
+        "time_window",
+        "service_seconds",
+        "demand",
+        "required_skills",
+        "instructions"
+      ],
+      "title": "OrderInput",
+      "type": "object"
+    },
+    "Owned_OrderInput_": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "organization_id": {
+          "format": "uuid",
+          "title": "Organization Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "example": {
+          "default": false,
+          "description": "An example: fictional, planned only with other examples, and removed with them.",
+          "title": "Example",
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/$defs/OrderInput"
+        }
+      },
+      "required": [
+        "id",
+        "organization_id",
+        "version",
+        "data"
+      ],
+      "title": "Owned[OrderInput]",
+      "type": "object"
+    },
+    "Owned_VehicleInput_": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "organization_id": {
+          "format": "uuid",
+          "title": "Organization Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "example": {
+          "default": false,
+          "description": "An example: fictional, planned only with other examples, and removed with them.",
+          "title": "Example",
+          "type": "boolean"
+        },
+        "data": {
+          "$ref": "#/$defs/VehicleInput"
+        }
+      },
+      "required": [
+        "id",
+        "organization_id",
+        "version",
+        "data"
+      ],
+      "title": "Owned[VehicleInput]",
+      "type": "object"
+    },
+    "Rates": {
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "const": "EUR",
+          "title": "Currency",
+          "type": "string"
+        },
+        "fixed_minor": {
+          "minimum": 0,
+          "title": "Fixed Minor",
+          "type": "integer"
+        },
+        "per_km_minor": {
+          "minimum": 0,
+          "title": "Per Km Minor",
+          "type": "integer"
+        },
+        "per_hour_minor": {
+          "minimum": 0,
+          "title": "Per Hour Minor",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currency",
+        "fixed_minor",
+        "per_km_minor",
+        "per_hour_minor"
+      ],
+      "title": "Rates",
+      "type": "object"
+    },
+    "Truck": {
+      "additionalProperties": false,
+      "properties": {
+        "height_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Height Mm",
+          "type": "integer"
+        },
+        "width_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Width Mm",
+          "type": "integer"
+        },
+        "length_mm": {
+          "maximum": 50000,
+          "minimum": 1,
+          "title": "Length Mm",
+          "type": "integer"
+        },
+        "gross_weight_kg": {
+          "maximum": 100000,
+          "minimum": 1,
+          "title": "Gross Weight Kg",
+          "type": "integer"
+        },
+        "axle_load_kg": {
+          "maximum": 40000,
+          "minimum": 1,
+          "title": "Axle Load Kg",
+          "type": "integer"
+        },
+        "axle_count": {
+          "maximum": 12,
+          "minimum": 2,
+          "title": "Axle Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "height_mm",
+        "width_mm",
+        "length_mm",
+        "gross_weight_kg",
+        "axle_load_kg",
+        "axle_count"
+      ],
+      "title": "Truck",
+      "type": "object"
+    },
+    "VehicleInput": {
+      "additionalProperties": false,
+      "description": "A vehicle as one calculation uses it: its window on the planning day.",
+      "properties": {
+        "fleet_number": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Fleet Number",
+          "type": "string"
+        },
+        "active": {
+          "title": "Active",
+          "type": "boolean"
+        },
+        "routing": {
+          "$ref": "#/$defs/Truck"
+        },
+        "capacity": {
+          "$ref": "#/$defs/Capacity"
+        },
+        "skills": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_]{0,39}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Skills",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "cost": {
+          "$ref": "#/$defs/Rates"
+        },
+        "limits": {
+          "$ref": "#/$defs/VehicleLimits"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "maxLength": 40,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Code of the depot or place where the vehicle starts its day and is loaded; null: the main depot.",
+          "title": "Start"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "maxLength": 40,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Code of the depot or place where it ends its day; null: where it started.",
+          "title": "End"
+        },
+        "available_window": {
+          "$ref": "#/$defs/Window"
+        }
+      },
+      "required": [
+        "fleet_number",
+        "active",
+        "routing",
+        "capacity",
+        "skills",
+        "cost",
+        "available_window"
+      ],
+      "title": "VehicleInput",
+      "type": "object"
+    },
+    "VehicleLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "max_stops": {
+          "maximum": 250,
+          "minimum": 1,
+          "title": "Max Stops",
+          "type": "integer"
+        },
+        "max_distance_m": {
+          "maximum": 2000000,
+          "minimum": 1,
+          "title": "Max Distance M",
+          "type": "integer"
+        },
+        "max_driving_seconds": {
+          "maximum": 90000,
+          "minimum": 1,
+          "title": "Max Driving Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "VehicleLimits",
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Window",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The CLI cannot establish operational provenance.",
+  "properties": {
+    "organization_id": {
+      "format": "uuid",
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "data_kind": {
+      "const": "SYNTHETIC",
+      "title": "Data Kind",
+      "type": "string"
+    },
+    "service_date": {
+      "format": "date",
+      "title": "Service Date",
+      "type": "string"
+    },
+    "depot": {
+      "$ref": "#/$defs/DepotRecord"
+    },
+    "depots": {
+      "items": {
+        "$ref": "#/$defs/DepotRecord"
+      },
+      "maxItems": 60,
+      "title": "Depots",
+      "type": "array"
+    },
+    "vehicles": {
+      "items": {
+        "$ref": "#/$defs/Owned_VehicleInput_"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "title": "Vehicles",
+      "type": "array"
+    },
+    "orders": {
+      "items": {
+        "$ref": "#/$defs/Owned_OrderInput_"
+      },
+      "maxItems": 250,
+      "minItems": 1,
+      "title": "Orders",
+      "type": "array"
+    },
+    "routing_policy": {
+      "enum": [
+        "TRUCK_STANDARD",
+        "TRUCK_PREFER_NO_TOLLS",
+        "TRUCK_PREFER_NO_MOTORWAYS"
+      ],
+      "title": "Routing Policy",
+      "type": "string"
+    },
+    "objective": {
+      "default": "TRAVEL_TIME",
+      "enum": [
+        "TRAVEL_TIME",
+        "MODELED_TRAVEL_COST"
+      ],
+      "title": "Objective",
+      "type": "string"
+    },
+    "solver_time_limit_seconds": {
+      "maximum": 60,
+      "minimum": 1,
+      "title": "Solver Time Limit Seconds",
+      "type": "integer"
+    },
+    "safety_margin_seconds": {
+      "default": 0,
+      "maximum": 7200,
+      "minimum": 0,
+      "title": "Safety Margin Seconds",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "organization_id",
+    "data_kind",
+    "service_date",
+    "depot",
+    "vehicles",
+    "orders",
+    "routing_policy",
+    "solver_time_limit_seconds"
+  ],
+  "title": "SyntheticInput",
+  "type": "object"
+}

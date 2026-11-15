@@ -1,0 +1,19 @@
+erDiagram
+  ORGANIZATION ||--o{ USER : owns
+  ORGANIZATION ||--o| DEPOT : configures
+  ORGANIZATION ||--o{ VEHICLE : owns
+  ORGANIZATION ||--o{ ORDER : owns
+  ORGANIZATION ||--o{ PLANNING_JOB : owns
+  ORGANIZATION ||--o{ PLAN : owns
+  USER ||--o{ SESSION : authenticates
+  PLANNING_JOB }o--o| PLAN : calculates_or_updates
+  PLAN {
+    uuid id
+    uuid organization_id
+    int version
+    string status
+    json input_data
+    json routes
+    json validation
+    datetime finalized_at
+  }

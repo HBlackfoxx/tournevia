@@ -1,0 +1,62 @@
+name: Bug report
+description: Something in Tournevia does not work as documented.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting. Use fictional data only: never paste real addresses, customer
+        or driver records, passwords, setup links or session cookies.
+        A suspected security problem goes through the private channel in SECURITY.md, not here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: With fictional data. Example files or the example data from the setup guide are ideal.
+      placeholder: |
+        1. Start a workspace with ...
+        2. On Planning, ...
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Version
+      description: The Git commit (`git rev-parse --short HEAD`) or the source kit's file name.
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: How it is installed
+      options:
+        - Local workspace (scripts/start_local.py)
+        - Server with HTTPS (scripts/start_server.py)
+        - Docker Compose by hand
+        - Development setup (host Python and Vite)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: Operating system, Docker version, and the browser if the problem is in the interface.
+      placeholder: Windows 11, Docker Desktop 4.x, Firefox 1xx
+  - type: textarea
+    id: logs
+    attributes:
+      label: Messages and logs
+      description: |
+        The message shown on screen. For an unexpected error, the failed request's `x-request-id`
+        (browser developer tools, Network tab) and the API log line with that request_id, which
+        says where the error happened without record values. Check that nothing private remains.
+      render: text

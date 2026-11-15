@@ -1,0 +1,62 @@
+{
+  "orders": {
+    "required": [
+      "external_id",
+      "service_date",
+      "active",
+      "address",
+      "latitude",
+      "longitude",
+      "time_window_start",
+      "time_window_end",
+      "service_seconds",
+      "weight_kg",
+      "volume_dm3",
+      "pallet_eur_units",
+      "pallet_ind_units",
+      "loading_length_mm",
+      "required_skills",
+      "instructions"
+    ],
+    "optional": [
+      "priority",
+      "customer",
+      "ships_from"
+    ]
+  },
+  "vehicles": {
+    "required": [
+      "fleet_number",
+      "active",
+      "height_mm",
+      "width_mm",
+      "length_mm",
+      "gross_weight_kg",
+      "axle_load_kg",
+      "axle_count",
+      "weight_kg",
+      "volume_dm3",
+      "pallet_eur_units",
+      "pallet_ind_units",
+      "loading_length_mm",
+      "skills",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday",
+      "fixed_minor",
+      "per_km_minor",
+      "per_hour_minor"
+    ],
+    "optional": [
+      "max_stops",
+      "max_distance_m",
+      "max_driving_seconds",
+      "start",
+      "end"
+    ]
+  }
+}

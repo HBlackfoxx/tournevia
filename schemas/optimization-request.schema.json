@@ -1,0 +1,86 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "service_date": {
+      "format": "date",
+      "title": "Service Date",
+      "type": "string"
+    },
+    "vehicle_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "title": "Vehicle Ids",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "order_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 250,
+      "minItems": 1,
+      "title": "Order Ids",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "routing_policy": {
+      "enum": [
+        "TRUCK_STANDARD",
+        "TRUCK_PREFER_NO_TOLLS",
+        "TRUCK_PREFER_NO_MOTORWAYS"
+      ],
+      "title": "Routing Policy",
+      "type": "string"
+    },
+    "solver_time_limit_seconds": {
+      "maximum": 60,
+      "minimum": 1,
+      "title": "Solver Time Limit Seconds",
+      "type": "integer"
+    },
+    "objective": {
+      "default": "TRAVEL_TIME",
+      "enum": [
+        "TRAVEL_TIME",
+        "MODELED_TRAVEL_COST"
+      ],
+      "title": "Objective",
+      "type": "string"
+    },
+    "source_versions": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "propertyNames": {
+            "format": "uuid"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Versions"
+    }
+  },
+  "required": [
+    "service_date",
+    "vehicle_ids",
+    "order_ids",
+    "routing_policy",
+    "solver_time_limit_seconds"
+  ],
+  "title": "OptimizationRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/optimization-request.schema.json"
+}

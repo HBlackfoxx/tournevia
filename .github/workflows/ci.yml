@@ -1,0 +1,166 @@
+# Checks that need no routing graph, including the HTTPS overlay and the Compose
+# backup/restore suite. Real-engine, worker-process and recovery acceptance suites
+# need a regional graph: see engines.yml (manual and weekly) and deploy/README.md.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request supersedes an older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  signoff:
+    # Developer Certificate of Origin; see CONTRIBUTING.md.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - name: Every commit of the pull request carries a Signed-off-by line
+        # The checkout is the merge of the base branch (first parent) and the pull request (second).
+        run: |
+          status=0
+          for commit in $(git rev-list --no-merges HEAD^1..HEAD^2); do
+            if ! git show -s --format=%B "$commit" | grep -q '^Signed-off-by: .\+ <.\+>$'; then
+              echo "::error::$(git show -s --format='%h %s' "$commit") has no Signed-off-by line. See CONTRIBUTING.md."
+              status=1
+            fi
+          done
+          exit $status
+
+  backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine@sha256:23e88eb049fd5d54894d70100df61d38a49ed97909263f79d4ff4c30a5d5fca2
+        env:
+          POSTGRES_USER: vrp_owner
+          POSTGRES_PASSWORD: ci-disposable-password
+          POSTGRES_DB: vrp
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U vrp_owner -d vrp"
+          --health-interval 3s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.14"
+      - name: Install hash-checked runtime, then test and documentation-check dependencies
+        run: |
+          python -m pip install --require-hashes -r backend/requirements.lock
+          python -m pip install -r backend/requirements-dev.txt -r requirements-docs.txt
+      - name: Python lint (undefined names, unused imports, syntax)
+        run: python -m ruff check .
+      - name: Backend and launcher tests, including isolated PostgreSQL databases
+        env:
+          TEST_DATABASE_URL: postgresql+psycopg://vrp_owner:ci-disposable-password@127.0.0.1:5432/vrp
+        run: python -m pytest -c backend/pytest.ini backend/tests scripts/tests -q -p no:cacheprovider --basetemp "$RUNNER_TEMP/pytest"
+      - name: Generated contracts match the application
+        run: python scripts/export_contracts.py --check
+      - name: Documentation links, contract files and examples
+        run: python scripts/validate_pack.py
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Formatting and lint
+        run: npm run format:check && npm run lint
+      - run: npm test
+      - name: Generated API types match backend/openapi.json
+        run: npm run api:check
+      - run: npm run build
+
+  image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Build the pinned solver and application images
+        run: |
+          docker build -f deploy/Dockerfile.vroom -t tournevia-vroom:1.14.0 .
+          docker build --target engine-test -t tournevia-engine-test:ci .
+      - name: Linux-only process supervision and engine-free routing checks
+        run: >-
+          docker run --rm tournevia-engine-test:ci python -m pytest -q -p no:cacheprovider
+          --basetemp /tmp/vrp-tests tests/test_validator.py tests/test_pin_checks.py tests/test_routing_core.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.14"
+      - name: HTTPS overlay on the built runtime image (TLS, cookies, CSRF, headers, log redaction)
+        run: |
+          python -m pip install -r backend/requirements-dev.txt
+          docker build --target runtime -t tournevia-app:ci .
+          python scripts/test_https.py --image tournevia-app:ci
+      - name: Behind an existing HTTPS proxy (Traefik label discovery, visitor addresses, limits)
+        run: python scripts/test_proxied.py --image tournevia-app:ci
+
+  database-ops:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      # Compose and the backup helper's `docker compose exec` select this disposable project.
+      COMPOSE_PROJECT_NAME: vrp-ops-ci
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.14"
+      - name: Install hash-checked runtime, then test dependencies
+        run: |
+          python -m pip install --require-hashes -r backend/requirements.lock
+          python -m pip install -r backend/requirements-dev.txt
+      - name: Disposable Compose database with random credentials
+        run: |
+          {
+            echo "POSTGRES_USER=vrp_owner"
+            echo "POSTGRES_DB=vrp"
+            echo "POSTGRES_PORT=55433"
+            for name in POSTGRES_PASSWORD RUNTIME_DB_PASSWORD MIGRATION_DB_PASSWORD; do echo "$name=$(openssl rand -hex 24)"; done
+          } > .env
+          docker compose --env-file .env -f deploy/docker-compose.example.yml up -d --wait postgres
+      - name: Role grants, pg_dump backup and isolated restore against the Compose database
+        run: |
+          set -a; . ./.env; set +a
+          export TEST_DATABASE_URL="postgresql+psycopg://vrp_owner:${POSTGRES_PASSWORD}@127.0.0.1:55433/postgres"
+          RUN_DATABASE_OPS_TESTS=1 python -m pytest -c backend/pytest.ini backend/tests -m database_ops -q             -p no:cacheprovider --basetemp "$RUNNER_TEMP/ops"
+
+  dependency-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.14"
+      - name: Known vulnerabilities in the locked runtime Python packages
+        run: |
+          python -m pip install pip-audit==2.10.1
+          pip-audit --require-hashes --disable-pip -r backend/requirements.lock
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "24"
+      - name: Known vulnerabilities in production npm packages
+        working-directory: web
+        run: npm audit --omit=dev --audit-level=high

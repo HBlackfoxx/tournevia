@@ -1,0 +1,19 @@
+{
+  "valhalla_image": "ghcr.io/valhalla/valhalla@sha256:c9c1f9e6d9bb46484b667346960d4c7e6bc0cd375f95cffedcda8567c7b9706e",
+  "valhalla_version": "3.9.0-0baa5c687",
+  "vroom_version": "1.14.0",
+  "vroom_commit": "1fd711bc8c20326dd8e9538e2c7e4cb1ebd67bdb",
+  "region_source": "https://download.geofabrik.de/europe/france/ile-de-france-latest.osm.pbf",
+  "downloaded_on": "2026-09-22",
+  "region_bytes": 338509338,
+  "region_sha256": "3d580f7e90334ae4ce984de52319e0b456e149813137ee90ac498d945f370f52",
+  "extracts": {
+    "france": {
+      "source": "https://download.geofabrik.de/europe/france-latest.osm.pbf",
+      "file": "france.osm.pbf",
+      "downloaded_on": "2026-10-20",
+      "bytes": 5100588864,
+      "sha256": "98c945ae6c239d16bc3268e5d6bbc4f410efb5941b1a5d102bd767b12fbe26cf"
+    }
+  }
+}

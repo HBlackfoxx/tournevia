@@ -1,0 +1,116 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "external_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "External Id",
+      "type": "string"
+    },
+    "service_date": {
+      "format": "date",
+      "title": "Service Date",
+      "type": "string"
+    },
+    "active": {
+      "title": "Active",
+      "type": "boolean"
+    },
+    "address": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Address",
+      "type": "string"
+    },
+    "location": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/Location"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "time_window": {
+      "$ref": "common.schema.json#/$defs/Window"
+    },
+    "service_seconds": {
+      "maximum": 28800,
+      "minimum": 0,
+      "title": "Service Seconds",
+      "type": "integer"
+    },
+    "demand": {
+      "$ref": "common.schema.json#/$defs/Capacity"
+    },
+    "required_skills": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_]{0,39}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Required Skills",
+      "type": "array",
+      "uniqueItems": true
+    },
+    "instructions": {
+      "maxLength": 1000,
+      "title": "Instructions",
+      "type": "string"
+    },
+    "priority": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Priority",
+      "type": "integer"
+    },
+    "customer": {
+      "anyOf": [
+        {
+          "maxLength": 40,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Code of the saved customer this delivery is for; a delivery at its reviewed entrance needs no new review.",
+      "title": "Customer"
+    },
+    "ships_from": {
+      "anyOf": [
+        {
+          "maxLength": 40,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Code of the depot this delivery is loaded at: only vehicles starting there carry it. Null: any vehicle.",
+      "title": "Ships From"
+    }
+  },
+  "required": [
+    "external_id",
+    "service_date",
+    "active",
+    "address",
+    "location",
+    "time_window",
+    "service_seconds",
+    "demand",
+    "required_skills",
+    "instructions"
+  ],
+  "title": "OrderInput",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/order.schema.json"
+}

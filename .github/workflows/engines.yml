@@ -1,0 +1,113 @@
+# Real-road suites that ci.yml cannot run on every push: the real-engine tests, the Linux
+# worker-process checks and the HTTPS fresh-install, backup, restore and cutover acceptance.
+# They need an Île-de-France graph built from the public Geofabrik extract, so they run on
+# demand and weekly. The graph build alone is limited to 6 GB; routers, test containers and
+# the HTTPS stack together need a runner with more memory than that.
+#
+# Geofabrik serves only its latest extract, so this workflow builds from that file and
+# records its size and SHA-256 in the job summary. A pass is the acceptance run that
+# deploy/README.md asks for before the pinned extract in deploy/engines.json is updated;
+# it is not a run on the pinned file.
+name: Engines
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engines
+  cancel-in-progress: false
+
+jobs:
+  real-roads:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    services:
+      postgres:
+        image: postgres:16-alpine@sha256:23e88eb049fd5d54894d70100df61d38a49ed97909263f79d4ff4c30a5d5fca2
+        env:
+          POSTGRES_USER: vrp_owner
+          POSTGRES_PASSWORD: ci-disposable-password
+          POSTGRES_DB: vrp
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U vrp_owner -d vrp"
+          --health-interval 3s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.14"
+      - name: Install hash-checked runtime, then test and fixture dependencies
+        run: |
+          python -m pip install --require-hashes -r backend/requirements.lock
+          python -m pip install -r backend/requirements-dev.txt -r requirements-engines.txt
+      - name: Download the current Île-de-France extract and record it
+        run: |
+          mkdir -p deploy/runtime
+          source=$(jq -r .region_source deploy/engines.json)
+          curl -fsSL --retry 3 -o deploy/runtime/ile-de-france.osm.pbf "$source"
+          {
+            echo "### Routing extract used by this run"
+            echo "- Source: $source (downloaded $(date -u +%Y-%m-%d))"
+            echo "- Bytes: $(stat -c %s deploy/runtime/ile-de-france.osm.pbf)"
+            echo "- SHA-256: $(sha256sum deploy/runtime/ile-de-france.osm.pbf | cut -d' ' -f1)"
+            echo "- Pinned in deploy/engines.json: $(jq -r .region_sha256 deploy/engines.json)"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Build the regional graph and the synthetic restriction graph
+        run: |
+          valhalla=$(jq -r .valhalla_image deploy/engines.json)
+          python scripts/create_engine_fixtures.py
+          docker pull "$valhalla"
+          docker run --rm --memory 6g --cpus 2 --entrypoint python3 -v "$PWD/deploy/runtime:/data" \
+            -v "$PWD/deploy:/workspace:ro" "$valhalla" /workspace/build_graph.py region --accept-new-extract
+          docker run --rm --memory 2g --cpus 2 --entrypoint python3 -v "$PWD/deploy/runtime:/data" \
+            -v "$PWD/deploy:/workspace:ro" "$valhalla" /workspace/build_graph.py restrictions
+          python deploy/configure_matrix.py deploy/runtime/region/valhalla.json deploy/runtime/regional-matrix.json
+      - name: Start the regional (four matrix workers) and restriction routers
+        run: |
+          valhalla=$(jq -r .valhalla_image deploy/engines.json)
+          docker network create engines
+          docker run -d --name valhalla --network engines -p 8002:8002 --memory 4g --cpus 4 \
+            -v "$PWD/deploy/runtime:/data:ro" --entrypoint valhalla_service "$valhalla" /data/regional-matrix.json 4
+          docker run -d --name restrictions --network engines -p 127.0.0.1:8003:8002 --memory 1g --cpus 1 \
+            -v "$PWD/deploy/runtime:/data:ro" --entrypoint valhalla_service "$valhalla" /data/restrictions/valhalla.json 1
+          for port in 8002 8003; do
+            for _ in $(seq 90); do curl -fs "http://127.0.0.1:$port/status" > /dev/null && break; sleep 2; done
+            curl -fs "http://127.0.0.1:$port/status" > /dev/null
+          done
+      - name: Build the solver, application and engine-test images
+        run: |
+          docker build -f deploy/Dockerfile.vroom -t tournevia-vroom:1.14.0 .
+          docker build --target runtime -t tournevia-app:ci .
+          docker build --target engine-test -t tournevia-engine-test:ci .
+      - name: Real-engine suite
+        run: >-
+          docker run --rm --network engines --memory 2g --cpus 2
+          -e VALHALLA_URL=http://valhalla:8002 -e RESTRICTIONS_URL=http://restrictions:8002
+          tournevia-engine-test:ci python -m pytest -q -m engines --basetemp /tmp/vrp-tests -p no:cacheprovider --tb=short
+      # The four regional 250-delivery cases (enabled by MATRIX_CONCURRENCY=4) need a router with
+      # 8 CPUs and 8 GiB, as measured in deploy/README.md; on a 4-CPU router their matrix requests
+      # time out. A standard runner cannot provide that, so they are left out here and run where
+      # such a router is available.
+      - name: Linux worker processes against real routing and PostgreSQL
+        run: >-
+          docker run --rm --network engines --add-host=host.docker.internal:host-gateway --memory 2g --cpus 2
+          -e DB_HOST=host.docker.internal -e DB_PORT=5432
+          -e POSTGRES_USER=vrp_owner -e POSTGRES_PASSWORD=ci-disposable-password
+          -e REGIONAL_URL=http://valhalla:8002
+          tournevia-engine-test:ci python -m tests.run_worker_checks
+      - name: HTTPS fresh install, real-road plan, backup, restore and cutover
+        run: |
+          # Compose containers reach the published router through the host's bridge address.
+          gateway=$(docker network inspect bridge -f '{{(index .IPAM.Config 0).Gateway}}')
+          VALHALLA_URL="http://$gateway:8002" python scripts/test_https.py --image tournevia-app:ci --recovery
+      - name: Router logs
+        if: failure()
+        run: |
+          docker logs --tail 80 valhalla || true
+          docker logs --tail 80 restrictions || true

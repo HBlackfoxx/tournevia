@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "RouteAssignment": {
+      "additionalProperties": false,
+      "properties": {
+        "vehicle_id": {
+          "format": "uuid",
+          "title": "Vehicle Id",
+          "type": "string"
+        },
+        "order_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 250,
+          "minItems": 1,
+          "title": "Order Ids",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "vehicle_id",
+        "order_ids"
+      ],
+      "title": "RouteAssignment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "routes": {
+      "items": {
+        "$ref": "#/$defs/RouteAssignment"
+      },
+      "maxItems": 25,
+      "title": "Routes",
+      "type": "array"
+    },
+    "unassigned_order_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 250,
+      "title": "Unassigned Order Ids",
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "routes",
+    "unassigned_order_ids"
+  ],
+  "title": "EditRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/plan-edit.schema.json"
+}

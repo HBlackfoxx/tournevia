@@ -1,0 +1,4 @@
+# Documentation checks only; not application dependencies.
+PyYAML>=6.0,<7
+jsonschema[format]>=4.18,<5
+referencing>=0.30,<1

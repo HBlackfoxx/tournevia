@@ -1,0 +1,29 @@
+name: Feature request
+description: A planning need Tournevia does not cover yet.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [roadmap](../blob/main/docs/07-deferred-scope.md) first: it lists what is
+        planned and what each addition must keep correct. Describe the need in your own work,
+        with fictional data.
+  - type: textarea
+    id: need
+    attributes:
+      label: The need
+      description: What you are trying to plan or do, and why the current planner does not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What would solve it
+      description: How it should behave, including what must stay true (constraints, validation, exports).
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you do today instead
+      description: Workarounds you use now, if any.

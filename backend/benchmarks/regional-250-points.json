@@ -1,0 +1,3007 @@
+{
+  "source": "Local Valhalla graph from Geofabrik Ile-de-France downloaded 2026-09-22; OpenStreetMap contributors (ODbL).",
+  "scope": "Synthetic 5-by-5 grid, ten nearby local-road points per cell. Not actual delivery premises or operator-reviewed access.",
+  "selection": "Nearest unused truck-accessible local-road pin among a fixed 7-by-7 locate lattice, within 1000 m of each grid point; fixed before benchmark results. Application snap limit remains 50 m.",
+  "points": [
+    {
+      "grid": [
+        2.188,
+        48.747
+      ],
+      "coordinates": [
+        2.186454,
+        48.744749
+      ],
+      "grid_distance_m": 274.77,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.194,
+        48.747
+      ],
+      "coordinates": [
+        2.196033,
+        48.747682
+      ],
+      "grid_distance_m": 167.24,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.2,
+        48.747
+      ],
+      "coordinates": [
+        2.197059,
+        48.746946
+      ],
+      "grid_distance_m": 215.72,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.206,
+        48.747
+      ],
+      "coordinates": [
+        2.208995,
+        48.750994
+      ],
+      "grid_distance_m": 495.43,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.212,
+        48.747
+      ],
+      "coordinates": [
+        2.21779,
+        48.750882
+      ],
+      "grid_distance_m": 605.42,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.188,
+        48.753
+      ],
+      "coordinates": [
+        2.188203,
+        48.753039
+      ],
+      "grid_distance_m": 15.5,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.194,
+        48.753
+      ],
+      "coordinates": [
+        2.196093,
+        48.755534
+      ],
+      "grid_distance_m": 320.84,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.2,
+        48.753
+      ],
+      "coordinates": [
+        2.201254,
+        48.753113
+      ],
+      "grid_distance_m": 92.79,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.206,
+        48.753
+      ],
+      "coordinates": [
+        2.206292,
+        48.752888
+      ],
+      "grid_distance_m": 24.77,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.212,
+        48.753
+      ],
+      "coordinates": [
+        2.212014,
+        48.753029
+      ],
+      "grid_distance_m": 3.38,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.288,
+        48.747
+      ],
+      "coordinates": [
+        2.287827,
+        48.74693
+      ],
+      "grid_distance_m": 14.88,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.294,
+        48.747
+      ],
+      "coordinates": [
+        2.294224,
+        48.746829
+      ],
+      "grid_distance_m": 25.13,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.3,
+        48.747
+      ],
+      "coordinates": [
+        2.299814,
+        48.746903
+      ],
+      "grid_distance_m": 17.39,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.747
+      ],
+      "coordinates": [
+        2.306047,
+        48.747102
+      ],
+      "grid_distance_m": 11.85,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.312,
+        48.747
+      ],
+      "coordinates": [
+        2.31196,
+        48.746989
+      ],
+      "grid_distance_m": 3.18,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.288,
+        48.753
+      ],
+      "coordinates": [
+        2.288,
+        48.752947
+      ],
+      "grid_distance_m": 5.89,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.294,
+        48.753
+      ],
+      "coordinates": [
+        2.294241,
+        48.753171
+      ],
+      "grid_distance_m": 25.96,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.3,
+        48.753
+      ],
+      "coordinates": [
+        2.30041,
+        48.752987
+      ],
+      "grid_distance_m": 30.09,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.306,
+        48.753
+      ],
+      "coordinates": [
+        2.306106,
+        48.753231
+      ],
+      "grid_distance_m": 26.84,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.312,
+        48.753
+      ],
+      "coordinates": [
+        2.312373,
+        48.752799
+      ],
+      "grid_distance_m": 35.32,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.388,
+        48.747
+      ],
+      "coordinates": [
+        2.387934,
+        48.747113
+      ],
+      "grid_distance_m": 13.46,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.394,
+        48.747
+      ],
+      "coordinates": [
+        2.394234,
+        48.747006
+      ],
+      "grid_distance_m": 17.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.747
+      ],
+      "coordinates": [
+        2.400391,
+        48.74687
+      ],
+      "grid_distance_m": 32.11,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.406,
+        48.747
+      ],
+      "coordinates": [
+        2.406093,
+        48.747028
+      ],
+      "grid_distance_m": 7.5,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.747
+      ],
+      "coordinates": [
+        2.408541,
+        48.746981
+      ],
+      "grid_distance_m": 253.62,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.388,
+        48.753
+      ],
+      "coordinates": [
+        2.388035,
+        48.751163
+      ],
+      "grid_distance_m": 204.28,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.394,
+        48.753
+      ],
+      "coordinates": [
+        2.392464,
+        48.753617
+      ],
+      "grid_distance_m": 131.86,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.753
+      ],
+      "coordinates": [
+        2.400264,
+        48.752472
+      ],
+      "grid_distance_m": 61.82,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.406,
+        48.753
+      ],
+      "coordinates": [
+        2.408938,
+        48.752837
+      ],
+      "grid_distance_m": 216.15,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.753
+      ],
+      "coordinates": [
+        2.411958,
+        48.753063
+      ],
+      "grid_distance_m": 7.65,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.747
+      ],
+      "coordinates": [
+        2.488059,
+        48.746909
+      ],
+      "grid_distance_m": 11.0,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.494,
+        48.747
+      ],
+      "coordinates": [
+        2.494427,
+        48.747193
+      ],
+      "grid_distance_m": 37.96,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.5,
+        48.747
+      ],
+      "coordinates": [
+        2.499958,
+        48.747141
+      ],
+      "grid_distance_m": 15.98,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.506,
+        48.747
+      ],
+      "coordinates": [
+        2.506229,
+        48.747161
+      ],
+      "grid_distance_m": 24.54,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.512,
+        48.747
+      ],
+      "coordinates": [
+        2.512451,
+        48.746938
+      ],
+      "grid_distance_m": 33.78,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.753
+      ],
+      "coordinates": [
+        2.488112,
+        48.752882
+      ],
+      "grid_distance_m": 15.48,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.494,
+        48.753
+      ],
+      "coordinates": [
+        2.494028,
+        48.75302
+      ],
+      "grid_distance_m": 3.03,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.5,
+        48.753
+      ],
+      "coordinates": [
+        2.500069,
+        48.753359
+      ],
+      "grid_distance_m": 40.24,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.506,
+        48.753
+      ],
+      "coordinates": [
+        2.505807,
+        48.753041
+      ],
+      "grid_distance_m": 14.87,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.753
+      ],
+      "coordinates": [
+        2.515482,
+        48.752568
+      ],
+      "grid_distance_m": 259.75,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.588,
+        48.747
+      ],
+      "coordinates": [
+        2.59136,
+        48.746069
+      ],
+      "grid_distance_m": 267.23,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.594,
+        48.747
+      ],
+      "coordinates": [
+        2.593591,
+        48.745901
+      ],
+      "grid_distance_m": 125.83,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.6,
+        48.747
+      ],
+      "coordinates": [
+        2.600198,
+        48.746281
+      ],
+      "grid_distance_m": 81.26,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.606,
+        48.747
+      ],
+      "coordinates": [
+        2.605784,
+        48.74645
+      ],
+      "grid_distance_m": 63.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.612,
+        48.747
+      ],
+      "coordinates": [
+        2.613086,
+        48.747105
+      ],
+      "grid_distance_m": 80.48,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.588,
+        48.753
+      ],
+      "coordinates": [
+        2.591615,
+        48.74624
+      ],
+      "grid_distance_m": 797.04,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.594,
+        48.753
+      ],
+      "coordinates": [
+        2.596157,
+        48.746755
+      ],
+      "grid_distance_m": 712.19,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.6,
+        48.753
+      ],
+      "coordinates": [
+        2.609377,
+        48.753207
+      ],
+      "grid_distance_m": 687.83,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.606,
+        48.753
+      ],
+      "coordinates": [
+        2.610575,
+        48.75226
+      ],
+      "grid_distance_m": 345.35,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.612,
+        48.753
+      ],
+      "coordinates": [
+        2.612084,
+        48.751045
+      ],
+      "grid_distance_m": 217.47,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.188,
+        48.807
+      ],
+      "coordinates": [
+        2.187898,
+        48.807
+      ],
+      "grid_distance_m": 7.47,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.194,
+        48.807
+      ],
+      "coordinates": [
+        2.193526,
+        48.809012
+      ],
+      "grid_distance_m": 226.4,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.2,
+        48.807
+      ],
+      "coordinates": [
+        2.199996,
+        48.808978
+      ],
+      "grid_distance_m": 219.94,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.206,
+        48.807
+      ],
+      "coordinates": [
+        2.205541,
+        48.807043
+      ],
+      "grid_distance_m": 33.95,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.212,
+        48.807
+      ],
+      "coordinates": [
+        2.209138,
+        48.810853
+      ],
+      "grid_distance_m": 476.95,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.188,
+        48.813
+      ],
+      "coordinates": [
+        2.187647,
+        48.813336
+      ],
+      "grid_distance_m": 45.43,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.813
+      ],
+      "coordinates": [
+        2.196172,
+        48.813236
+      ],
+      "grid_distance_m": 161.19,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.2,
+        48.813
+      ],
+      "coordinates": [
+        2.196938,
+        48.815135
+      ],
+      "grid_distance_m": 326.54,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.206,
+        48.813
+      ],
+      "coordinates": [
+        2.208689,
+        48.813298
+      ],
+      "grid_distance_m": 199.67,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.212,
+        48.813
+      ],
+      "coordinates": [
+        2.212178,
+        48.813053
+      ],
+      "grid_distance_m": 14.3,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.288,
+        48.807
+      ],
+      "coordinates": [
+        2.287721,
+        48.808654
+      ],
+      "grid_distance_m": 185.05,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.294,
+        48.807
+      ],
+      "coordinates": [
+        2.293984,
+        48.807011
+      ],
+      "grid_distance_m": 1.69,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.3,
+        48.807
+      ],
+      "coordinates": [
+        2.299648,
+        48.807025
+      ],
+      "grid_distance_m": 25.93,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.306,
+        48.807
+      ],
+      "coordinates": [
+        2.30583,
+        48.807074
+      ],
+      "grid_distance_m": 14.92,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.312,
+        48.807
+      ],
+      "coordinates": [
+        2.314724,
+        48.807119
+      ],
+      "grid_distance_m": 199.92,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.288,
+        48.813
+      ],
+      "coordinates": [
+        2.288426,
+        48.811265
+      ],
+      "grid_distance_m": 195.43,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.294,
+        48.813
+      ],
+      "coordinates": [
+        2.2937,
+        48.813284
+      ],
+      "grid_distance_m": 38.47,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.3,
+        48.813
+      ],
+      "coordinates": [
+        2.299847,
+        48.812933
+      ],
+      "grid_distance_m": 13.45,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.813
+      ],
+      "coordinates": [
+        2.305919,
+        48.81306
+      ],
+      "grid_distance_m": 8.93,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.312,
+        48.813
+      ],
+      "coordinates": [
+        2.312014,
+        48.812971
+      ],
+      "grid_distance_m": 3.38,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.388,
+        48.807
+      ],
+      "coordinates": [
+        2.387668,
+        48.806872
+      ],
+      "grid_distance_m": 28.17,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.394,
+        48.807
+      ],
+      "coordinates": [
+        2.393879,
+        48.8071
+      ],
+      "grid_distance_m": 14.22,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.4,
+        48.807
+      ],
+      "coordinates": [
+        2.400085,
+        48.807
+      ],
+      "grid_distance_m": 6.22,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.406,
+        48.807
+      ],
+      "coordinates": [
+        2.405803,
+        48.807
+      ],
+      "grid_distance_m": 14.43,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.807
+      ],
+      "coordinates": [
+        2.41199,
+        48.807021
+      ],
+      "grid_distance_m": 2.45,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.388,
+        48.813
+      ],
+      "coordinates": [
+        2.387913,
+        48.813078
+      ],
+      "grid_distance_m": 10.76,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.394,
+        48.813
+      ],
+      "coordinates": [
+        2.393995,
+        48.812965
+      ],
+      "grid_distance_m": 3.91,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.813
+      ],
+      "coordinates": [
+        2.402655,
+        48.812952
+      ],
+      "grid_distance_m": 194.48,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.406,
+        48.813
+      ],
+      "coordinates": [
+        2.406006,
+        48.812995
+      ],
+      "grid_distance_m": 0.71,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.412,
+        48.813
+      ],
+      "coordinates": [
+        2.411601,
+        48.813042
+      ],
+      "grid_distance_m": 29.59,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.807
+      ],
+      "coordinates": [
+        2.488285,
+        48.807105
+      ],
+      "grid_distance_m": 23.92,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.494,
+        48.807
+      ],
+      "coordinates": [
+        2.493811,
+        48.806705
+      ],
+      "grid_distance_m": 35.6,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.5,
+        48.807
+      ],
+      "coordinates": [
+        2.499984,
+        48.807047
+      ],
+      "grid_distance_m": 5.36,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.506,
+        48.807
+      ],
+      "coordinates": [
+        2.505832,
+        48.807002
+      ],
+      "grid_distance_m": 12.31,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.807
+      ],
+      "coordinates": [
+        2.512021,
+        48.807034
+      ],
+      "grid_distance_m": 4.08,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.488,
+        48.813
+      ],
+      "coordinates": [
+        2.490975,
+        48.812859
+      ],
+      "grid_distance_m": 218.41,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.494,
+        48.813
+      ],
+      "coordinates": [
+        2.493868,
+        48.813006
+      ],
+      "grid_distance_m": 9.69,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.5,
+        48.813
+      ],
+      "coordinates": [
+        2.50022,
+        48.812994
+      ],
+      "grid_distance_m": 16.12,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.506,
+        48.813
+      ],
+      "coordinates": [
+        2.506011,
+        48.813026
+      ],
+      "grid_distance_m": 3.0,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.512,
+        48.813
+      ],
+      "coordinates": [
+        2.509003,
+        48.813006
+      ],
+      "grid_distance_m": 219.45,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.588,
+        48.807
+      ],
+      "coordinates": [
+        2.588033,
+        48.806996
+      ],
+      "grid_distance_m": 2.46,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.594,
+        48.807
+      ],
+      "coordinates": [
+        2.590748,
+        48.80691
+      ],
+      "grid_distance_m": 238.36,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.6,
+        48.807
+      ],
+      "coordinates": [
+        2.600145,
+        48.807033
+      ],
+      "grid_distance_m": 11.23,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.606,
+        48.807
+      ],
+      "coordinates": [
+        2.605596,
+        48.806858
+      ],
+      "grid_distance_m": 33.54,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.612,
+        48.807
+      ],
+      "coordinates": [
+        2.612228,
+        48.806739
+      ],
+      "grid_distance_m": 33.48,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.588,
+        48.813
+      ],
+      "coordinates": [
+        2.588486,
+        48.808892
+      ],
+      "grid_distance_m": 458.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.594,
+        48.813
+      ],
+      "coordinates": [
+        2.595785,
+        48.813266
+      ],
+      "grid_distance_m": 134.01,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.6,
+        48.813
+      ],
+      "coordinates": [
+        2.599903,
+        48.812914
+      ],
+      "grid_distance_m": 11.91,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.606,
+        48.813
+      ],
+      "coordinates": [
+        2.609436,
+        48.813004
+      ],
+      "grid_distance_m": 251.6,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.612,
+        48.813
+      ],
+      "coordinates": [
+        2.60979,
+        48.810893
+      ],
+      "grid_distance_m": 284.74,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.188,
+        48.867
+      ],
+      "coordinates": [
+        2.187671,
+        48.86702
+      ],
+      "grid_distance_m": 24.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.867
+      ],
+      "coordinates": [
+        2.194307,
+        48.867009
+      ],
+      "grid_distance_m": 22.48,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.2,
+        48.867
+      ],
+      "coordinates": [
+        2.199862,
+        48.867067
+      ],
+      "grid_distance_m": 12.55,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.206,
+        48.867
+      ],
+      "coordinates": [
+        2.205699,
+        48.866915
+      ],
+      "grid_distance_m": 23.96,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.212,
+        48.867
+      ],
+      "coordinates": [
+        2.21197,
+        48.866674
+      ],
+      "grid_distance_m": 36.32,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.188,
+        48.873
+      ],
+      "coordinates": [
+        2.188037,
+        48.872984
+      ],
+      "grid_distance_m": 3.24,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.873
+      ],
+      "coordinates": [
+        2.193612,
+        48.871112
+      ],
+      "grid_distance_m": 211.85,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.2,
+        48.873
+      ],
+      "coordinates": [
+        2.203115,
+        48.872913
+      ],
+      "grid_distance_m": 228.02,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.206,
+        48.873
+      ],
+      "coordinates": [
+        2.205553,
+        48.872748
+      ],
+      "grid_distance_m": 43.06,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.212,
+        48.873
+      ],
+      "coordinates": [
+        2.21187,
+        48.873003
+      ],
+      "grid_distance_m": 9.51,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.288,
+        48.867
+      ],
+      "coordinates": [
+        2.287992,
+        48.86699
+      ],
+      "grid_distance_m": 1.26,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.294,
+        48.867
+      ],
+      "coordinates": [
+        2.294315,
+        48.866804
+      ],
+      "grid_distance_m": 31.72,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.3,
+        48.867
+      ],
+      "coordinates": [
+        2.297101,
+        48.866954
+      ],
+      "grid_distance_m": 212.11,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.867
+      ],
+      "coordinates": [
+        2.306111,
+        48.866908
+      ],
+      "grid_distance_m": 13.06,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.312,
+        48.867
+      ],
+      "coordinates": [
+        2.31021,
+        48.866959
+      ],
+      "grid_distance_m": 131.01,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.288,
+        48.873
+      ],
+      "coordinates": [
+        2.287985,
+        48.873057
+      ],
+      "grid_distance_m": 6.43,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.294,
+        48.873
+      ],
+      "coordinates": [
+        2.294385,
+        48.872876
+      ],
+      "grid_distance_m": 31.35,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.3,
+        48.873
+      ],
+      "coordinates": [
+        2.300014,
+        48.872995
+      ],
+      "grid_distance_m": 1.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.873
+      ],
+      "coordinates": [
+        2.305679,
+        48.873256
+      ],
+      "grid_distance_m": 36.9,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.312,
+        48.873
+      ],
+      "coordinates": [
+        2.31188,
+        48.873182
+      ],
+      "grid_distance_m": 22.06,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.388,
+        48.867
+      ],
+      "coordinates": [
+        2.388,
+        48.866999
+      ],
+      "grid_distance_m": 0.11,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.394,
+        48.867
+      ],
+      "coordinates": [
+        2.394274,
+        48.866923
+      ],
+      "grid_distance_m": 21.79,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.867
+      ],
+      "coordinates": [
+        2.400229,
+        48.866917
+      ],
+      "grid_distance_m": 19.12,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.406,
+        48.867
+      ],
+      "coordinates": [
+        2.405982,
+        48.866995
+      ],
+      "grid_distance_m": 1.43,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.867
+      ],
+      "coordinates": [
+        2.414911,
+        48.866952
+      ],
+      "grid_distance_m": 212.99,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.388,
+        48.873
+      ],
+      "coordinates": [
+        2.388036,
+        48.874699
+      ],
+      "grid_distance_m": 188.94,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.394,
+        48.873
+      ],
+      "coordinates": [
+        2.394039,
+        48.873011
+      ],
+      "grid_distance_m": 3.1,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.873
+      ],
+      "coordinates": [
+        2.400032,
+        48.872948
+      ],
+      "grid_distance_m": 6.24,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.406,
+        48.873
+      ],
+      "coordinates": [
+        2.408998,
+        48.872982
+      ],
+      "grid_distance_m": 219.27,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.873
+      ],
+      "coordinates": [
+        2.411285,
+        48.87138
+      ],
+      "grid_distance_m": 187.57,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.867
+      ],
+      "coordinates": [
+        2.488057,
+        48.86695
+      ],
+      "grid_distance_m": 6.95,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.494,
+        48.867
+      ],
+      "coordinates": [
+        2.494033,
+        48.867013
+      ],
+      "grid_distance_m": 2.81,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.5,
+        48.867
+      ],
+      "coordinates": [
+        2.500002,
+        48.867022
+      ],
+      "grid_distance_m": 2.45,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.506,
+        48.867
+      ],
+      "coordinates": [
+        2.50615,
+        48.867091
+      ],
+      "grid_distance_m": 14.93,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.867
+      ],
+      "coordinates": [
+        2.510774,
+        48.866642
+      ],
+      "grid_distance_m": 98.11,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.488,
+        48.873
+      ],
+      "coordinates": [
+        2.485207,
+        48.873034
+      ],
+      "grid_distance_m": 204.3,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.494,
+        48.873
+      ],
+      "coordinates": [
+        2.493992,
+        48.872971
+      ],
+      "grid_distance_m": 3.28,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.5,
+        48.873
+      ],
+      "coordinates": [
+        2.500013,
+        48.872853
+      ],
+      "grid_distance_m": 16.37,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.506,
+        48.873
+      ],
+      "coordinates": [
+        2.505862,
+        48.873037
+      ],
+      "grid_distance_m": 10.9,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.873
+      ],
+      "coordinates": [
+        2.511828,
+        48.873057
+      ],
+      "grid_distance_m": 14.09,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.588,
+        48.867
+      ],
+      "coordinates": [
+        2.588003,
+        48.868909
+      ],
+      "grid_distance_m": 212.27,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.594,
+        48.867
+      ],
+      "coordinates": [
+        2.593966,
+        48.86707
+      ],
+      "grid_distance_m": 8.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.6,
+        48.867
+      ],
+      "coordinates": [
+        2.600519,
+        48.867505
+      ],
+      "grid_distance_m": 67.78,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.606,
+        48.867
+      ],
+      "coordinates": [
+        2.60403,
+        48.866562
+      ],
+      "grid_distance_m": 152.1,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.612,
+        48.867
+      ],
+      "coordinates": [
+        2.612253,
+        48.867948
+      ],
+      "grid_distance_m": 107.02,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.588,
+        48.873
+      ],
+      "coordinates": [
+        2.591011,
+        48.873029
+      ],
+      "grid_distance_m": 220.24,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.594,
+        48.873
+      ],
+      "coordinates": [
+        2.594204,
+        48.874998
+      ],
+      "grid_distance_m": 222.67,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.6,
+        48.873
+      ],
+      "coordinates": [
+        2.600417,
+        48.870908
+      ],
+      "grid_distance_m": 234.61,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.606,
+        48.873
+      ],
+      "coordinates": [
+        2.606584,
+        48.872522
+      ],
+      "grid_distance_m": 68.19,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.612,
+        48.873
+      ],
+      "coordinates": [
+        2.611744,
+        48.873535
+      ],
+      "grid_distance_m": 62.37,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.188,
+        48.927
+      ],
+      "coordinates": [
+        2.1886,
+        48.927185
+      ],
+      "grid_distance_m": 48.42,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.927
+      ],
+      "coordinates": [
+        2.196704,
+        48.92717
+      ],
+      "grid_distance_m": 198.45,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.2,
+        48.927
+      ],
+      "coordinates": [
+        2.199966,
+        48.927073
+      ],
+      "grid_distance_m": 8.49,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.206,
+        48.927
+      ],
+      "coordinates": [
+        2.205908,
+        48.926969
+      ],
+      "grid_distance_m": 7.55,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.212,
+        48.927
+      ],
+      "coordinates": [
+        2.212025,
+        48.927015
+      ],
+      "grid_distance_m": 2.47,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.188,
+        48.933
+      ],
+      "coordinates": [
+        2.187658,
+        48.93293
+      ],
+      "grid_distance_m": 26.17,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.933
+      ],
+      "coordinates": [
+        2.193898,
+        48.933139
+      ],
+      "grid_distance_m": 17.16,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.2,
+        48.933
+      ],
+      "coordinates": [
+        2.199923,
+        48.932983
+      ],
+      "grid_distance_m": 5.93,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.206,
+        48.933
+      ],
+      "coordinates": [
+        2.206074,
+        48.932913
+      ],
+      "grid_distance_m": 11.08,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.212,
+        48.933
+      ],
+      "coordinates": [
+        2.211807,
+        48.932902
+      ],
+      "grid_distance_m": 17.82,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.288,
+        48.927
+      ],
+      "coordinates": [
+        2.288037,
+        48.926942
+      ],
+      "grid_distance_m": 6.99,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.294,
+        48.927
+      ],
+      "coordinates": [
+        2.29387,
+        48.926994
+      ],
+      "grid_distance_m": 9.52,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.3,
+        48.927
+      ],
+      "coordinates": [
+        2.300207,
+        48.926987
+      ],
+      "grid_distance_m": 15.19,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.306,
+        48.927
+      ],
+      "coordinates": [
+        2.306324,
+        48.926944
+      ],
+      "grid_distance_m": 24.48,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.312,
+        48.927
+      ],
+      "coordinates": [
+        2.311815,
+        48.926846
+      ],
+      "grid_distance_m": 21.82,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.288,
+        48.933
+      ],
+      "coordinates": [
+        2.287998,
+        48.933046
+      ],
+      "grid_distance_m": 5.12,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.294,
+        48.933
+      ],
+      "coordinates": [
+        2.294171,
+        48.933008
+      ],
+      "grid_distance_m": 12.52,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.3,
+        48.933
+      ],
+      "coordinates": [
+        2.300118,
+        48.932986
+      ],
+      "grid_distance_m": 8.76,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.933
+      ],
+      "coordinates": [
+        2.306098,
+        48.933038
+      ],
+      "grid_distance_m": 8.31,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.312,
+        48.933
+      ],
+      "coordinates": [
+        2.312218,
+        48.93373
+      ],
+      "grid_distance_m": 82.72,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.388,
+        48.927
+      ],
+      "coordinates": [
+        2.388134,
+        48.926962
+      ],
+      "grid_distance_m": 10.66,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.394,
+        48.927
+      ],
+      "coordinates": [
+        2.396936,
+        48.92701
+      ],
+      "grid_distance_m": 214.5,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.4,
+        48.927
+      ],
+      "coordinates": [
+        2.399911,
+        48.927036
+      ],
+      "grid_distance_m": 7.64,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.406,
+        48.927
+      ],
+      "coordinates": [
+        2.408987,
+        48.926813
+      ],
+      "grid_distance_m": 219.21,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.412,
+        48.927
+      ],
+      "coordinates": [
+        2.412005,
+        48.925095
+      ],
+      "grid_distance_m": 211.83,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.388,
+        48.933
+      ],
+      "coordinates": [
+        2.388011,
+        48.933049
+      ],
+      "grid_distance_m": 5.51,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.394,
+        48.933
+      ],
+      "coordinates": [
+        2.394052,
+        48.931419
+      ],
+      "grid_distance_m": 175.84,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.933
+      ],
+      "coordinates": [
+        2.399883,
+        48.933053
+      ],
+      "grid_distance_m": 10.38,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.406,
+        48.933
+      ],
+      "coordinates": [
+        2.405821,
+        48.933029
+      ],
+      "grid_distance_m": 13.47,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.412,
+        48.933
+      ],
+      "coordinates": [
+        2.412133,
+        48.933054
+      ],
+      "grid_distance_m": 11.42,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.488,
+        48.927
+      ],
+      "coordinates": [
+        2.488026,
+        48.926963
+      ],
+      "grid_distance_m": 4.53,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.494,
+        48.927
+      ],
+      "coordinates": [
+        2.49405,
+        48.927037
+      ],
+      "grid_distance_m": 5.5,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.5,
+        48.927
+      ],
+      "coordinates": [
+        2.499996,
+        48.926998
+      ],
+      "grid_distance_m": 0.37,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.506,
+        48.927
+      ],
+      "coordinates": [
+        2.506145,
+        48.926962
+      ],
+      "grid_distance_m": 11.4,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.927
+      ],
+      "coordinates": [
+        2.512109,
+        48.927099
+      ],
+      "grid_distance_m": 13.59,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.933
+      ],
+      "coordinates": [
+        2.48829,
+        48.933083
+      ],
+      "grid_distance_m": 23.11,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.494,
+        48.933
+      ],
+      "coordinates": [
+        2.493566,
+        48.933024
+      ],
+      "grid_distance_m": 31.82,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.5,
+        48.933
+      ],
+      "coordinates": [
+        2.499991,
+        48.933081
+      ],
+      "grid_distance_m": 9.03,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.506,
+        48.933
+      ],
+      "coordinates": [
+        2.505879,
+        48.933014
+      ],
+      "grid_distance_m": 8.97,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.512,
+        48.933
+      ],
+      "coordinates": [
+        2.511984,
+        48.933064
+      ],
+      "grid_distance_m": 7.21,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.588,
+        48.927
+      ],
+      "coordinates": [
+        2.584998,
+        48.925308
+      ],
+      "grid_distance_m": 288.96,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.594,
+        48.927
+      ],
+      "coordinates": [
+        2.594093,
+        48.927029
+      ],
+      "grid_distance_m": 7.52,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.6,
+        48.927
+      ],
+      "coordinates": [
+        2.599965,
+        48.926987
+      ],
+      "grid_distance_m": 2.94,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.606,
+        48.927
+      ],
+      "coordinates": [
+        2.602985,
+        48.926999
+      ],
+      "grid_distance_m": 220.27,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.612,
+        48.927
+      ],
+      "coordinates": [
+        2.611985,
+        48.924715
+      ],
+      "grid_distance_m": 254.08,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.588,
+        48.933
+      ],
+      "coordinates": [
+        2.58773,
+        48.935056
+      ],
+      "grid_distance_m": 229.47,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.594,
+        48.933
+      ],
+      "coordinates": [
+        2.593659,
+        48.93528
+      ],
+      "grid_distance_m": 254.75,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.6,
+        48.933
+      ],
+      "coordinates": [
+        2.597657,
+        48.93282
+      ],
+      "grid_distance_m": 172.32,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.606,
+        48.933
+      ],
+      "coordinates": [
+        2.605393,
+        48.932328
+      ],
+      "grid_distance_m": 86.89,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.612,
+        48.933
+      ],
+      "coordinates": [
+        2.615784,
+        48.932827
+      ],
+      "grid_distance_m": 277.08,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.188,
+        48.987
+      ],
+      "coordinates": [
+        2.188084,
+        48.987113
+      ],
+      "grid_distance_m": 13.98,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.194,
+        48.987
+      ],
+      "coordinates": [
+        2.192536,
+        48.987517
+      ],
+      "grid_distance_m": 121.31,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.2,
+        48.987
+      ],
+      "coordinates": [
+        2.199061,
+        48.984725
+      ],
+      "grid_distance_m": 262.08,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.206,
+        48.987
+      ],
+      "coordinates": [
+        2.206102,
+        48.989114
+      ],
+      "grid_distance_m": 235.18,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.212,
+        48.987
+      ],
+      "coordinates": [
+        2.212011,
+        48.986959
+      ],
+      "grid_distance_m": 4.63,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.188,
+        48.993
+      ],
+      "coordinates": [
+        2.187973,
+        48.992973
+      ],
+      "grid_distance_m": 3.59,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.194,
+        48.993
+      ],
+      "coordinates": [
+        2.193972,
+        48.993006
+      ],
+      "grid_distance_m": 2.15,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.2,
+        48.993
+      ],
+      "coordinates": [
+        2.200112,
+        48.992962
+      ],
+      "grid_distance_m": 9.2,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.206,
+        48.993
+      ],
+      "coordinates": [
+        2.205264,
+        48.993072
+      ],
+      "grid_distance_m": 54.29,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.212,
+        48.993
+      ],
+      "coordinates": [
+        2.214213,
+        48.994747
+      ],
+      "grid_distance_m": 252.6,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.288,
+        48.987
+      ],
+      "coordinates": [
+        2.290807,
+        48.98706
+      ],
+      "grid_distance_m": 204.93,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.294,
+        48.987
+      ],
+      "coordinates": [
+        2.294087,
+        48.987087
+      ],
+      "grid_distance_m": 11.57,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.3,
+        48.987
+      ],
+      "coordinates": [
+        2.300517,
+        48.986889
+      ],
+      "grid_distance_m": 39.69,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.306,
+        48.987
+      ],
+      "coordinates": [
+        2.306022,
+        48.986973
+      ],
+      "grid_distance_m": 3.4,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.312,
+        48.987
+      ],
+      "coordinates": [
+        2.312182,
+        48.987116
+      ],
+      "grid_distance_m": 18.51,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.288,
+        48.993
+      ],
+      "coordinates": [
+        2.287748,
+        48.992949
+      ],
+      "grid_distance_m": 19.24,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.294,
+        48.993
+      ],
+      "coordinates": [
+        2.29669,
+        48.993071
+      ],
+      "grid_distance_m": 196.42,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.3,
+        48.993
+      ],
+      "coordinates": [
+        2.299732,
+        48.994937
+      ],
+      "grid_distance_m": 216.27,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.306,
+        48.993
+      ],
+      "coordinates": [
+        2.305808,
+        48.992905
+      ],
+      "grid_distance_m": 17.54,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.312,
+        48.993
+      ],
+      "coordinates": [
+        2.311725,
+        48.993166
+      ],
+      "grid_distance_m": 27.26,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.388,
+        48.987
+      ],
+      "coordinates": [
+        2.388128,
+        48.986641
+      ],
+      "grid_distance_m": 41.0,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.394,
+        48.987
+      ],
+      "coordinates": [
+        2.396953,
+        48.986937
+      ],
+      "grid_distance_m": 215.59,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.4,
+        48.987
+      ],
+      "coordinates": [
+        2.400491,
+        48.986811
+      ],
+      "grid_distance_m": 41.54,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.406,
+        48.987
+      ],
+      "coordinates": [
+        2.406338,
+        48.986774
+      ],
+      "grid_distance_m": 35.21,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.987
+      ],
+      "coordinates": [
+        2.412109,
+        48.987035
+      ],
+      "grid_distance_m": 8.85,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.388,
+        48.993
+      ],
+      "coordinates": [
+        2.384921,
+        48.993176
+      ],
+      "grid_distance_m": 225.5,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.394,
+        48.993
+      ],
+      "coordinates": [
+        2.393653,
+        48.995073
+      ],
+      "grid_distance_m": 231.89,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.4,
+        48.993
+      ],
+      "coordinates": [
+        2.403426,
+        48.988718
+      ],
+      "grid_distance_m": 537.77,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.406,
+        48.993
+      ],
+      "coordinates": [
+        2.409064,
+        48.99215
+      ],
+      "grid_distance_m": 242.71,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.412,
+        48.993
+      ],
+      "coordinates": [
+        2.41202,
+        48.993166
+      ],
+      "grid_distance_m": 18.52,
+      "road_class": "residential"
+    },
+    {
+      "grid": [
+        2.488,
+        48.987
+      ],
+      "coordinates": [
+        2.485671,
+        48.989612
+      ],
+      "grid_distance_m": 336.51,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.494,
+        48.987
+      ],
+      "coordinates": [
+        2.490565,
+        48.991488
+      ],
+      "grid_distance_m": 558.45,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.5,
+        48.987
+      ],
+      "coordinates": [
+        2.506186,
+        48.983084
+      ],
+      "grid_distance_m": 627.2,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.506,
+        48.987
+      ],
+      "coordinates": [
+        2.508623,
+        48.984996
+      ],
+      "grid_distance_m": 293.75,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.512,
+        48.987
+      ],
+      "coordinates": [
+        2.512437,
+        48.98684
+      ],
+      "grid_distance_m": 36.52,
+      "road_class": "unclassified"
+    },
+    {
+      "grid": [
+        2.488,
+        48.993
+      ],
+      "coordinates": [
+        2.489655,
+        48.99114
+      ],
+      "grid_distance_m": 239.49,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.494,
+        48.993
+      ],
+      "coordinates": [
+        2.494129,
+        48.992854
+      ],
+      "grid_distance_m": 18.77,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.5,
+        48.993
+      ],
+      "coordinates": [
+        2.498603,
+        48.994569
+      ],
+      "grid_distance_m": 202.06,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.506,
+        48.993
+      ],
+      "coordinates": [
+        2.502168,
+        48.995934
+      ],
+      "grid_distance_m": 429.65,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.512,
+        48.993
+      ],
+      "coordinates": [
+        2.515112,
+        48.990944
+      ],
+      "grid_distance_m": 322.21,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.588,
+        48.987
+      ],
+      "coordinates": [
+        2.590979,
+        48.990905
+      ],
+      "grid_distance_m": 485.58,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.594,
+        48.987
+      ],
+      "coordinates": [
+        2.594001,
+        48.990984
+      ],
+      "grid_distance_m": 443.0,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.6,
+        48.987
+      ],
+      "coordinates": [
+        2.602799,
+        48.989227
+      ],
+      "grid_distance_m": 320.99,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.606,
+        48.987
+      ],
+      "coordinates": [
+        2.604739,
+        48.988076
+      ],
+      "grid_distance_m": 150.94,
+      "road_class": "secondary"
+    },
+    {
+      "grid": [
+        2.612,
+        48.987
+      ],
+      "coordinates": [
+        2.615177,
+        48.984943
+      ],
+      "grid_distance_m": 325.67,
+      "road_class": "tertiary"
+    },
+    {
+      "grid": [
+        2.588,
+        48.993
+      ],
+      "coordinates": [
+        2.587814,
+        48.992988
+      ],
+      "grid_distance_m": 13.64,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.594,
+        48.993
+      ],
+      "coordinates": [
+        2.594018,
+        48.992758
+      ],
+      "grid_distance_m": 26.94,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.6,
+        48.993
+      ],
+      "coordinates": [
+        2.600021,
+        48.992708
+      ],
+      "grid_distance_m": 32.51,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.606,
+        48.993
+      ],
+      "coordinates": [
+        2.605998,
+        48.993015
+      ],
+      "grid_distance_m": 1.67,
+      "road_class": "service_other"
+    },
+    {
+      "grid": [
+        2.612,
+        48.993
+      ],
+      "coordinates": [
+        2.611713,
+        48.993201
+      ],
+      "grid_distance_m": 30.63,
+      "road_class": "service_other"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+# Optional overlay: run the Valhalla router as a Compose service on an internal network,
+# instead of a separately started host container. Apply after docker-compose.example.yml
+# (and before the HTTPS overlays):
+#   docker compose -f docker-compose.example.yml -f docker-compose.routing.yml up -d
+# Prepare the graph and its matrix configuration first (see README "Routing service"):
+# deploy/runtime/<graph>/ must exist, and ROUTING_CONFIG names its Valhalla JSON relative
+# to deploy/runtime. The router publishes no port; only the API and worker can reach it.
+services:
+  valhalla:
+    image: ghcr.io/valhalla/valhalla@sha256:c9c1f9e6d9bb46484b667346960d4c7e6bc0cd375f95cffedcda8567c7b9706e
+    entrypoint: ["valhalla_service"]
+    command: ["/data/${ROUTING_CONFIG:-regional-matrix.json}", "${ROUTING_THREADS:-2}"]
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:rw,nosuid,noexec,size=64m,mode=1777
+    volumes:
+      - type: bind
+        source: ./runtime
+        target: /data
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [routing]
+    mem_limit: ${ROUTING_MEMORY:-4g}
+    pids_limit: 128
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/status', timeout=5)"]
+      interval: 15s
+      timeout: 8s
+      retries: 5
+      start_period: 60s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+  api:
+    environment:
+      VALHALLA_URL: http://valhalla:8002
+    networks: [default, routing]
+    depends_on:
+      valhalla:
+        condition: service_healthy
+  worker:
+    environment:
+      VALHALLA_URL: http://valhalla:8002
+    networks: [default, routing]
+    depends_on:
+      valhalla:
+        condition: service_healthy
+
+networks:
+  # No route out of this network: the router is reachable only from the API and worker.
+  routing:
+    internal: true

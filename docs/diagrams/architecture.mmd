@@ -1,0 +1,6 @@
+flowchart LR
+  Browser[React and MapLibre dispatcher] --> API[FastAPI modular application]
+  API --> DB[(PostgreSQL)]
+  Worker[Same application image: worker and VROOM] --> DB
+  Worker --> Router[Valhalla regional graph]
+  Browser -. configured basemap only .-> Tiles[Permitted tile source]

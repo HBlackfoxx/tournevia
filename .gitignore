@@ -1,0 +1,29 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+web/dist/
+backend/.pytest_cache/
+.pytest_cache/
+.pytest-tmp*/
+web/*.tsbuildinfo
+deploy/runtime/
+backups/
+*.log
+# Private keys, certificates, database dumps and environment variants never belong in Git.
+.env.*
+*.pem
+*.key
+*.dump
+
+# Local project tracking and coding-agent instructions (never commit).
+/AGENTS.md
+/CODEX_START_PROMPT.md
+/PLAN.md
+/REVIEW.md
+/DOCUMENTATION_STATUS.md
+/VALIDATION_REPORT.md
+/.codex/
+/.agents/
+/.local/

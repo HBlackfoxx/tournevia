@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/common.schema.json",
+  "title": "Common contract definitions",
+  "$defs": {
+    "Capacity": {
+      "additionalProperties": false,
+      "properties": {
+        "weight_kg": {
+          "minimum": 0,
+          "title": "Weight Kg",
+          "type": "integer"
+        },
+        "volume_dm3": {
+          "minimum": 0,
+          "title": "Volume Dm3",
+          "type": "integer"
+        },
+        "pallet_eur_units": {
+          "minimum": 0,
+          "title": "Pallet Eur Units",
+          "type": "integer"
+        },
+        "pallet_ind_units": {
+          "minimum": 0,
+          "title": "Pallet Ind Units",
+          "type": "integer"
+        },
+        "loading_length_mm": {
+          "minimum": 0,
+          "title": "Loading Length Mm",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "weight_kg",
+        "volume_dm3",
+        "pallet_eur_units",
+        "pallet_ind_units",
+        "loading_length_mm"
+      ],
+      "title": "Capacity",
+      "type": "object"
+    },
+    "DayException": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date",
+          "title": "Date",
+          "type": "string"
+        },
+        "hours": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Hours on that date instead of the weekly ones; null for a day off."
+        }
+      },
+      "required": [
+        "date"
+      ],
+      "title": "DayException",
+      "type": "object"
+    },
+    "Hours": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "description": "Europe/Paris local time, HH:MM.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "description": "Europe/Paris local time, HH:MM.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Hours",
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "reviewed": {
+          "title": "Reviewed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "reviewed"
+      ],
+      "title": "Location",
+      "type": "object"
+    },
+    "Rates": {
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "const": "EUR",
+          "title": "Currency",
+          "type": "string"
+        },
+        "fixed_minor": {
+          "minimum": 0,
+          "title": "Fixed Minor",
+          "type": "integer"
+        },
+        "per_km_minor": {
+          "minimum": 0,
+          "title": "Per Km Minor",
+          "type": "integer"
+        },
+        "per_hour_minor": {
+          "minimum": 0,
+          "title": "Per Hour Minor",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currency",
+        "fixed_minor",
+        "per_km_minor",
+        "per_hour_minor"
+      ],
+      "title": "Rates",
+      "type": "object"
+    },
+    "Truck": {
+      "additionalProperties": false,
+      "properties": {
+        "height_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Height Mm",
+          "type": "integer"
+        },
+        "width_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Width Mm",
+          "type": "integer"
+        },
+        "length_mm": {
+          "maximum": 50000,
+          "minimum": 1,
+          "title": "Length Mm",
+          "type": "integer"
+        },
+        "gross_weight_kg": {
+          "maximum": 100000,
+          "minimum": 1,
+          "title": "Gross Weight Kg",
+          "type": "integer"
+        },
+        "axle_load_kg": {
+          "maximum": 40000,
+          "minimum": 1,
+          "title": "Axle Load Kg",
+          "type": "integer"
+        },
+        "axle_count": {
+          "maximum": 12,
+          "minimum": 2,
+          "title": "Axle Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "height_mm",
+        "width_mm",
+        "length_mm",
+        "gross_weight_kg",
+        "axle_load_kg",
+        "axle_count"
+      ],
+      "title": "Truck",
+      "type": "object"
+    },
+    "VehicleLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "max_stops": {
+          "maximum": 250,
+          "minimum": 1,
+          "title": "Max Stops",
+          "type": "integer"
+        },
+        "max_distance_m": {
+          "maximum": 2000000,
+          "minimum": 1,
+          "title": "Max Distance M",
+          "type": "integer"
+        },
+        "max_driving_seconds": {
+          "maximum": 90000,
+          "minimum": 1,
+          "title": "Max Driving Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "VehicleLimits",
+      "type": "object"
+    },
+    "WeeklyHours": {
+      "additionalProperties": false,
+      "description": "Regular working hours for each day of the week; null for a day the vehicle does not work.",
+      "properties": {
+        "monday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tuesday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "wednesday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "thursday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "friday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "saturday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sunday": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hours"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "WeeklyHours",
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Window",
+      "type": "object"
+    }
+  }
+}

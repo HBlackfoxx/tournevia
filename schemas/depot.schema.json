@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "description": "A depot, or another place a vehicle starts or ends its day at, such as a driver's home.",
+  "properties": {
+    "code": {
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Code",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "kind": {
+      "default": "DEPOT",
+      "description": "DEPOT: goods are loaded there and deliveries can ship from it. PLACE: another start or end of a vehicle's day, such as a driver's home; a vehicle starting there leaves already loaded.",
+      "enum": [
+        "DEPOT",
+        "PLACE"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "address": {
+      "default": "",
+      "description": "Postal address of the depot; empty when unknown.",
+      "maxLength": 500,
+      "title": "Address",
+      "type": "string"
+    },
+    "location": {
+      "$ref": "common.schema.json#/$defs/Location"
+    },
+    "timezone": {
+      "const": "Europe/Paris",
+      "title": "Timezone",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "name",
+    "location",
+    "timezone"
+  ],
+  "title": "DepotInput",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/depot.schema.json"
+}

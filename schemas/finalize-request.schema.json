@@ -1,0 +1,19 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "accept_unassigned": {
+      "default": false,
+      "title": "Accept Unassigned",
+      "type": "boolean"
+    },
+    "replace_conflicting_ready": {
+      "default": false,
+      "title": "Replace Conflicting Ready",
+      "type": "boolean"
+    }
+  },
+  "title": "FinalizeRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/finalize-request.schema.json"
+}

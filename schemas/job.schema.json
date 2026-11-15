@@ -1,0 +1,294 @@
+{
+  "$defs": {
+    "JobError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "request_id": {
+          "format": "uuid",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "details": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Details",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "request_id"
+      ],
+      "title": "JobError",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "QUEUED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stage": {
+            "const": "QUEUED"
+          },
+          "started_at": {
+            "type": "null"
+          },
+          "finished_at": {
+            "type": "null"
+          },
+          "plan_id": {
+            "type": "null"
+          },
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "RUNNING"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stage": {
+            "enum": [
+              "PRECHECK",
+              "MATRIX",
+              "SOLVE",
+              "ROUTE",
+              "VALIDATE",
+              "SAVE"
+            ]
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "finished_at": {
+            "type": "null"
+          },
+          "plan_id": {
+            "type": "null"
+          },
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "SUCCEEDED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stage": {
+            "const": "DONE"
+          },
+          "error": {
+            "type": "null"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "finished_at": {
+            "type": "string"
+          },
+          "plan_id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "FAILED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stage": {
+            "const": "FAILED"
+          },
+          "finished_at": {
+            "type": "string"
+          },
+          "plan_id": {
+            "type": "null"
+          },
+          "error": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "format": "uuid",
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "OPTIMIZE",
+        "EDIT"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "target_plan_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Plan Id"
+    },
+    "reserved_version": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reserved Version"
+    },
+    "status": {
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "QUEUED",
+        "PRECHECK",
+        "MATRIX",
+        "SOLVE",
+        "ROUTE",
+        "VALIDATE",
+        "SAVE",
+        "DONE",
+        "FAILED"
+      ],
+      "title": "Stage",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Started At"
+    },
+    "finished_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Finished At"
+    },
+    "plan_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Plan Id"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/JobError"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "organization_id",
+    "kind",
+    "status",
+    "stage",
+    "created_at",
+    "started_at",
+    "finished_at",
+    "plan_id",
+    "error"
+  ],
+  "title": "JobRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.invalid/tournevia/job.schema.json"
+}

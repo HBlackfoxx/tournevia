@@ -1,0 +1,15 @@
+FROM debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251 AS build
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates git g++ make && rm -rf /var/lib/apt/lists/*
+RUN git clone --branch v1.14.0 --depth 1 --recurse-submodules --shallow-submodules https://github.com/VROOM-Project/vroom.git /src \
+    && test "$(git -C /src rev-parse HEAD)" = "1fd711bc8c20326dd8e9538e2c7e4cb1ebd67bdb"
+RUN make -C /src/src -j2 USE_ROUTING=false
+
+FROM debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+RUN apt-get update && apt-get install -y --no-install-recommends libstdc++6 && rm -rf /var/lib/apt/lists/*
+COPY --from=build /src/bin/vroom /usr/local/bin/vroom
+COPY --from=build /src/LICENSE /usr/share/doc/vroom/LICENSE
+COPY --from=build /src/include/cxxopts/LICENSE /usr/share/doc/vroom/cxxopts/LICENSE
+COPY --from=build /src/include/polylineencoder/LICENSE /usr/share/doc/vroom/polylineencoder/LICENSE
+COPY --from=build /src/include/rapidjson/license.txt /usr/share/doc/vroom/rapidjson/license.txt
+USER 10001
+ENTRYPOINT ["/usr/local/bin/vroom"]

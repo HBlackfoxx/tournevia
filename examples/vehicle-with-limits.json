@@ -1,0 +1,58 @@
+{
+  "fleet_number": "TRUCK-DEMO-01",
+  "active": true,
+  "routing": {
+    "height_mm": 3600,
+    "width_mm": 2550,
+    "length_mm": 9600,
+    "gross_weight_kg": 19000,
+    "axle_load_kg": 11500,
+    "axle_count": 2
+  },
+  "capacity": {
+    "weight_kg": 9500,
+    "volume_dm3": 42000,
+    "pallet_eur_units": 18,
+    "pallet_ind_units": 0,
+    "loading_length_mm": 7200
+  },
+  "skills": [
+    "TAIL_LIFT",
+    "REFRIGERATED"
+  ],
+  "hours": {
+    "monday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "tuesday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "wednesday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "thursday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "friday": {
+      "start": "07:30",
+      "end": "17:00"
+    },
+    "saturday": null,
+    "sunday": null
+  },
+  "cost": {
+    "currency": "EUR",
+    "fixed_minor": 8500,
+    "per_km_minor": 72,
+    "per_hour_minor": 3250
+  },
+  "limits": {
+    "max_stops": 20,
+    "max_distance_m": 180000,
+    "max_driving_seconds": 18000
+  }
+}

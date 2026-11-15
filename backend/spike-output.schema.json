@@ -1,0 +1,427 @@
+{
+  "$defs": {
+    "Leg": {
+      "additionalProperties": false,
+      "properties": {
+        "from_order_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "From Order Id"
+        },
+        "to_order_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "To Order Id"
+        },
+        "duration_seconds": {
+          "minimum": 0,
+          "title": "Duration Seconds",
+          "type": "integer"
+        },
+        "distance_m": {
+          "minimum": 0,
+          "title": "Distance M",
+          "type": "integer"
+        },
+        "geometry": {
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array"
+          },
+          "minItems": 2,
+          "title": "Geometry",
+          "type": "array"
+        }
+      },
+      "required": [
+        "from_order_id",
+        "to_order_id",
+        "duration_seconds",
+        "distance_m",
+        "geometry"
+      ],
+      "title": "Leg",
+      "type": "object"
+    },
+    "Route": {
+      "additionalProperties": false,
+      "properties": {
+        "vehicle_id": {
+          "format": "uuid",
+          "title": "Vehicle Id",
+          "type": "string"
+        },
+        "profile": {
+          "$ref": "#/$defs/Truck"
+        },
+        "departure": {
+          "minimum": 0,
+          "title": "Departure",
+          "type": "integer"
+        },
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "stops": {
+          "items": {
+            "$ref": "#/$defs/Stop"
+          },
+          "title": "Stops",
+          "type": "array"
+        },
+        "legs": {
+          "items": {
+            "$ref": "#/$defs/Leg"
+          },
+          "title": "Legs",
+          "type": "array"
+        },
+        "distance_m": {
+          "minimum": 0,
+          "title": "Distance M",
+          "type": "integer"
+        },
+        "driving_seconds": {
+          "minimum": 0,
+          "title": "Driving Seconds",
+          "type": "integer"
+        },
+        "waiting_seconds": {
+          "minimum": 0,
+          "title": "Waiting Seconds",
+          "type": "integer"
+        },
+        "service_seconds": {
+          "minimum": 0,
+          "title": "Service Seconds",
+          "type": "integer"
+        },
+        "fixed_minor": {
+          "minimum": 0,
+          "title": "Fixed Minor",
+          "type": "integer"
+        },
+        "distance_minor": {
+          "minimum": 0,
+          "title": "Distance Minor",
+          "type": "integer"
+        },
+        "time_minor": {
+          "minimum": 0,
+          "title": "Time Minor",
+          "type": "integer"
+        },
+        "known_cost_minor": {
+          "minimum": 0,
+          "title": "Known Cost Minor",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "vehicle_id",
+        "profile",
+        "departure",
+        "end",
+        "stops",
+        "legs",
+        "distance_m",
+        "driving_seconds",
+        "waiting_seconds",
+        "service_seconds",
+        "fixed_minor",
+        "distance_minor",
+        "time_minor",
+        "known_cost_minor"
+      ],
+      "title": "Route",
+      "type": "object"
+    },
+    "Stop": {
+      "additionalProperties": false,
+      "properties": {
+        "order_id": {
+          "format": "uuid",
+          "title": "Order Id",
+          "type": "string"
+        },
+        "arrival": {
+          "minimum": 0,
+          "title": "Arrival",
+          "type": "integer"
+        },
+        "service_start": {
+          "minimum": 0,
+          "title": "Service Start",
+          "type": "integer"
+        },
+        "departure": {
+          "minimum": 0,
+          "title": "Departure",
+          "type": "integer"
+        },
+        "load_after": {
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "title": "Load After",
+          "type": "array"
+        }
+      },
+      "required": [
+        "order_id",
+        "arrival",
+        "service_start",
+        "departure",
+        "load_after"
+      ],
+      "title": "Stop",
+      "type": "object"
+    },
+    "Truck": {
+      "additionalProperties": false,
+      "properties": {
+        "height_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Height Mm",
+          "type": "integer"
+        },
+        "width_mm": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Width Mm",
+          "type": "integer"
+        },
+        "length_mm": {
+          "maximum": 50000,
+          "minimum": 1,
+          "title": "Length Mm",
+          "type": "integer"
+        },
+        "gross_weight_kg": {
+          "maximum": 100000,
+          "minimum": 1,
+          "title": "Gross Weight Kg",
+          "type": "integer"
+        },
+        "axle_load_kg": {
+          "maximum": 40000,
+          "minimum": 1,
+          "title": "Axle Load Kg",
+          "type": "integer"
+        },
+        "axle_count": {
+          "maximum": 12,
+          "minimum": 2,
+          "title": "Axle Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "height_mm",
+        "width_mm",
+        "length_mm",
+        "gross_weight_kg",
+        "axle_load_kg",
+        "axle_count"
+      ],
+      "title": "Truck",
+      "type": "object"
+    },
+    "Unassigned": {
+      "additionalProperties": false,
+      "properties": {
+        "order_id": {
+          "format": "uuid",
+          "title": "Order Id",
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "NO_COMPATIBLE_VEHICLE",
+            "NO_ROAD_NEAR_PIN",
+            "NO_ROUTE_IN_DATASET",
+            "SOLVER_UNASSIGNED",
+            "MANUALLY_UNASSIGNED"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id",
+        "reason"
+      ],
+      "title": "Unassigned",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "operational_ready": {
+            "const": false
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "READY"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data_kind": {
+            "const": "ROUTED"
+          },
+          "validation": {
+            "const": "PASS"
+          },
+          "blocking_issues": {
+            "maxItems": 0
+          },
+          "operational_ready": {
+            "const": true
+          },
+          "routes": {
+            "contains": {
+              "properties": {
+                "stops": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "Strict synthetic CLI output; shared result types do not widen this contract.",
+  "properties": {
+    "status": {
+      "const": "DRAFT",
+      "default": "DRAFT",
+      "title": "Status",
+      "type": "string"
+    },
+    "data_kind": {
+      "const": "SYNTHETIC",
+      "default": "SYNTHETIC",
+      "title": "Data Kind",
+      "type": "string"
+    },
+    "organization_id": {
+      "format": "uuid",
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "objective": {
+      "enum": [
+        "TRAVEL_TIME",
+        "MODELED_TRAVEL_COST"
+      ],
+      "title": "Objective",
+      "type": "string"
+    },
+    "routing_policy": {
+      "enum": [
+        "TRUCK_STANDARD",
+        "TRUCK_PREFER_NO_TOLLS",
+        "TRUCK_PREFER_NO_MOTORWAYS"
+      ],
+      "title": "Routing Policy",
+      "type": "string"
+    },
+    "dataset": {
+      "title": "Dataset",
+      "type": "string"
+    },
+    "routes": {
+      "items": {
+        "$ref": "#/$defs/Route"
+      },
+      "title": "Routes",
+      "type": "array"
+    },
+    "unassigned": {
+      "items": {
+        "$ref": "#/$defs/Unassigned"
+      },
+      "title": "Unassigned",
+      "type": "array"
+    },
+    "validation": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ],
+      "title": "Validation",
+      "type": "string"
+    },
+    "blocking_issues": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Blocking Issues",
+      "type": "array"
+    },
+    "toll_cost_minor": {
+      "default": null,
+      "title": "Toll Cost Minor",
+      "type": "null"
+    },
+    "total_cost_minor": {
+      "default": null,
+      "title": "Total Cost Minor",
+      "type": "null"
+    },
+    "operational_ready": {
+      "const": false,
+      "default": false,
+      "title": "Operational Ready",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "organization_id",
+    "objective",
+    "routing_policy",
+    "dataset",
+    "routes",
+    "unassigned",
+    "validation",
+    "blocking_issues"
+  ],
+  "title": "SyntheticDraft",
+  "type": "object"
+}

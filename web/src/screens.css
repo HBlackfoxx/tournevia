@@ -1,0 +1,6347 @@
+/* Screen layouts shared by the 27 approved reference states. */
+:root {
+  font-family: 'Geist Variable', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  background: var(--page);
+  color: var(--text);
+}
+h1 {
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+h2 {
+  font-size: 16px;
+}
+button {
+  font-size: 12px;
+  font-weight: 500;
+  min-height: 36px;
+}
+input,
+select {
+  min-height: 38px;
+  padding: 9px 11px;
+}
+label {
+  font-size: 13px;
+  font-weight: 400;
+}
+p {
+  line-height: 1.6;
+}
+.secondary {
+  box-shadow: none;
+}
+.info {
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--info-text);
+  padding: 12px 16px;
+  font-size: 12px;
+  margin: 14px 0;
+}
+.info p,
+.error p,
+.success p {
+  margin: 3px 0 0;
+}
+.info strong {
+  color: var(--info-text);
+}
+small,
+.help,
+.footnote {
+  font-size: 13px;
+}
+.wordmark {
+  font-size: 16px;
+  letter-spacing: -0.6px;
+  gap: 7px;
+}
+.wordmark .brand-mark {
+  width: 28px;
+  height: 28px;
+}
+.auth-header {
+  padding: 0 48px;
+  height: 74px;
+}
+.auth-context {
+  font-size: 13px;
+  color: var(--muted);
+}
+.auth-shell main {
+  padding: 38px 24px;
+  min-height: calc(100vh - 104px);
+}
+.auth-shell footer {
+  height: 30px;
+  padding: 7px 18px;
+  font-size: 13px;
+}
+.onboarding {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+/* One column width for every setup step, so the layout does not jump between them. */
+.onboarding.setup-step-2,
+.onboarding.setup-step-3 {
+  max-width: 1000px;
+}
+.setup-steps {
+  margin: 0 0 48px;
+  gap: 68px;
+  font-size: 13px;
+  height: 26px;
+}
+.setup-steps li {
+  position: relative;
+  white-space: nowrap;
+}
+.setup-steps li:not(:last-child):after {
+  content: '';
+  position: absolute;
+  left: calc(100% + 20px);
+  width: 48px;
+  height: 1px;
+  background: var(--border);
+}
+.setup-steps li.complete {
+  color: var(--success);
+}
+.setup-steps li.complete span {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.onboarding h1 {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+.setup-intro {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+.onboarding form {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+.workspace-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.workspace-choice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+  margin: 0;
+  min-height: 285px;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.workspace-choice.chosen {
+  border: 2px solid var(--accent);
+  padding: 27px;
+  box-shadow: 0 0 0 1px var(--text);
+}
+.workspace-choice > input {
+  position: absolute;
+  right: 25px;
+  top: 27px;
+}
+.workspace-choice strong {
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  margin-top: 10px;
+  color: var(--text);
+}
+.workspace-choice small {
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  width: 100%;
+  margin-top: 8px;
+  color: var(--muted);
+}
+.setup-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+.setup-actions > button {
+  min-width: 146px;
+  height: 44px;
+}
+.setup-actions > small {
+  color: var(--muted);
+}
+.setup-card {
+  background: var(--surface);
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.setup-card label {
+  margin: 0 0 20px;
+}
+.setup-card .check {
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  margin: 16px 0 0;
+}
+.setup-card .fields {
+  gap: 0 24px;
+}
+.setup-depot-grid {
+  gap: 28px;
+  grid-template-columns: 1fr 1.05fr;
+}
+.setup-depot-grid .info {
+  margin: 0;
+}
+.setup-depot-grid small {
+  font-size: 13px;
+}
+/* Only a hint right under a field's label rises into that label's bottom margin; the address
+   service's note and the address source stay where they flow, so they never cover text or a field. */
+.setup-depot-grid > div > label + small {
+  margin-top: -11px;
+  margin-bottom: 18px;
+}
+.setup-map {
+  min-width: 0;
+}
+.map-action-wrap {
+  position: relative;
+}
+.setup-map .map-panel {
+  margin: 0;
+}
+.setup-map .map-canvas {
+  height: 310px;
+}
+.setup-map > .help,
+.setup-map > small {
+  margin: 16px 0 0;
+}
+.map-action {
+  position: absolute;
+  left: 14px;
+  bottom: 16px;
+  z-index: 2;
+  font-size: 13px;
+}
+.setup-authorization {
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+}
+.setup-authorization details {
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 12px;
+  margin: 16px 0 12px;
+}
+.setup-authorization summary {
+  font-size: 13px;
+  color: var(--muted);
+}
+.password-field {
+  display: flex;
+  position: relative;
+}
+.password-field input {
+  padding-right: 40px;
+}
+.password-field button {
+  position: absolute;
+  right: 4px;
+  top: 2px;
+  color: var(--muted);
+}
+.password-field ~ small {
+  font-size: 13px;
+}
+.setup-step-1 .setup-steps {
+  margin-top: 16px;
+  margin-bottom: 38px;
+}
+.login-layout {
+  max-width: 1090px;
+  grid-template-columns: 530px 480px;
+  gap: 80px;
+  margin: 50px auto;
+  align-items: center;
+}
+.login-story h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  margin: 14px 0 24px;
+}
+.login-layout .workspace {
+  padding: 32px 34px;
+  margin: 0;
+  border-radius: 8px;
+}
+.login-layout h2 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+.login-company {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.login-layout label {
+  margin: 20px 0;
+}
+.login-layout .sign-in-button {
+  width: 100%;
+  height: 44px;
+  margin: 6px 0 12px;
+}
+.login-recovery {
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 12px 0 0;
+}
+.login-layout .error {
+  margin: 18px 0;
+  font-size: 12px;
+}
+.sidebar {
+  width: 190px;
+  padding: 18px 12px;
+  background: var(--surface-subtle);
+}
+.sidebar .wordmark {
+  margin: 0 4px 39px;
+}
+.sidebar nav {
+  gap: 6px;
+}
+.sidebar nav button {
+  height: 42px;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  gap: 14px;
+}
+.sidebar nav button svg {
+  width: 17px;
+  height: 17px;
+}
+.sidebar-account {
+  padding-top: 17px;
+}
+.app-body {
+  margin-left: 190px;
+}
+.topbar {
+  height: 62px;
+  padding: 0 28px;
+}
+.topbar strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.workspace-main {
+  padding: 24px 28px;
+}
+.page-title {
+  min-height: 56px;
+  margin-bottom: 22px;
+}
+.page-title p {
+  font-size: 12px;
+}
+.page-title button {
+  height: 40px;
+}
+.connection-status {
+  font-size: 13px;
+}
+.topbar > .connection-refresh {
+  font-size: 13px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.connection-refresh > span {
+  font-size: 16px;
+}
+.connection-status.connection-failed {
+  color: var(--danger);
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--info-text);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  flex: none;
+}
+.account-identity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  margin-bottom: 16px;
+}
+.account-identity strong {
+  font-size: 13px;
+  font-weight: 500;
+  display: block;
+  max-width: 120px;
+  overflow-wrap: anywhere;
+}
+.account-identity small {
+  font-size: 13px;
+  margin-top: 4px;
+}
+.account-compact .section-heading {
+  margin: 0;
+}
+.account-compact button {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 4px;
+  min-height: 26px;
+}
+.app-body > footer {
+  padding: 7px 18px;
+  font-size: 13px;
+  background: var(--surface-muted);
+  height: 28px;
+  overflow: hidden;
+}
+.table-scroll table {
+  font-size: 13px;
+}
+th {
+  font-size: 13px;
+  padding: 12px 13px;
+}
+td {
+  padding: 11px 13px;
+}
+td small {
+  font-size: 13px;
+}
+.tabs button {
+  font-size: 12px;
+}
+.badge {
+  font-size: 13px;
+  padding: 3px 8px;
+}
+.source-toolbar label {
+  font-size: 13px;
+}
+.source-toolbar input {
+  min-width: 260px;
+}
+.source-toolbar {
+  margin: 20px 0 30px;
+}
+@media (max-width: 1100px) {
+  .login-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .sidebar {
+    width: 178px;
+  }
+  .app-body {
+    margin-left: 178px;
+  }
+  .workspace-main {
+    padding: 20px;
+  }
+  .topbar {
+    padding: 0 20px;
+  }
+  .setup-steps {
+    gap: 50px;
+  }
+  .onboarding h1 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 850px) {
+  .sidebar {
+    width: 210px;
+  }
+  .app-body {
+    margin-left: 0;
+  }
+  .login-layout {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 12px auto;
+  }
+  .workspace-choices,
+  .setup-depot-grid {
+    grid-template-columns: 1fr;
+  }
+  .onboarding h1 {
+    font-size: 24px;
+  }
+  .setup-steps {
+    gap: 22px;
+    font-size: 13px;
+  }
+  .setup-steps li:after {
+    display: none;
+  }
+  .setup-intro {
+    font-size: 12px;
+  }
+  .workspace-choice {
+    min-height: 230px;
+  }
+  .setup-card {
+    padding: 20px;
+  }
+  .auth-header {
+    padding: 0 20px;
+  }
+  .setup-actions {
+    gap: 16px;
+  }
+  .setup-actions > small {
+    max-width: 55%;
+  }
+  .setup-actions > button {
+    min-width: 110px;
+  }
+  .topbar {
+    height: auto;
+    min-height: 56px;
+  }
+  .workspace-main {
+    padding: 18px 14px;
+  }
+  .page-title {
+    margin-bottom: 16px;
+  }
+  .source-toolbar input {
+    min-width: 0;
+  }
+  .setup-step-3 .fields {
+    grid-template-columns: 1fr;
+  }
+  .sidebar .wordmark {
+    margin-bottom: 26px;
+  }
+}
+
+.map-panel {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 8px;
+}
+.map-heading {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 2;
+  background: none;
+  padding: 0;
+  border: 0;
+  display: flex;
+  gap: 12px;
+}
+.map-heading > span {
+  background: var(--surface);
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  box-shadow: none;
+}
+.map-heading > .attention {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.map-note {
+  position: absolute;
+  right: 8px;
+  bottom: 30px;
+  z-index: 2;
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0;
+}
+.map-note summary {
+  padding: 3px 8px;
+  list-style: none;
+}
+.map-note p {
+  padding: 10px;
+  max-width: 280px;
+  font-size: 13px;
+}
+.map-error {
+  position: absolute;
+  bottom: 25px;
+  left: 10px;
+  right: 10px;
+  z-index: 3;
+  background: var(--danger-soft);
+  font-size: 12px;
+  padding: 12px;
+}
+.setup-map .map-canvas {
+  height: 310px;
+}
+.setup-card label:last-child {
+  margin-bottom: 0;
+}
+.setup-step-2 .setup-map .map-panel {
+  height: 310px;
+}
+.auth-shell main {
+  min-height: calc(100vh - 104px);
+  box-sizing: border-box;
+}
+.auth-shell {
+  min-height: 100vh;
+}
+.auth-shell footer {
+  margin-top: 0;
+}
+.setup-step-2 .setup-actions {
+  margin-top: 28px;
+}
+.maplibregl-ctrl-attrib {
+  font-size: 13px !important;
+}
+/* The basemap stays light in both themes, so its attribution keeps dark text rather than the page's. */
+.maplibregl-ctrl-attrib-inner {
+  color: rgb(0 0 0 / 0.78);
+}
+.account-compact > .section-heading {
+  display: block;
+}
+
+.setup-step-2 .setup-steps,
+.setup-step-3 .setup-steps {
+  margin-bottom: 34px;
+}
+.first-use-grid {
+  display: grid;
+  grid-template-columns: 1.18fr 1fr;
+  gap: 22px;
+}
+.onboarding-count {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: -13px;
+}
+.first-use-steps {
+  min-width: 0;
+}
+.first-use-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  min-height: 80px;
+}
+.first-use-row:first-child {
+  border-radius: 8px 8px 0 0;
+}
+.first-use-row:nth-child(5) {
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 8px 8px;
+}
+.first-use-row > div {
+  flex: 1;
+}
+.first-use-row strong {
+  font-size: 12px;
+}
+.first-use-row p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+.first-use-row button {
+  font-size: 13px;
+  min-height: 30px;
+  padding: 7px 12px;
+}
+.step-circle {
+  border: 1px solid var(--border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+.complete .step-circle {
+  color: var(--success);
+  background: var(--success-soft);
+}
+.first-use-row:nth-child(2):not(.complete) .step-circle {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+.checklist-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 14px;
+}
+.first-use-empty {
+  border: 1px dashed var(--accent-border);
+  border-radius: 8px;
+  min-height: 658px;
+  background: var(--surface-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px;
+}
+.first-use-empty h2 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 26px 0 12px;
+}
+.first-use-empty p {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 330px;
+  line-height: 1.9;
+}
+.first-use-empty small {
+  margin-top: 22px;
+  font-size: 13px;
+}
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--link);
+  display: grid;
+  place-items: center;
+}
+.empty-icon svg {
+  width: 36px;
+  height: 36px;
+}
+.fleet-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.fleet-metrics > div {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.fleet-metrics small {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.fleet-metrics strong {
+  font-size: 24px;
+}
+.fleet-metrics p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.source-tabs {
+  margin: 0;
+}
+.source-tabs button {
+  padding: 16px 0;
+  margin-right: 18px;
+}
+.source-toolbar {
+  margin: 18px 0 32px;
+  gap: 12px;
+}
+.source-toolbar > label:nth-child(2) {
+  min-width: 100px;
+}
+.source-toolbar > label:first-child {
+  width: 330px;
+}
+.source-toolbar select {
+  font-size: 13px;
+  max-width: 160px;
+}
+.source-toolbar .page-selection {
+  margin-left: auto;
+  min-width: 0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.source-toolbar > span {
+  margin-left: 0;
+  font-size: 13px;
+}
+.source-table {
+  max-height: calc(100vh - 405px);
+  min-height: 200px;
+}
+.source-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.source-table td {
+  height: 47px;
+  padding: 9px 13px;
+}
+.source-table input {
+  margin: 0;
+  width: 14px;
+  height: 14px;
+}
+.selected-source {
+  background: var(--accent-soft);
+}
+.source-table .location-badge {
+  min-height: 20px;
+  white-space: nowrap;
+  border: 0;
+  padding: 3px 8px;
+}
+.location-badge.attention {
+  background: var(--warning-soft);
+}
+.tag {
+  font-size: 13px;
+  background: var(--page);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+.pagination {
+  justify-content: flex-end;
+}
+.pagination > small {
+  margin-right: auto;
+}
+.pagination button {
+  min-height: 28px;
+  padding: 5px 9px;
+  font-size: 13px;
+}
+.app-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.workspace-main {
+  flex: 1;
+}
+.app-body > footer {
+  flex: none;
+}
+@media (max-width: 850px) {
+  .first-use-grid {
+    grid-template-columns: 1fr;
+  }
+  .first-use-empty {
+    min-height: 280px;
+    padding: 24px;
+  }
+  .first-use-row {
+    padding: 16px;
+    gap: 10px;
+  }
+  .fleet-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .source-toolbar .page-selection {
+    margin-left: 0;
+  }
+  .source-toolbar > label:first-child {
+    width: auto;
+    flex: 1;
+  }
+  .source-table {
+    max-height: none;
+  }
+  .pagination > small {
+    width: 100%;
+  }
+  .full-editor .editor {
+    width: 100%;
+  }
+}
+
+.editor-orders {
+  width: 668px;
+  max-width: 100vw;
+  padding: 24px 26px;
+  box-shadow: -8px 0 32px rgb(0 0 0 / 0.12);
+}
+.editor .section-heading {
+  margin: 0 0 8px;
+  align-items: flex-start;
+}
+.editor h2 {
+  font-size: 24px;
+  margin: 0;
+}
+.editor .section-heading .help {
+  margin: 6px 0;
+}
+.editor .section-heading > button {
+  font-size: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+}
+.editor .section-heading > button:after {
+  content: '×';
+  font-size: 24px;
+}
+.editor-tabs {
+  margin: 0 0 16px;
+  gap: 26px;
+}
+.editor-tabs button {
+  padding: 10px 0;
+  font-size: 12px;
+}
+.editor label {
+  margin: 10px 0 14px;
+  font-size: 13px;
+}
+.editor input,
+.editor select {
+  min-height: 36px;
+  padding: 8px 10px;
+}
+.editor .error {
+  margin: 12px 0;
+  font-size: 12px;
+}
+.editor .error p {
+  margin: 3px 0 0;
+}
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+.form-card h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-card h3 small {
+  font-size: 13px;
+  font-weight: 400;
+}
+.delivery-load {
+  padding: 14px;
+  margin: 0 0 4px;
+}
+.quantity-fields {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.quantity-fields label {
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+.quantity-fields input {
+  padding: 8px;
+}
+.service-fields {
+  grid-template-columns: 1fr 1fr 100px;
+  gap: 12px;
+}
+.editor-orders .equipment-field label {
+  font-size: 13px;
+  margin: 10px 0 4px;
+}
+.editor-orders .equipment-field input {
+  min-height: 32px;
+}
+.editor-orders .tags button {
+  min-height: 24px;
+  padding: 3px 6px;
+}
+.editor-save {
+  bottom: -24px;
+  padding: 16px 0;
+  margin-top: 12px;
+}
+.editor-save button {
+  min-width: 80px;
+}
+.full-editor {
+  left: 190px;
+  top: 62px;
+  bottom: 28px;
+  background: var(--page);
+  z-index: 30;
+}
+.full-editor .editor {
+  width: 100%;
+  height: 100%;
+  background: var(--page);
+  box-shadow: none;
+  padding: 24px 28px;
+}
+.editor-vehicles h2 {
+  font-size: 24px;
+}
+.vehicle-identity {
+  grid-template-columns: 280px 1fr;
+  align-items: center;
+  max-width: 600px;
+  margin: 8px 0 12px;
+}
+.vehicle-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.vehicle-form-grid label {
+  margin: 10px 0;
+}
+.three-fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.vehicle-form-grid .help {
+  font-size: 13px;
+}
+.vehicle-form-grid .info {
+  font-size: 13px;
+  margin: 18px 0 0;
+}
+.editor-vehicles .editor-save {
+  background: var(--page);
+}
+.location-editor {
+  width: calc(100vw - 190px);
+  background: var(--page);
+}
+.entrance-grid {
+  grid-template-columns: 400px minmax(0, 1fr);
+  gap: 22px;
+}
+.entrance-grid > form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+.entrance-grid .map-canvas {
+  height: calc(100vh - 270px);
+  min-height: 400px;
+}
+.entrance-grid aside {
+  position: static;
+}
+.location-editor .access-check {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.editor-vehicles .editor-save {
+  position: static;
+}
+.editor-orders:not(.location-editor) .editor-grid {
+  display: block;
+}
+.date-control {
+  font-size: 0;
+  white-space: nowrap;
+}
+.date-control input {
+  font-size: 13px;
+}
+.first-use-row {
+  height: 80px;
+  padding: 18px 22px;
+}
+h1,
+h2 {
+  font-weight: 500;
+}
+@media (max-width: 1100px) {
+  .full-editor {
+    left: 178px;
+  }
+  .entrance-grid {
+    grid-template-columns: 340px minmax(0, 1fr);
+  }
+  .three-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 850px) {
+  .full-editor {
+    left: 0;
+    top: 56px;
+  }
+  .editor-orders,
+  .location-editor {
+    width: 100vw;
+  }
+  .vehicle-form-grid,
+  .entrance-grid {
+    grid-template-columns: 1fr;
+  }
+  .editor-tabs {
+    gap: 15px;
+  }
+  .quantity-fields {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .service-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .service-fields > label:last-child {
+    grid-column: 1/-1;
+  }
+  .full-editor .editor {
+    padding: 18px 14px;
+  }
+  .entrance-grid .map-canvas {
+    height: 350px;
+    min-height: 0;
+  }
+}
+
+.import-steps {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  margin: -10px 0 14px;
+}
+.import-steps .current {
+  color: var(--link);
+  font-weight: 500;
+}
+.import-file {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.import-file label {
+  margin: 0;
+  flex: 1;
+  font-size: 13px;
+}
+.import-file input {
+  background: transparent;
+  border: 0;
+  padding: 5px 0;
+  min-height: 25px;
+}
+.import-flow > .notice {
+  margin: 14px 0 12px;
+}
+.import-flow p {
+  margin-bottom: 0;
+}
+.import-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.import-metrics > div {
+  padding: 12px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.import-metrics small {
+  font-size: 13px;
+}
+.import-metrics strong {
+  display: block;
+  font-size: 24px;
+  margin-top: 4px;
+}
+.import-panel {
+  padding: 20px;
+}
+.import-panel h3 {
+  font-size: 14px;
+}
+.preview-scroll table {
+  table-layout: auto;
+  font-size: 13px;
+}
+.preview-scroll {
+  max-height: 420px;
+}
+.preview-scroll th,
+.preview-scroll td {
+  padding: 10px 12px;
+}
+.preview-detail-row td {
+  padding: 0 12px;
+  border-top: 0;
+}
+.preview-detail-row summary {
+  font-size: 13px;
+  padding: 3px 0;
+  color: var(--muted);
+}
+.import-error-row {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.import-finish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 20px;
+}
+.import-finish small {
+  font-size: 13px;
+}
+.editor-overlay:has(.location-editor) {
+  left: 190px;
+  top: 62px;
+  bottom: 28px;
+  background: var(--page);
+}
+.location-editor .access-check {
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+}
+.location-editor .access-check h3 {
+  font-size: 14px;
+}
+.entrance-grid .editor-save {
+  bottom: -20px;
+}
+.editor-orders.location-editor {
+  height: 100%;
+  padding: 24px 28px;
+  box-shadow: none;
+}
+.location-editor .editor-tabs {
+  display: none;
+}
+.location-editor .section-heading {
+  margin-bottom: 22px;
+}
+.location-editor .section-heading h2 {
+  font-size: 24px;
+}
+.location-editor .section-heading button {
+  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 9px 15px;
+}
+.location-editor .section-heading button:after {
+  display: none;
+}
+.source-table:has(th:nth-child(3):last-child) {
+  max-height: none;
+}
+@media (max-width: 850px) {
+  .editor-overlay:has(.location-editor) {
+    left: 0;
+    top: 56px;
+  }
+  .import-steps {
+    gap: 12px;
+    font-size: 13px;
+  }
+  .import-metrics {
+    gap: 8px;
+  }
+  .import-metrics > div {
+    padding: 10px;
+  }
+  .import-file {
+    flex-wrap: wrap;
+  }
+}
+
+.source-toolbar input[type='checkbox'] {
+  min-width: 0;
+}
+.source-table td button {
+  min-height: 28px;
+}
+.planning-subhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -15px 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  gap: 12px;
+}
+.planning-subhead > button {
+  position: absolute;
+  right: 28px;
+  top: 95px;
+  min-height: 40px;
+}
+.prepare-layout {
+  display: grid;
+  grid-template-columns: 40% minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+.prepare-layout[hidden] {
+  display: none;
+}
+.preparation {
+  margin: 0;
+  padding: 20px;
+}
+.preparation h2 {
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.preparation > p {
+  margin: 0 0 16px;
+}
+.selection-summary {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  margin: 0 0 16px;
+}
+.selection-summary strong {
+  font-size: 13px;
+}
+.selection-summary p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.selection-summary b {
+  font-size: 24px;
+  color: var(--text-2);
+  margin-right: 5px;
+}
+.selection-summary button {
+  min-height: 28px;
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.source-picker {
+  margin: 14px 0;
+}
+.source-picker > summary {
+  font-size: 13px;
+  color: var(--muted);
+}
+.source-picker .planning-columns {
+  grid-template-columns: 1fr;
+}
+.source-picker[open] {
+  max-height: 380px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.preparation .advanced {
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 12px;
+  margin: 14px 0 18px;
+}
+.advanced summary {
+  font-size: 13px;
+}
+.prepare-layout > .map-panel .map-canvas {
+  height: 100%;
+  min-height: 640px;
+}
+.prepare-layout > .map-panel {
+  min-height: 640px;
+}
+.preparation .notice,
+.preparation .success {
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+.preparation .notice p,
+.preparation .success p {
+  margin: 3px 0;
+}
+.preparation > button {
+  margin-top: 10px;
+}
+.recent-jobs {
+  font-size: 13px;
+  margin: 8px 0;
+  min-height: 0;
+}
+.recent-jobs summary {
+  font-size: 13px;
+  padding: 3px 0;
+}
+.calculation-state {
+  min-height: calc(100vh - 220px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px;
+}
+.calculation-state > p {
+  max-width: 500px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.calculation-state h2 {
+  font-size: 24px;
+  margin: 20px 0 14px;
+}
+.calculation-symbol {
+  border-radius: 50%;
+  width: 78px;
+  height: 78px;
+  background: var(--accent-soft);
+  color: var(--link);
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+}
+.calculation-state.running .calculation-symbol {
+  border: 4px solid var(--accent-border);
+  border-top-color: var(--accent);
+  animation: calc-pulse 1.8s ease-in-out infinite;
+}
+.calculation-state.failed .calculation-symbol {
+  color: var(--danger-strong);
+  background: var(--danger-soft);
+}
+.elapsed {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--surface-subtle);
+  margin: 6px 0 28px;
+}
+.stage-list {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: min(480px, 100%);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.stage-list > div {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--success);
+}
+.stage-list > div:last-child {
+  border-bottom: 0;
+  color: var(--muted);
+}
+.stage-list > div.current {
+  background: var(--accent-soft);
+  color: var(--link);
+}
+.stage-list span {
+  float: right;
+  font-size: 13px;
+}
+.calculation-selection {
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  width: min(480px, 100%);
+  gap: 20px;
+  text-align: center;
+  padding-top: 24px;
+  margin-top: 0;
+}
+.calculation-selection span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.calculation-selection strong {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.calculation-state .info,
+.failure-next {
+  width: min(480px, 100%);
+  margin: 10px 0 12px;
+}
+.calculation-state .info {
+  text-align: center;
+}
+.failure-next {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.failure-next h3 {
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+.failure-next p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.failure-next button {
+  margin-top: 12px;
+  font-size: 13px;
+}
+@keyframes calc-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .calculation-state.running .calculation-symbol {
+    animation: none;
+  }
+}
+@media (max-width: 850px) {
+  .prepare-layout {
+    grid-template-columns: 1fr;
+  }
+  .prepare-layout > .map-panel .map-canvas {
+    height: 350px;
+    min-height: 0;
+  }
+  .prepare-layout > .map-panel {
+    min-height: 0;
+  }
+  .planning-subhead {
+    flex-wrap: wrap;
+  }
+  .planning-subhead > button {
+    position: static;
+    min-height: 30px;
+    font-size: 13px;
+  }
+  .calculation-state {
+    min-height: 600px;
+    padding: 20px;
+  }
+  .calculation-state h2 {
+    font-size: 24px;
+  }
+  .stage-list > div {
+    padding: 12px;
+  }
+}
+
+.workspace-main:has(.route-review) .planning-subhead > button {
+  right: 260px;
+}
+.review-heading {
+  margin: 0;
+  min-height: 0;
+}
+.review-heading .plan-actions {
+  position: absolute;
+  right: 28px;
+  top: 95px;
+  background: none;
+}
+.review-heading .plan-actions button {
+  height: 40px;
+}
+.plan-metrics {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  padding: 14px 0;
+  margin: 0 0 12px;
+}
+.plan-metrics strong {
+  font-size: 24px;
+  font-weight: 500;
+}
+.plan-metrics small {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.route-review > .notice,
+.route-review > .info,
+.route-review > .success {
+  margin: 0 0 12px;
+  font-size: 13px;
+  padding: 9px 14px;
+}
+.planning-split {
+  grid-template-columns: minmax(350px, 40%) minmax(0, 1fr);
+  gap: 14px;
+  min-height: 0;
+  height: calc(100vh - 334px);
+}
+.planning-map {
+  position: relative;
+  top: auto;
+  height: 100%;
+  min-height: 0;
+}
+.planning-map .map-panel {
+  height: 100%;
+}
+.planning-map .map-canvas {
+  height: 100%;
+  min-height: 0;
+}
+.planning-list {
+  height: 100%;
+  max-height: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 8px;
+}
+.route-scroll {
+  overflow: auto;
+  min-height: 0;
+  flex: 1;
+}
+.vehicle-route {
+  padding: 16px 17px 10px;
+  margin: 0 0 10px;
+}
+.route-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.route-title {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  min-height: 22px;
+  background: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+.route-title:hover {
+  background: none;
+  color: var(--link);
+}
+.route-title .route-dot {
+  width: 9px;
+  height: 9px;
+}
+.route-card-metrics {
+  display: flex;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  margin: 4px 0 8px 17px;
+}
+.route-card-metrics span:first-child {
+  color: var(--muted);
+}
+.route-load {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 17px;
+}
+.route-load small {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.route-load meter {
+  width: 100%;
+  max-width: 140px;
+  height: 6px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--surface-muted);
+}
+.route-load meter::-webkit-meter-bar {
+  height: 5px;
+  border: 0;
+  background: var(--surface-muted);
+}
+.route-load meter::-webkit-meter-optimum-value {
+  background: var(--success-fill);
+}
+/* At 90% and above the bar turns Attention Amber, never the browser's own yellow or red. */
+.route-load meter::-webkit-meter-suboptimum-value,
+.route-load meter::-webkit-meter-even-less-good-value {
+  background: var(--warning);
+}
+.route-load meter::-moz-meter-bar {
+  background: var(--success-fill);
+}
+.route-load meter:-moz-meter-sub-optimum::-moz-meter-bar,
+.route-load meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+  background: var(--warning);
+}
+.route-load button {
+  font-size: 13px;
+  white-space: nowrap;
+  min-height: 22px;
+  margin-left: auto;
+  padding: 2px;
+}
+.vehicle-route > details > summary {
+  font-size: 13px;
+  text-align: right;
+  padding: 4px 0;
+  color: var(--link);
+}
+.vehicle-route:has(details[open]) > details > summary {
+  margin-bottom: 4px;
+}
+.vehicle-route .table-scroll {
+  margin: 0 -17px;
+}
+.vehicle-route table {
+  table-layout: auto;
+}
+.vehicle-route th,
+.vehicle-route td {
+  padding: 7px 8px;
+  font-size: 13px;
+}
+.vehicle-route th:first-child {
+  width: 24px;
+}
+.vehicle-route th:nth-child(2) {
+  width: auto;
+}
+.vehicle-route th:nth-child(3) {
+  width: 50px;
+}
+.vehicle-route th:nth-child(4) {
+  width: 88px;
+}
+.vehicle-route td small {
+  font-size: 13px;
+  margin: 3px 0 0;
+  line-height: 1.4;
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vehicle-route .stop-name {
+  background: none;
+  color: var(--text-2);
+  border: 0;
+  padding: 0;
+  min-height: 14px;
+  font-size: 13px;
+}
+.row-sequence {
+  display: flex;
+  gap: 8px;
+}
+.row-sequence button {
+  min-height: 18px;
+  font-size: 13px !important;
+  color: var(--link);
+}
+.selected-stop-detail {
+  margin: 0 -17px -10px;
+  background: var(--page);
+  padding: 12px 10px;
+  border-top: 1px solid var(--border);
+}
+.selected-stop-detail .section-heading {
+  margin: 0 0 6px;
+}
+.selected-stop-detail strong {
+  font-size: 13px;
+  color: var(--info-text);
+}
+.selected-stop-detail p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.stop-detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.stop-detail-columns small {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.stop-detail-columns b {
+  font-weight: 400;
+  color: var(--info-text);
+  float: right;
+}
+.selected-stop-detail summary {
+  font-size: 13px;
+  padding: 6px 0;
+}
+.selected-stop-detail > .text-button {
+  font-size: 13px;
+  min-height: 20px;
+  padding: 2px;
+}
+.route-facts {
+  margin-top: 10px;
+}
+.route-facts summary {
+  font-size: 13px;
+  padding: 4px 0;
+}
+.route-facts p {
+  font-size: 13px;
+}
+.route-controls {
+  position: absolute;
+  left: 14px;
+  bottom: 28px;
+  z-index: 3;
+  background: var(--surface);
+  border-radius: 6px;
+  padding: 8px 12px;
+  gap: 12px;
+  box-shadow: none;
+}
+.route-controls label {
+  margin: 0;
+  font-size: 13px;
+  gap: 4px;
+}
+.route-controls input {
+  width: 10px;
+  height: 10px;
+}
+.unassigned-panel {
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  flex: none;
+  max-height: 40%;
+  overflow: auto;
+}
+.unassigned-panel h3 {
+  font-size: 13px;
+  border-bottom: 1px solid var(--warning-border);
+  padding: 10px;
+  margin: 0;
+}
+.unassigned-row {
+  grid-template-columns: 1fr auto;
+  padding: 9px 10px;
+  gap: 10px;
+  font-size: 13px;
+  margin: 0;
+}
+.unassigned-row small {
+  font-size: 13px;
+  color: var(--warning);
+}
+.unassigned-row button {
+  min-height: 26px;
+  font-size: 13px;
+  padding: 4px 10px;
+}
+.partial-accept {
+  font-size: 13px;
+  padding: 8px 10px;
+  margin: 0;
+}
+.unassigned-panel.all-assigned {
+  background: var(--success-soft);
+  border-color: var(--success-border);
+  padding: 12px;
+}
+.all-assigned h4 {
+  border: 0;
+  color: var(--success);
+  padding: 0;
+  font-size: 12px;
+}
+.all-assigned p {
+  color: var(--success);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 6px 0 0;
+}
+.stop-move {
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.stop-move h3 {
+  font-size: 12px;
+  margin: 0;
+}
+.stop-move p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.stop-move label {
+  font-size: 13px;
+  margin: 8px 0;
+}
+.stop-move select {
+  min-height: 32px;
+  padding: 6px;
+  font-size: 13px;
+}
+.stop-move .actions {
+  justify-content: space-between;
+}
+.stop-move button {
+  min-height: 28px;
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.blocking-issue {
+  background: var(--surface);
+  border: 1px solid var(--danger-border);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  padding: 16px;
+}
+.blocking-issue h3 {
+  font-size: 12px;
+  color: var(--danger);
+  background: var(--danger-soft);
+  margin: -16px -16px 18px;
+  padding: 14px;
+}
+.blocking-issue p {
+  font-size: 12px;
+}
+.blocking-issue button {
+  font-size: 13px;
+  min-height: 30px;
+}
+.mobile-stop-card {
+  display: none;
+}
+.route-review > .plan-context {
+  margin: 8px 0 0;
+}
+.plan-context summary {
+  font-size: 13px;
+  padding: 4px 0;
+}
+@media (max-width: 1100px) and (min-width: 851px) {
+  .planning-split {
+    grid-template-columns: 40% minmax(0, 1fr);
+  }
+  .plan-metrics > div {
+    padding: 0 12px;
+  }
+  .plan-metrics strong {
+    font-size: 16px;
+  }
+  .plan-metrics small {
+    font-size: 13px;
+  }
+  .route-load {
+    gap: 6px;
+  }
+  .stop-detail-columns {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 850px) {
+  .review-heading .plan-actions {
+    position: static;
+    margin: 0 0 12px;
+    justify-content: flex-start;
+  }
+  .review-heading .plan-actions button {
+    height: 32px;
+    font-size: 13px;
+  }
+  .plan-metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 10px;
+  }
+  .plan-metrics > div {
+    padding: 0 14px;
+    border-right: 1px solid var(--border);
+  }
+  .plan-metrics > div:nth-child(n + 4) {
+    display: none;
+  }
+  .plan-metrics strong {
+    font-size: 16px;
+  }
+  .plan-metrics small {
+    font-size: 13px;
+  }
+  .planning-split {
+    display: block;
+    height: auto;
+  }
+  .planning-map {
+    height: 330px;
+  }
+  .planning-map .map-canvas {
+    height: 330px;
+    min-height: 0;
+  }
+  .planning-list {
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .route-scroll {
+    overflow: visible;
+  }
+  .mobile-view.tabs {
+    display: flex;
+    background: var(--surface-muted);
+    border: 0;
+    border-radius: 6px;
+    padding: 3px;
+    margin-bottom: 12px;
+    gap: 0;
+  }
+  .mobile-view.tabs button {
+    flex: 1;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 7px;
+    min-height: 32px;
+  }
+  .mobile-view.tabs button[aria-pressed='true'] {
+    background: var(--surface);
+    border: 0;
+  }
+  .route-review > .notice {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  .unassigned-panel {
+    max-height: none;
+    margin-top: 10px;
+  }
+  .mobile-stop-card {
+    display: block;
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .mobile-stop-card .selected-stop-detail {
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    border: 0;
+  }
+  .mobile-stop-card > button {
+    width: 100%;
+    min-height: 32px;
+    font-size: 13px;
+  }
+  .mobile-stop-card .selected-stop-detail > details,
+  .mobile-stop-card .selected-stop-detail > .text-button {
+    display: none;
+  }
+  .mobile-stop-card .stop-detail-columns {
+    grid-template-columns: 1fr;
+  }
+  .mobile-stop-card .stop-detail-columns > div:last-child {
+    display: none;
+  }
+  .planning-split.show-map .planning-map {
+    height: auto;
+  }
+  .planning-split.show-map .map-panel {
+    height: 330px;
+  }
+  .route-controls {
+    top: 284px;
+    bottom: auto;
+    left: 8px;
+    gap: 10px;
+    padding: 7px;
+  }
+  .vehicle-route {
+    padding: 12px;
+  }
+  .vehicle-route .table-scroll {
+    margin: 0 -12px;
+  }
+  .selected-stop-detail {
+    margin: 0 -12px -12px;
+  }
+  .vehicle-route td small {
+    max-width: 160px;
+  }
+  .route-load meter {
+    max-width: 90px;
+  }
+  .route-card-metrics {
+    font-size: 13px;
+  }
+  .planning-subhead {
+    font-size: 13px;
+  }
+  .workspace-main:has(.route-review) .page-title p {
+    display: none;
+  }
+  .workspace-main:has(.route-review) .page-title {
+    min-height: 34px;
+    margin-bottom: 18px;
+  }
+  .topbar {
+    position: static;
+  }
+  .workspace-main:has(.route-review) .planning-subhead > button {
+    font-size: 13px;
+  }
+  .route-review .plan-context {
+    margin-top: 18px;
+  }
+}
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  gap: 24px;
+}
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.settings-nav button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  color: var(--muted);
+  background: transparent;
+  padding: 14px;
+  font-size: 12px;
+}
+.settings-nav svg {
+  width: 18px;
+  height: 18px;
+}
+.settings-nav button[aria-pressed='true'] {
+  background: var(--accent-soft);
+  color: var(--link);
+}
+.settings-nav small {
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 18px 14px;
+}
+.depot-card .section-heading,
+.users-card .section-heading {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.depot-card .section-heading p,
+.users-card .section-heading p {
+  font-size: 13px;
+  margin: 5px 0 0;
+  color: var(--muted);
+}
+.depot-card .section-heading > button,
+.users-card .section-heading > button {
+  position: absolute;
+  top: 95px;
+  right: 28px;
+  height: 40px;
+}
+.depot-card h2,
+.users-card h2 {
+  font-size: 16px;
+}
+.depot-card .fields label {
+  margin: 5px 0 16px;
+}
+.depot-card input {
+  font-size: 12px;
+  border-color: var(--border);
+}
+.depot-card {
+  padding: 24px;
+  margin-bottom: 18px;
+}
+.depot-review-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+}
+.depot-review-grid .map-canvas {
+  height: 300px;
+}
+.depot-review-grid .workspace {
+  margin: 0;
+  padding: 24px;
+}
+.depot-review-grid h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+.depot-review-grid p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0 0 14px;
+}
+.depot-review-grid .review-confirmed {
+  color: var(--success);
+}
+.workspace hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+.users-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.users-search label {
+  margin: 0;
+  width: 330px;
+}
+.users-search small {
+  font-size: 13px;
+}
+.user-name {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.user-name strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.user-name small {
+  font-size: 13px;
+  margin: 2px 0;
+}
+.users-card .table-scroll td {
+  height: 48px;
+  padding: 8px 12px;
+}
+.users-card td button {
+  min-height: 28px;
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.user-edit {
+  padding: 18px;
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.user-edit > select {
+  width: 180px;
+  margin-right: 12px;
+}
+.settings-layout > .workspace p,
+.settings-layout .workspace > p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.saved-plans > .section-heading {
+  display: none;
+}
+.saved-plan-search {
+  max-width: 330px;
+  margin: 18px 0 32px;
+  font-size: 0;
+}
+.saved-plan-search input {
+  font-size: 12px;
+}
+.saved-plans .tabs {
+  margin: 0;
+}
+.saved-plans th,
+.saved-plans td {
+  padding: 15px;
+}
+.saved-plans .info {
+  margin: 18px 0;
+}
+.source-toolbar input[type='checkbox'] {
+  min-width: 0 !important;
+}
+.source-table button {
+  min-height: 28px !important;
+}
+.editor :is([hidden], .form-card[hidden]) {
+  display: none !important;
+}
+@media (max-width: 850px) {
+  .settings-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .settings-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+  .settings-nav small {
+    display: none;
+  }
+  .depot-review-grid {
+    grid-template-columns: 1fr;
+  }
+  .depot-card .section-heading > button,
+  .users-card .section-heading > button {
+    position: static;
+  }
+  .depot-card .section-heading,
+  .users-card .section-heading {
+    flex-wrap: wrap;
+  }
+  .users-search label {
+    width: 75%;
+  }
+  .settings-layout .workspace {
+    padding: 18px;
+  }
+}
+
+.editor {
+  outline: none;
+}
+.location-editor .notice {
+  font-size: 13px;
+  padding: 10px 14px;
+  margin: 10px 0;
+}
+.location-editor .notice p {
+  margin: 4px 0 0;
+}
+.location-editor .check {
+  margin: 14px 0;
+}
+.location-editor h3 {
+  margin: 0 0 14px;
+}
+.location-editor .access-check {
+  margin-top: 18px;
+}
+.location-editor .access-check button {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.location-editor .access-check .help {
+  font-size: 13px;
+}
+.location-editor .editor-save {
+  margin-top: 14px;
+}
+.location-editor .entrance-grid .map-canvas {
+  height: calc(100vh - 244px);
+}
+
+.editor-header-actions {
+  display: flex;
+  gap: 10px;
+}
+.editor-vehicles .vehicle-identity {
+  display: flex;
+  gap: 24px;
+  margin: 8px 0 18px;
+  max-width: none;
+}
+.vehicle-identity > label:first-child {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+.vehicle-identity input[type='text'] {
+  width: 170px;
+}
+.vehicle-identity .check {
+  margin: 0;
+}
+.vehicle-form-grid label {
+  margin: 6px 0;
+}
+.vehicle-form-grid .equipment-field input {
+  min-height: 30px;
+}
+.vehicle-form-grid .tags button {
+  min-height: 24px;
+  padding: 3px 8px;
+}
+.vehicle-form-grid .form-card:first-child .fields > label:last-child {
+  grid-column: 1/-1;
+}
+.vehicle-form-grid .form-card {
+  padding: 20px;
+}
+.vehicle-form-grid .form-card h3 {
+  margin-bottom: 10px;
+}
+.vehicle-form-grid .help {
+  margin-top: 8px;
+}
+.editor-header-actions button {
+  height: 40px;
+}
+.fleet-metrics > div {
+  padding: 18px 20px;
+}
+.source-tabs button {
+  padding: 12px 0;
+}
+.pagination {
+  margin: 12px 0;
+}
+.workspace:has(> h3),
+.fleet-note {
+  padding: 20px;
+}
+.workspace > h3,
+.fleet-note > h2 {
+  margin-top: 0;
+}
+.source-toolbar {
+  margin-bottom: 26px;
+}
+.has-preview .import-file {
+  position: absolute;
+  top: 95px;
+  right: 28px;
+  max-width: 180px;
+}
+.has-preview .import-file > label > span,
+.has-preview .import-file > button {
+  display: none;
+}
+/* An address field suggests addresses under itself while typing. */
+.address-field {
+  position: relative;
+}
+.address-field > label {
+  margin-bottom: 4px;
+}
+.address-suggestions {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  right: 0;
+  margin: -2px 0 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.1);
+}
+.address-suggestions li {
+  display: grid;
+  gap: 1px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.address-suggestions li[aria-selected='true'] {
+  background: var(--surface-muted);
+}
+.address-suggestions strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.address-field .field-hint {
+  margin: 4px 0 0;
+}
+.address-suggestions small,
+.address-attribution,
+.address-match {
+  color: var(--muted);
+  font-size: 13px;
+}
+.address-match {
+  display: block;
+  margin-top: 3px;
+}
+.import-file .choose-another {
+  display: none;
+}
+.has-preview .import-file .choose-another {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  border-radius: 6px;
+  color: var(--on-accent);
+  font-size: 12px;
+  font-weight: 500;
+  height: 40px;
+  width: 178px;
+  cursor: pointer;
+}
+.has-preview .import-file label {
+  position: relative;
+}
+.has-preview .import-file label:focus-within .choose-another {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+/* Still focusable and clickable through its label, but not drawn. */
+.has-preview input[type='file'] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.preview-detail-row td {
+  position: relative;
+  line-height: 0;
+  padding: 0 12px !important;
+  height: 0;
+}
+.preview-detail-row summary {
+  position: absolute;
+  right: 12px;
+  top: -31px;
+  font-size: 0;
+  padding: 4px;
+  line-height: 1;
+}
+.preview-detail-row summary:after {
+  content: '›';
+  font-size: 16px;
+}
+.preview-detail-row details[open] summary:after {
+  content: '⌄';
+}
+.preview-detail-row details[open] {
+  padding: 12px 0;
+  line-height: 1.4;
+}
+.preview-detail-row details[open] summary {
+  top: -31px;
+}
+.preview-scroll th,
+.preview-scroll td {
+  padding: 9px 12px;
+}
+.preview-scroll {
+  max-height: 420px;
+}
+.import-panel .section-heading {
+  margin-bottom: 14px;
+}
+.import-panel .preview-scroll tbody > tr:not(.preview-detail-row) {
+  height: 34px;
+}
+.import-error-row td {
+  font-size: 13px;
+}
+.import-finish {
+  margin-top: 14px;
+}
+@media (max-width: 850px) {
+  .has-preview .import-file {
+    position: static;
+    max-width: none;
+    margin: 12px 0;
+  }
+  .has-preview input[type='file'] {
+    font-size: 13px;
+  }
+  .vehicle-identity {
+    flex-wrap: wrap;
+  }
+  .editor-header-actions {
+    gap: 5px;
+  }
+  .editor-header-actions button {
+    font-size: 13px;
+    padding: 7px;
+  }
+}
+
+/* Keep preparation and review controls within the reference viewport. */
+.preparation {
+  padding: 20px;
+}
+.preparation label {
+  margin: 10px 0;
+}
+.preparation fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.selection-summary {
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  min-height: 76px;
+}
+.selection-summary p {
+  margin-top: 4px;
+}
+.preparation .source-picker {
+  margin: 6px 0;
+}
+.preparation .source-picker > summary {
+  padding: 6px 0;
+  font-size: 13px;
+}
+.preparation .notice,
+.preparation .success {
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.preparation .notice .text-button {
+  min-height: 20px;
+  padding: 0;
+}
+.preparation .advanced {
+  margin: 12px 0;
+}
+.preparation .advanced > summary {
+  padding: 10px 0;
+}
+.preparation > button {
+  margin-top: 0;
+}
+.preparation > .help {
+  margin-top: 8px;
+}
+.prepare-layout > .map-panel {
+  min-height: 640px;
+}
+.prepare-layout > .map-panel .map-canvas {
+  min-height: 640px;
+}
+.stop-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 -17px;
+  padding: 4px 10px;
+  border-top: 1px solid var(--border);
+}
+.stop-pagination small,
+.stop-pagination button {
+  font-size: 13px;
+}
+.stop-pagination button {
+  min-height: 20px;
+  padding: 0;
+}
+.maplibregl-popup-content {
+  padding: 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.14) !important;
+}
+.map-stop-popup {
+  font:
+    11px 'Segoe UI',
+    Arial,
+    sans-serif;
+  max-width: 210px;
+}
+.map-stop-popup strong {
+  font-size: 12px;
+  color: var(--text);
+}
+.map-stop-popup p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.map-stop-popup small {
+  font-size: 13px;
+  color: var(--link);
+}
+.maplibregl-popup {
+  z-index: 4;
+}
+.recent-jobs {
+  margin: 4px 0;
+}
+.route-card-metrics {
+  margin-bottom: 5px;
+}
+
+.area-planning > .page-title {
+  margin-bottom: 8px;
+}
+.selection-summary p {
+  line-height: 1.2;
+}
+.selection-summary b {
+  line-height: 1.2;
+}
+.selection-summary {
+  min-height: 76px;
+}
+.mobile-brand {
+  display: none;
+}
+.calculation-state {
+  min-height: calc(100vh - 220px);
+}
+
+.area-planning > .page-title {
+  margin-bottom: 16px;
+}
+.area-planning > .page-title p {
+  margin-top: 6px;
+}
+.planning-split {
+  height: calc(100vh - 375px);
+}
+.vehicle-route td {
+  padding: 5px 8px;
+}
+.vehicle-route td small {
+  line-height: 1.15;
+  margin-top: 2px;
+}
+.vehicle-route .stop-name {
+  padding: 0;
+}
+.row-sequence button {
+  min-height: 14px;
+  padding: 0 !important;
+  font-size: 13px !important;
+}
+.vehicle-route .selected-stop-detail {
+  padding: 8px 10px;
+}
+.selected-stop-detail .section-heading {
+  margin-bottom: 3px;
+}
+.selected-stop-detail p {
+  margin-bottom: 5px;
+}
+.selected-stop-detail small {
+  line-height: 1.5;
+}
+.route-facts {
+  margin-top: 8px;
+}
+.partial-accept {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.partial-accept input {
+  width: 12px;
+  height: 12px;
+  min-height: 0;
+}
+.route-card-heading .badge {
+  font-size: 13px;
+}
+.route-card-metrics {
+  line-height: 1.4;
+}
+.route-controls input {
+  min-height: 0;
+}
+.area-planning .recent-jobs {
+  margin-top: 5px;
+}
+.review-heading {
+  height: 0;
+  display: block;
+}
+.stop-pagination {
+  padding: 3px 10px;
+}
+
+.unassigned-panel h3 {
+  padding: 7px 10px;
+}
+.unassigned-row {
+  padding: 6px 10px;
+}
+.partial-accept {
+  padding: 5px 10px;
+  margin: 0 !important;
+  line-height: 1.3;
+}
+.vehicle-route td button.stop-name {
+  line-height: 1.2;
+}
+.vehicle-route .table-scroll table td {
+  line-height: 1.25;
+}
+.vehicle-route > details > summary {
+  line-height: 1.3;
+}
+.selected-stop-detail {
+  line-height: 1.3;
+}
+.plan-metrics {
+  padding: 12px 0;
+}
+.area-planning {
+  padding-bottom: 8px;
+}
+.route-review > .plan-context {
+  margin-top: 6px;
+}
+.planning-split {
+  height: calc(100vh - 375px);
+}
+
+.workspace-main:has(.route-review) .planning-subhead > button {
+  right: 330px;
+}
+
+.planning-context {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-actions-toggle,
+.mobile-new-calculation,
+.mobile-copy {
+  display: none;
+}
+.is-invalid .plan-metrics {
+  display: none;
+}
+.is-invalid .planning-split {
+  height: calc(100vh - 302px);
+}
+.is-invalid .all-assigned {
+  background: var(--surface);
+  border-color: var(--border);
+}
+.is-invalid .all-assigned h4 {
+  color: var(--text-2);
+}
+.is-invalid .all-assigned p {
+  color: var(--muted);
+}
+@media (max-width: 850px) {
+  .mobile-brand {
+    display: block;
+  }
+  .topbar {
+    height: 55px;
+    min-height: 55px;
+    padding: 0 14px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .topbar > .menu-button {
+    order: 3;
+    min-height: 30px;
+    border: 0;
+    background: none;
+    padding: 4px;
+    color: var(--muted);
+  }
+  .topbar > strong {
+    display: none;
+  }
+  .topbar > .date-control {
+    position: absolute;
+    top: 103px;
+    left: 14px;
+    z-index: 2;
+  }
+  .topbar .date-control input {
+    width: 115px;
+    background: transparent;
+    font-size: 13px;
+    padding: 0;
+    min-height: 22px;
+  }
+  .topbar:has(+ .area-vehicles) .date-control,
+  .topbar:has(+ .area-settings) .date-control {
+    display: none;
+  }
+  .topbar:not(:has(+ .area-planning)) .date-control {
+    position: static;
+  }
+  .topbar .wordmark {
+    font-size: 14px;
+  }
+  .topbar .wordmark .brand-mark {
+    width: 25px;
+    height: 25px;
+  }
+  .area-planning > .page-title {
+    margin: 0 0 32px !important;
+    min-height: 28px !important;
+  }
+  .area-planning .planning-subhead {
+    margin: 0;
+    height: 0;
+    min-height: 0;
+  }
+  .area-planning .planning-context .plan-date {
+    display: none;
+  }
+  .area-planning .planning-context .badge {
+    position: absolute;
+    top: 80px;
+    right: 58px;
+    font-size: 13px;
+  }
+  .area-planning .plan-timezone {
+    position: absolute;
+    top: 109px;
+    left: 145px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .area-planning .planning-subhead > button {
+    display: none;
+  }
+  .area-planning:not(:has(.route-review)) .planning-subhead > button {
+    display: block;
+    position: static;
+    margin-bottom: 12px;
+  }
+  .area-planning:not(:has(.route-review)) .planning-subhead {
+    height: auto;
+    margin-bottom: 12px;
+  }
+  .review-heading {
+    height: 0 !important;
+    margin: 0;
+  }
+  .review-heading .plan-actions {
+    margin: 0;
+  }
+  .mobile-actions-toggle {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 75px;
+    height: 28px !important;
+    padding: 3px 8px !important;
+    min-height: 28px !important;
+    background: transparent;
+  }
+  .review-heading .plan-actions .actions {
+    display: none;
+  }
+  .review-heading .plan-actions.is-open .actions {
+    position: absolute;
+    top: 110px;
+    right: 14px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.14);
+  }
+  .mobile-new-calculation {
+    display: block;
+  }
+  .review-heading .plan-actions.is-open .actions button {
+    min-height: 36px !important;
+  }
+  .plan-metrics {
+    height: 64px;
+    padding: 10px 0;
+    margin: 0 0 12px;
+  }
+  .plan-metrics strong {
+    font-size: 16px;
+  }
+  .plan-metrics small {
+    font-size: 13px;
+  }
+  .mobile-view.tabs {
+    margin-bottom: 12px;
+  }
+  .route-review:has(.show-list) > .partial-result {
+    display: none;
+  }
+  .partial-result .desktop-copy {
+    display: none;
+  }
+  .partial-result .mobile-copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .partial-result .text-button {
+    padding: 0;
+    min-height: 18px;
+    font-size: 13px;
+    color: var(--warning);
+  }
+  .planning-split,
+  .is-invalid .planning-split {
+    height: auto;
+  }
+  .planning-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .route-scroll {
+    max-height: calc(100dvh - 387px);
+    overflow: auto;
+  }
+  .vehicle-route > details[open] > summary {
+    display: none;
+  }
+  .vehicle-route {
+    padding: 12px 10px 8px;
+  }
+  .vehicle-route .table-scroll {
+    margin: 4px -10px 0;
+  }
+  .vehicle-route .selected-stop-detail {
+    margin: 0 -10px -8px;
+  }
+  .vehicle-route .route-card-metrics {
+    margin-bottom: 3px;
+  }
+  .vehicle-route .route-load {
+    margin-bottom: 4px;
+  }
+  .vehicle-route .route-facts {
+    margin-top: 6px;
+  }
+  .vehicle-route td small {
+    font-size: 13px;
+    max-width: 150px;
+  }
+  .vehicle-route th,
+  .vehicle-route td {
+    font-size: 13px;
+  }
+  .vehicle-route td {
+    padding: 5px 7px;
+  }
+  .vehicle-route .stop-name {
+    font-size: 13px;
+  }
+  .stop-pagination {
+    margin: 0 -10px;
+  }
+  .route-scroll .selected-stop-detail {
+    padding: 8px;
+  }
+  .route-scroll .selected-stop-detail .stop-detail-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .route-scroll .selected-stop-detail small {
+    font-size: 13px;
+  }
+  .route-scroll .selected-stop-detail p {
+    font-size: 13px;
+  }
+  .unassigned-panel {
+    margin-top: 8px;
+  }
+  .unassigned-panel h3 {
+    padding: 7px 9px;
+  }
+  .unassigned-row {
+    padding: 5px 9px;
+    font-size: 13px;
+  }
+  .unassigned-row small {
+    font-size: 13px;
+  }
+  .unassigned-row button {
+    font-size: 13px;
+  }
+  .partial-accept {
+    font-size: 13px;
+  }
+  .maplibregl-popup {
+    display: none;
+  }
+  .route-review > .plan-context,
+  .area-planning .recent-jobs {
+    font-size: 13px;
+  }
+  .area-planning .plan-context summary,
+  .area-planning .recent-jobs summary {
+    font-size: 13px;
+  }
+  .planning-map .map-panel {
+    height: 330px;
+  }
+  .planning-map .map-canvas {
+    height: 330px;
+    min-height: 0;
+  }
+  .prepare-layout > .map-panel {
+    min-height: 350px;
+  }
+  .prepare-layout > .map-panel .map-canvas {
+    height: 350px;
+    min-height: 350px;
+  }
+  .planning-split.show-map .map-panel {
+    height: 330px;
+  }
+  .mobile-stop-card {
+    padding: 12px;
+    margin-top: 10px;
+  }
+  .area-planning .review-heading .plan-actions .actions button[hidden] {
+    display: none;
+  }
+  .area-planning .review-heading .plan-actions .actions button.mobile-new-calculation {
+    display: block;
+  }
+}
+
+@media (max-width: 850px) {
+  .route-review {
+    display: flex;
+    flex-direction: column;
+  }
+  .review-heading {
+    order: -5;
+  }
+  .plan-metrics {
+    order: -4;
+  }
+  .mobile-view.tabs {
+    order: -3;
+  }
+  .route-review > .notice,
+  .route-review > .error,
+  .route-review > .info,
+  .route-review > .success {
+    order: -2;
+  }
+  .route-review > .plan-context {
+    order: 1;
+  }
+  .route-scroll {
+    max-height: calc(100dvh - 412px);
+  }
+}
+
+/* Keep the replacement-file action clear of the page navigation. */
+@media (min-width: 851px) {
+  .workspace-main:has(.has-preview) > .page-title > .actions {
+    margin-right: 198px;
+  }
+  .has-preview .import-file > label {
+    width: 180px;
+    min-width: 0;
+  }
+  .has-preview input[type='file'] {
+    width: 180px;
+    min-width: 0;
+    max-width: 180px;
+  }
+}
+
+.route-scroll {
+  overflow-anchor: none;
+}
+
+.vehicle-route td:nth-child(3) {
+  white-space: nowrap;
+}
+.vehicle-route > details[open] > summary {
+  display: none;
+}
+@media (min-width: 851px) and (max-height: 800px) {
+  .area-planning {
+    padding: 16px 20px 8px;
+  }
+  .area-planning > .page-title {
+    margin-bottom: 10px;
+    min-height: 0;
+  }
+  .area-planning h1 {
+    font-size: 24px;
+  }
+  .area-planning > .page-title p {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .area-planning .planning-subhead {
+    margin-bottom: 8px;
+  }
+  .plan-metrics {
+    padding: 8px 0;
+  }
+  .route-review > .notice {
+    padding: 7px 14px;
+  }
+  .planning-split {
+    height: calc(100vh - 320px);
+  }
+  .vehicle-route {
+    padding-top: 12px;
+  }
+}
+
+@media (min-width: 851px) {
+  .vehicle-route {
+    padding-top: 12px;
+  }
+  .vehicle-route .table-scroll td {
+    padding: 3px 8px;
+  }
+  .route-card-metrics {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  .route-load button {
+    min-height: 18px;
+  }
+  .workspace-main:has(.route-review) .planning-subhead > button {
+    right: 285px;
+  }
+}
+
+/* Calculation context and history remain readable when expanded. */
+.route-review > .support-card,
+.area-planning .recent-jobs.support-card {
+  margin: 14px 0 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 12px;
+}
+.support-card > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px !important;
+  list-style: none;
+  cursor: pointer;
+  font-size: 12px !important;
+  color: var(--text-2);
+}
+.support-card > summary::-webkit-details-marker {
+  display: none;
+}
+.support-card > summary > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.support-card > summary strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+}
+.support-card > summary small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.support-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface-muted);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 16px;
+  flex: none;
+}
+.disclosure-chevron {
+  font-size: 16px;
+  color: var(--muted);
+  transition: transform 0.15s;
+}
+.support-card[open] .disclosure-chevron {
+  transform: rotate(180deg);
+}
+.support-card[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+.support-content {
+  padding: 18px;
+}
+.calculation-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0 0 18px;
+}
+.calculation-facts dt {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.calculation-facts dd {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text-2);
+}
+.dataset-note {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-soft);
+}
+.dataset-note > span {
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1;
+}
+.dataset-note strong,
+.plan-change-notes strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.dataset-note p {
+  font-size: 12px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.plan-change-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 18px;
+}
+.plan-change-notes p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+.recent-help,
+.recent-empty {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.recent-empty {
+  margin: 0;
+}
+.calculation-history {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 268px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.calculation-history li + li {
+  border-top: 1px solid var(--border);
+}
+.history-run {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) 100px 90px 70px;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text-2);
+  min-height: 64px;
+}
+.history-run:hover {
+  background: var(--surface-subtle);
+}
+.history-run[aria-pressed='true'] {
+  background: var(--accent-soft);
+  box-shadow: none;
+  background: var(--accent-soft);
+}
+.run-time strong {
+  font-size: 14px;
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+.run-time small {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.history-run .badge {
+  justify-self: start;
+  font-size: 13px;
+}
+.run-status.succeeded {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.run-status.failed {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.run-status.running,
+.run-status.queued {
+  background: var(--accent-soft);
+  color: var(--link);
+}
+.history-run code {
+  color: var(--muted);
+  font-size: 13px;
+}
+.run-open {
+  font-size: 13px;
+  text-align: right;
+  color: var(--link);
+}
+.app-body > footer.workspace-footer {
+  height: auto;
+  min-height: 64px;
+  overflow: visible;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: var(--surface-muted);
+  margin-top: 10px;
+}
+.workspace-footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.workspace-footer strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.workspace-footer span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.workspace-footer a {
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--muted);
+  margin: 0;
+}
+@media (max-width: 850px) {
+  .topbar > .connection-refresh {
+    font-size: 13px;
+    padding: 4px;
+    gap: 3px;
+  }
+  .topbar {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .connection-status {
+    font-size: 13px;
+  }
+  .support-card > summary {
+    padding: 12px !important;
+    gap: 9px;
+  }
+  .support-card > summary strong {
+    font-size: 13px;
+  }
+  .support-card > summary small {
+    font-size: 13px;
+  }
+  .support-content {
+    padding: 14px;
+  }
+  .calculation-facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .calculation-facts dd {
+    font-size: 12px;
+  }
+  .plan-change-notes {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .history-run {
+    grid-template-columns: minmax(90px, 1fr) 85px 52px;
+    gap: 8px;
+    padding: 12px;
+  }
+  .history-run code {
+    display: none;
+  }
+  .run-time strong {
+    font-size: 12px;
+  }
+  .run-time small {
+    font-size: 13px;
+  }
+  .history-run .badge {
+    font-size: 13px;
+  }
+  .run-open {
+    font-size: 13px;
+  }
+  .app-body > footer.workspace-footer {
+    padding: 14px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Page header: page-level actions render into .page-actions (see PageActions.tsx)
+ * and flow and wrap with longer labels instead of sitting at fixed pixel offsets.
+ * ------------------------------------------------------------------------- */
+.page-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 16px;
+}
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.page-actions:empty {
+  display: none;
+}
+.page-actions > button {
+  position: static;
+  height: 40px;
+}
+.page-actions .plan-actions {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.page-actions .plan-actions .actions {
+  flex: initial;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.page-actions .plan-actions button {
+  height: 40px;
+}
+
+/* The subtitle and the plan's date line never overlap (a negative margin used to pull it up). */
+.planning-subhead {
+  margin-top: 0;
+}
+/* The refresh icon is large; its label keeps the top bar's text size. */
+.connection-refresh > .connection-label {
+  font-size: 12px;
+}
+
+/* The required planning limitation, readable where the dispatcher approves routes. */
+.limitation {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Controls people act on: at least 24 px targets and 12 px text. */
+.row-sequence button {
+  min-height: 28px;
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+}
+.route-controls label {
+  min-height: 24px;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+.route-controls input {
+  width: 16px;
+  height: 16px;
+}
+.partial-accept {
+  font-size: 12px;
+}
+.partial-accept input {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 850px) {
+  .partial-accept {
+    font-size: 12px;
+  }
+  /* The planning date stays in the top bar; "Check connection" keeps its name for assistive tech. */
+  .topbar > .date-control {
+    position: static;
+    order: 1;
+    margin-left: auto;
+  }
+  .topbar .connection-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .area-planning > .page-title {
+    margin: 0 0 12px !important;
+    min-height: 0 !important;
+  }
+  .area-planning .planning-subhead {
+    height: auto;
+    min-height: 0;
+    margin: 0 0 12px;
+  }
+  .area-planning .planning-context .badge,
+  .area-planning .plan-timezone {
+    position: static;
+  }
+  /* On phones the review's actions live in its own menu, which includes a new calculation. */
+  .area-planning:has(.route-review) .page-actions > button {
+    display: none;
+  }
+  .page-actions .mobile-actions-toggle {
+    position: static;
+    display: block;
+  }
+  .page-actions .plan-actions .actions {
+    display: none;
+  }
+  .page-actions .plan-actions.is-open .actions {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 210px;
+    padding: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.14);
+  }
+  .page-actions .plan-actions.is-open .actions button {
+    min-height: 36px;
+  }
+  .page-actions .plan-actions .actions button[hidden] {
+    display: none;
+  }
+  .page-actions .plan-actions .actions button.mobile-new-calculation {
+    display: block;
+  }
+}
+
+/* Map: route letters make routes distinguishable without relying on colour. Pins and route tags sit
+   on fixed fills (a route colour, or the depot's black) in both themes, so their text is a fixed white
+   too; a theme token would turn it near-black in the dark theme. Every route colour passes 4.5:1. */
+.pin {
+  min-width: 24px;
+  width: auto;
+  padding: 0 4px;
+  color: #ffffff;
+}
+.route-tag {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+.route-controls-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.appearance-setting {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-soft);
+}
+.appearance-setting select {
+  max-width: 320px;
+}
+.password-setting {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  gap: 10px;
+  max-width: 320px;
+}
+.password-setting h3 {
+  margin: 0;
+}
+.password-setting p {
+  margin: 0;
+}
+.password-setting button {
+  justify-self: start;
+}
+.appearance-setting p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+/* Sample workspace: an administrator can replace the sample with the company. */
+.notice.sample-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.start-company label {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0;
+}
+.start-company .actions {
+  justify-content: flex-end;
+}
+
+/* ===== Ledger layer: the direction for every screen (see the note at the top of style.css). =====
+   One grotesk, four sizes (12 / 14 / 16 / 24), ink on a stone ground and white sheets, the colour
+   left to the routes; a 56px icon rail on wide screens and a sheet behind the menu on narrow ones. */
+.icon {
+  flex: none;
+  vertical-align: -3px;
+}
+body {
+  font-size: 14px;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Controls: one height, flat fills, near-black primary, grey secondary, ink text actions. */
+button {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: none;
+}
+/* Only buttons that keep the base fill darken on hover; tabs, rail items and other styled buttons keep theirs. */
+button:where(:hover:not(:disabled)) {
+  background: var(--accent-hover);
+}
+.secondary {
+  background: var(--surface-muted);
+  border-color: transparent;
+  color: var(--text);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--accent-border);
+}
+.text-button {
+  min-height: 0;
+  padding: 4px 2px;
+  font-size: 13px;
+  color: var(--text);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-border);
+  text-underline-offset: 3px;
+}
+.text-button:hover:not(:disabled) {
+  background: transparent;
+  text-decoration-color: currentColor;
+}
+input,
+select,
+textarea {
+  min-height: 36px;
+  border-radius: 6px;
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Shell: a quiet bar holding the company, the planning date and the connection (48px on wide screens). */
+.topbar {
+  background: var(--page);
+  border-bottom: 1px solid var(--border);
+}
+.topbar strong {
+  font-weight: 500;
+}
+.connection-status {
+  color: var(--muted);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+.connection-refresh {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (min-width: 851px) {
+  .topbar {
+    height: 48px;
+    min-height: 48px;
+    padding: 0 24px;
+    gap: 20px;
+  }
+  .sidebar {
+    width: 56px;
+    padding: 12px 8px;
+    align-items: center;
+    background: var(--page);
+    border-right: 1px solid var(--border);
+    box-shadow: none;
+  }
+  .sidebar .wordmark {
+    margin: 0 0 28px;
+  }
+  .sidebar .wordmark .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .sidebar .wordmark span,
+  .sidebar .nav-label,
+  .sidebar .account-identity > div {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .sidebar nav {
+    gap: 4px;
+  }
+  .sidebar nav button {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+    color: var(--muted);
+    background: transparent;
+  }
+  .sidebar nav button:hover:not(:disabled) {
+    color: var(--text);
+    background: var(--surface-muted);
+  }
+  .sidebar nav button[aria-current='page'] {
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+  .sidebar-account {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .sidebar .account-compact .section-heading,
+  .sidebar .account-identity {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+  .sidebar .account-compact button {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: var(--muted);
+  }
+  .sidebar .account-compact button:hover:not(:disabled) {
+    color: var(--text);
+    background: var(--surface-muted);
+  }
+  .app-body {
+    margin-left: 56px;
+  }
+  /* Editors open over the canvas beside the rail and under the 48px bar. */
+  .full-editor,
+  .editor-overlay:has(.location-editor) {
+    left: 56px;
+    top: 48px;
+  }
+  .location-editor {
+    width: calc(100vw - 56px);
+  }
+}
+.avatar {
+  background: var(--surface-muted);
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Messages: problems keep their pale pair; status lines are text, not coloured boxes. */
+.notice,
+.error,
+.success {
+  font-size: 14px;
+  padding: 10px 14px;
+}
+.info {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 12px 0;
+  font-size: 14px;
+  color: var(--text-2);
+}
+.info .icon,
+.success .icon {
+  color: var(--muted);
+}
+.success {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--text-2);
+}
+.success .icon {
+  color: var(--success);
+}
+.limitation {
+  color: var(--muted);
+  font-size: 13px;
+}
+.notice.sample-notice {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 10px 0;
+  color: var(--text-2);
+}
+.notice.sample-notice strong {
+  color: var(--warning);
+  background: var(--warning-soft);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-weight: 500;
+}
+
+/* Status chips: small, pale, one per row; neutral states are plain text. */
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex: none;
+}
+.badge:not(.ready):not(.attention):not(.failed) {
+  background: transparent;
+  padding: 0;
+  color: var(--muted);
+}
+.badge.attention {
+  color: var(--warning) !important;
+  background: var(--warning-soft);
+}
+button.badge {
+  min-height: 0;
+}
+.badge.ready {
+  background: transparent;
+  padding: 0;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge.ready::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+/* The plan's figures: ink at one size, money at 700, labels grey. */
+.plan-metrics strong {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.plan-metrics > div:last-child strong {
+  font-weight: 700;
+}
+.plan-metrics small,
+.plan-metrics span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Routes: rows in one white sheet, each with its day on the shared axis. */
+.route-scroll {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex: 0 1 auto;
+}
+.route-review > .info {
+  padding: 0;
+}
+.vehicle-route {
+  margin: 0;
+  padding: 14px 16px 12px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-soft);
+  background: transparent;
+}
+.vehicle-route:last-of-type {
+  border-bottom: 0;
+}
+.vehicle-route.selected-route {
+  background: var(--surface-subtle);
+}
+.route-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.route-card-metrics,
+.route-load {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.day-axis {
+  position: relative;
+  height: 28px;
+  margin: 0 16px 0 33px;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--border-soft);
+}
+.day-axis span {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.day-axis span:first-child {
+  transform: none;
+}
+.day-axis span:last-child {
+  transform: translateX(-100%);
+}
+.day-strip {
+  position: relative;
+  height: 12px;
+  margin: 2px 0 8px 17px;
+}
+.day-strip::before {
+  content: '';
+  position: absolute;
+  inset: 5px 0 auto;
+  height: 2px;
+  background: var(--border);
+}
+.day-span {
+  position: absolute;
+  top: 3px;
+  height: 6px;
+  border-radius: 3px;
+}
+.day-strip i {
+  position: absolute;
+  top: 1px;
+  width: 2px;
+  height: 10px;
+  margin-left: -1px;
+  background: var(--surface);
+}
+meter {
+  accent-color: var(--success-fill);
+}
+
+/* Tables: grey sentence-case headers without a band, rules, figures right-aligned. */
+th {
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+td {
+  font-size: 14px;
+}
+th.num,
+td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+td .secondary {
+  background: transparent;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-border);
+  text-underline-offset: 3px;
+  min-height: 28px;
+  padding: 0 4px;
+}
+
+/* Surfaces separate by a tone step and a hairline, never by a shadow. */
+.map-heading > span {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.support-icon {
+  background: transparent !important;
+  color: var(--muted);
+}
+
+/* Narrow screens: equal 20px margins; the menu opens the labelled navigation as a sheet. */
+@media (max-width: 850px) {
+  .workspace-main {
+    padding: 20px;
+  }
+  .connection-status {
+    display: none;
+  }
+  .sidebar.is-open {
+    background: var(--page);
+  }
+  .menu-button {
+    min-height: 36px;
+    width: 36px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+  }
+}
+@media (max-width: 850px) {
+  .app-body > footer.workspace-footer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+@media (max-width: 520px) {
+  .plan-metrics strong {
+    font-size: 18px;
+  }
+  .plan-metrics small,
+  .plan-metrics span {
+    font-size: 12px;
+    white-space: normal;
+  }
+}
+
+/* Fleet figures: one container split by hairlines, like the plan's figures. */
+.fleet-metrics {
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.fleet-metrics > div {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-left: 1px solid var(--border-soft);
+}
+.fleet-metrics > div:first-child {
+  border-left: 0;
+}
+.fleet-metrics small {
+  color: var(--muted);
+  font-weight: 400;
+}
+.fleet-metrics strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 850px) {
+  .fleet-metrics > div:nth-child(odd) {
+    border-left: 0;
+  }
+  .fleet-metrics > div:nth-child(n + 3) {
+    border-top: 1px solid var(--border-soft);
+  }
+}
+
+/* Validation and approval: a neutral panel at the foot of the route column, level with the map;
+   only the check carries the green. */
+.unassigned-panel.all-assigned {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.all-assigned h4 {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+}
+.all-assigned h4 .icon {
+  color: var(--success);
+}
+.all-assigned p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+@media (min-width: 851px) {
+  /* The route column is one sheet as tall as the map: routes from the top, approval at the foot. */
+  .planning-list {
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .planning-list > .route-scroll {
+    flex: 1 1 auto;
+    border: 0;
+    border-radius: 8px 8px 0 0;
+  }
+  .planning-list > .unassigned-panel {
+    border: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+/* Setup choices: as tall as their words, the chosen one outlined in ink. */
+.workspace-choice {
+  min-height: 0;
+}
+
+/* Light and dark in one click, beside the connection check and the guest language. */
+.theme-toggle {
+  min-height: 36px;
+  width: 36px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+  color: var(--muted);
+  border-radius: 6px;
+}
+.theme-toggle:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+.auth-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The road-access check is an ordinary secondary action; unavailable until the point is saved. */
+.location-editor .access-check button {
+  background: var(--surface-muted);
+  border-color: transparent;
+  color: var(--text);
+}
+.location-editor .access-check button:disabled {
+  color: var(--muted);
+}
+
+/* The location review's header actions are ordinary secondary buttons, like every other editor's. */
+.location-editor .section-heading button {
+  font-size: 14px;
+  background: var(--surface-muted);
+  border-color: transparent;
+  color: var(--text);
+  padding: 0 14px;
+}
+.location-editor .section-heading button:hover:not(:disabled) {
+  background: var(--accent-border);
+}
+/* Filters show their whole option. */
+.source-toolbar select {
+  min-width: 220px;
+}
+
+/* Import counts: one container split by hairlines, like the plan and fleet figures. */
+.import-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.import-metrics > div {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-left: 1px solid var(--border-soft);
+}
+.import-metrics > div:first-child {
+  border-left: 0;
+}
+.import-metrics strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* An empty list shows one message in its place, not an empty table frame above it. */
+.source-table:has(tbody:empty) {
+  display: none;
+}
+
+/* One heading weight; bold is kept for money. */
+strong,
+b,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+/* First use: the depot on the map beside the checklist, then one quiet line. */
+.first-use-empty {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  min-height: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: stretch;
+  justify-content: stretch;
+  text-align: left;
+  overflow: hidden;
+}
+.first-use-empty .map-panel {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  min-height: 320px;
+}
+.first-use-empty > div:last-child {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-soft);
+}
+.first-use-empty h2 {
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.first-use-empty p {
+  font-size: 13px;
+  max-width: none;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Setup: help paragraphs at the help size; the map's pick button sits under the map. */
+.onboarding .info strong {
+  font-size: 14px;
+}
+.onboarding .info p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+.setup-map .map-action {
+  position: static;
+  margin-top: 10px;
+}
+
+/* Vehicle form: the fleet number's label sits above its field, like every other field. */
+.editor-vehicles .vehicle-identity {
+  align-items: end;
+}
+.editor-vehicles .vehicle-identity > label:first-child {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* QA pass: consistent details across planning, settings and editors. */
+.unassigned-panel > .selected-stop-detail {
+  margin: 0;
+}
+.vehicle-route td.window-cell {
+  white-space: nowrap;
+}
+.text-button:disabled {
+  background: transparent;
+  border-color: transparent;
+}
+.language-setting select {
+  max-width: 320px;
+}
+.password-setting .field-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+/* Inputs in a row line up even when one label wraps, as French labels often do. */
+@supports (grid-template-rows: subgrid) {
+  /* Empty tracks (no error shown) must not add gaps; label margins space the rows. */
+  .service-fields,
+  .quantity-fields,
+  .three-fields {
+    row-gap: 0;
+  }
+  .quantity-fields > label,
+  .three-fields > label {
+    margin-bottom: 8px;
+  }
+  .service-fields > label,
+  .quantity-fields > label,
+  .three-fields > label {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    align-items: end;
+  }
+  .service-fields > label > *,
+  .quantity-fields > label > *,
+  .three-fields > label > * {
+    margin-top: 7px;
+  }
+}
+@media (max-width: 850px) {
+  /* The route list sits under the map instead of over its lower edge. */
+  .route-controls {
+    position: static;
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 520px) {
+  /* Every other hour on the shared day axis, so the labels never collide. */
+  .day-axis span:nth-child(even) {
+    display: none;
+  }
+  /* Search, filter and page selection each take a full row; the page never scrolls sideways. */
+  .source-toolbar > label:first-child,
+  .source-toolbar > label:nth-child(2) {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+  .source-toolbar select {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
+  .source-toolbar .page-selection {
+    flex: 1 1 100%;
+  }
+  .service-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Phones hide the top bar's text buttons, but keep the theme switch. */
+  .topbar > .theme-toggle {
+    display: inline-grid;
+  }
+}
+/* Scrolling tables contain their screen-reader labels, which otherwise widen the page. */
+.table-scroll {
+  position: relative;
+}
+@media (max-width: 850px) {
+  .settings-nav {
+    overflow-x: auto;
+    min-width: 0;
+  }
+  .settings-nav button {
+    flex: none;
+    white-space: nowrap;
+    padding: 10px 12px;
+  }
+}
+
+/* Editors: one close control in the corner, saving from the bar at the foot. Full-canvas editors
+   reach the window's foot, so a long page behind never shows under the save bar. */
+.full-editor,
+.editor-overlay:has(.location-editor) {
+  bottom: 0;
+}
+.editor h2 .record-id,
+td.record-id,
+.editor-save button {
+  white-space: nowrap;
+}
+.editor .section-heading > div:first-child {
+  min-width: 0;
+}
+.editor-header-actions {
+  align-items: center;
+  flex: none;
+}
+.editor-header-actions button {
+  white-space: nowrap;
+}
+.editor .section-heading .editor-close {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+}
+.editor .section-heading .editor-close:hover:not(:disabled) {
+  background: var(--surface-muted);
+  color: var(--text);
+}
+.editor-vehicles .editor-save {
+  position: sticky;
+}
+/* Entrance and road-access results read as a line with their icon: a reviewed or reachable point
+   in plain text with a green check, a problem in its pale pair. */
+.entrance-status,
+.access-result {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  white-space: normal;
+}
+.entrance-status > .icon,
+.access-result > .icon {
+  margin-top: 3px;
+}
+.location-editor .entrance-status.success,
+.access-result.success {
+  padding: 2px 0;
+}
+.entrance-status.success strong,
+.access-result.success strong {
+  color: var(--text);
+}
+.access-result {
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+.access-result p {
+  margin: 2px 0 0;
+}
+.access-result small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Questions before discarding work: the application's own dialog, above editors and sheets. */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(10 10 10 / 0.4);
+}
+.confirm-dialog {
+  width: min(420px, 100%);
+  padding: 22px 22px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.2);
+}
+.confirm-dialog h2 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+.confirm-dialog p {
+  margin: 6px 0 0;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+.confirm-actions button {
+  min-height: 36px;
+  font-size: 14px;
+  padding: 0 14px;
+}
+.danger-button {
+  background: var(--danger-strong);
+  color: #fff;
+}
+.danger-button:hover:not(:disabled) {
+  background: var(--danger);
+}
+:root[data-theme='dark'] .danger-button,
+:root[data-theme='dark'] .danger-button:hover:not(:disabled) {
+  color: #1a0d0c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .danger-button,
+  :root:not([data-theme='light']) .danger-button:hover:not(:disabled) {
+    color: #1a0d0c;
+  }
+}
+
+@media (max-width: 850px) {
+  /* Every editor is one full-screen sheet, as the delivery editor already was: nothing of the
+     list shows around it, and its close control is in the same corner. */
+  .full-editor,
+  .editor-overlay:has(.location-editor) {
+    inset: 0;
+    z-index: 40;
+  }
+  .editor,
+  .editor-orders,
+  .editor-orders.location-editor,
+  .full-editor .editor {
+    width: 100%;
+    padding: 18px 20px 0;
+  }
+  .editor-save,
+  .entrance-grid .editor-save {
+    bottom: 0;
+  }
+  .editor h2,
+  .editor-vehicles h2,
+  .location-editor .section-heading h2 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+  .editor .section-heading,
+  .location-editor .section-heading {
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  /* The location is one tab of the delivery sheet: the tabs stay and Back to details goes. */
+  .location-editor .editor-tabs {
+    display: flex;
+  }
+  .location-editor .back-to-details {
+    display: none;
+  }
+  .editor-tabs {
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .editor-tabs button {
+    flex: none;
+  }
+  /* The map comes first: the pin is what this tab reviews. */
+  .entrance-grid > aside {
+    order: -1;
+  }
+  .location-editor .entrance-grid .map-canvas,
+  .entrance-grid .map-canvas {
+    height: 300px;
+  }
+  .entrance-grid > form {
+    padding: 16px;
+  }
+}
+@media (max-width: 520px) {
+  /* List filters keep each label and count on one line and scroll when they do not fit. */
+  .source-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .source-tabs button {
+    flex: none;
+    white-space: nowrap;
+    margin-right: 16px;
+  }
+  /* The five delivery tabs share the width; on the narrowest phones they scroll. */
+  .editor-tabs {
+    gap: 8px;
+    justify-content: space-between;
+  }
+  .confirm-overlay {
+    align-items: end;
+    padding: 12px;
+  }
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+  .confirm-actions button {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+/* The delivery's pin state under its address, with the way to the map. */
+.location-line {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.location-line .text-button {
+  min-height: 0;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.editor .address-attribution {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+}
+/* Coordinates are the exception: folded under the address and the map pin. */
+.coordinates {
+  margin: 4px 0 10px;
+}
+.coordinates > summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-2);
+  padding: 4px 0;
+}
+.coordinates[open] > summary {
+  margin-bottom: 2px;
+}
+.address-settings form {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  max-width: 560px;
+}
+.address-settings .check {
+  margin: 4px 0 0;
+}
+.address-settings .field-hint {
+  margin: 0;
+}
+.field-hint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Delivery import: where each point comes from and what to check, before anything is saved. */
+.import-location-summary {
+  display: grid;
+  gap: 2px;
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 14px;
+}
+.import-location-summary small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.import-address {
+  min-width: 220px;
+}
+.location-source {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.location-source.source-none {
+  color: var(--warning);
+}
+.row-warnings {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  color: var(--warning);
+  font-size: 12px;
+}
+.row-warnings li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+}
+.row-warnings .icon {
+  width: 13px;
+  height: 13px;
+  margin-top: 2px;
+}
+.import-tag {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.only-to-check {
+  margin: 0;
+  font-size: 13px;
+}
+.import-finish .actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Delivery numbers: the parts of the format, then an example of the result. */
+/* One column as wide as the card: the fields wrap instead of widening the page. */
+.numbering-settings form,
+.address-settings form {
+  grid-template-columns: minmax(0, 1fr);
+}
+.numbering-settings form {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+.numbering-fields {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
+}
+.numbering-fields label {
+  margin: 0;
+}
+.numbering-example {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  font-size: 14px;
+}
+.numbering-example strong {
+  font-variant-numeric: tabular-nums;
+}
+.numbering-example small {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 640px;
+}
+
+/* Setup: the address service choice, with what it sends, above the depot address. It and the address
+   source under the field keep the same room as the field groups around them. */
+.setup-card .setup-public-lookup {
+  margin-bottom: 20px;
+}
+.setup-depot-grid .address-attribution {
+  display: block;
+  margin: 4px 0 16px;
+}
+.setup-public-lookup span {
+  display: grid;
+  gap: 2px;
+}
+.setup-public-lookup small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.depot-point {
+  margin: 4px 0 0;
+}
+
+/* Working hours: one row per weekday, then the dated exceptions. */
+.working-hours {
+  display: grid;
+  gap: 14px;
+  margin: 4px 0 10px;
+}
+.working-hours fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.working-hours legend {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  padding: 0;
+}
+.hours-row,
+.exception-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 40px;
+}
+.hours-row + .hours-row {
+  border-top: 1px solid var(--border-soft);
+}
+.working-hours .hours-row .check {
+  margin: 0;
+  font-size: 13px;
+}
+.hours-times {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+/* Wide enough for a 12-hour browser format such as 06:30 AM. */
+.working-hours input[type='time'] {
+  width: 136px;
+  min-height: 32px;
+  padding: 4px 8px;
+}
+.hours-off {
+  color: var(--muted);
+  font-size: 13px;
+}
+.hours-row .field-error,
+.exception-row .field-error {
+  grid-column: 2;
+}
+.weekly-hours .text-button {
+  margin-top: 6px;
+  padding: 0;
+  min-height: 0;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.exception-row {
+  grid-template-columns: 150px 150px minmax(0, 1fr) auto;
+  margin-bottom: 6px;
+}
+.exception-row input[type='date'],
+.exception-row select {
+  min-height: 32px;
+  padding: 4px 8px;
+}
+.exception-row .text-button {
+  padding: 0 4px;
+  min-height: 0;
+  font-size: 13px;
+}
+.days-off > .secondary {
+  margin-top: 4px;
+  justify-self: start;
+}
+@media (max-width: 520px) {
+  /* On a phone the times sit under the day, sharing the width. */
+  .hours-row {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 4px 0;
+  }
+  .hours-row .field-error {
+    grid-column: 1;
+  }
+  .hours-times {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+  .working-hours input[type='time'] {
+    width: 100%;
+  }
+  .exception-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .exception-row .hours-times {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Customers: the delivery's link to its saved customer, the usual hours and saving one from a delivery. */
+.customer-link {
+  margin: 4px 0 8px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.customer-link .text-button,
+.save-customer summary {
+  min-height: 0;
+  padding: 0;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.customer-field {
+  margin-bottom: 4px;
+}
+.usual-hours {
+  margin: 6px 0 10px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.usual-hours legend {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  margin-bottom: 4px;
+}
+.usual-hours .check {
+  margin: 0 0 6px;
+}
+.usual-hours input[type='time'] {
+  width: 136px;
+  min-height: 32px;
+  padding: 4px 8px;
+}
+.save-customer {
+  margin: 12px 0 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-soft);
+}
+.save-customer summary {
+  cursor: pointer;
+  color: var(--link);
+}
+.save-customer[open] > summary {
+  margin-bottom: 6px;
+}
+.save-customer .fields {
+  margin: 6px 0 10px;
+}
+.customers tr.inactive td {
+  color: var(--muted);
+}
+
+/* Selected deliveries: cancel (reversible) or delete (asked first). */
+.selection-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: -18px 0 18px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.selection-actions strong {
+  font-size: 13px;
+  margin-right: auto;
+}
+.selection-actions button {
+  min-height: 32px;
+  font-size: 13px;
+}
+.delete-record,
+.delete-record.text-button {
+  color: var(--danger);
+}
+.secondary.delete-record {
+  border-color: var(--danger-border);
+}
+.secondary.delete-record:hover:not(:disabled) {
+  background: var(--danger-soft);
+}
+.text-button.delete-record {
+  text-decoration-color: var(--danger-border);
+  margin-left: auto;
+  margin-right: 12px;
+}
+.restore-record {
+  display: block;
+  margin-top: 4px;
+}
+.import-changes {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+@media (max-width: 850px) {
+  .selection-actions {
+    margin-top: -12px;
+  }
+  .selection-actions strong {
+    flex-basis: 100%;
+  }
+}
+
+/* Depots and places (Settings), and where vehicles start and end. */
+.places .section-heading {
+  align-items: flex-start;
+  gap: 16px;
+}
+.places .section-heading p {
+  max-width: 62ch;
+}
+.main-badge {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.place-actions {
+  white-space: nowrap;
+}
+.place-actions .text-button + .text-button {
+  margin-left: 10px;
+}
+.places-map {
+  height: 320px;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vehicle-places .fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.add-place {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-soft);
+}
+.add-place summary {
+  cursor: pointer;
+  color: var(--link);
+}
+.add-place[open] > summary {
+  margin-bottom: 8px;
+}
+.ships-from {
+  margin: 4px 0 12px;
+}
+.ships-from label {
+  max-width: 420px;
+}
+.route-ends {
+  margin: 2px 0 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.vehicle-start {
+  display: block;
+}
+@media (max-width: 850px) {
+  .vehicle-places .fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .places .section-heading {
+    flex-direction: column;
+  }
+  .place-actions {
+    white-space: normal;
+  }
+  .places-map {
+    height: 240px;
+  }
+}
+
+/* ===== Route sheets: a driver's page per vehicle, printed or saved as PDF. ===== */
+.route-sheet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.sheets-frame {
+  min-height: 100vh;
+  background: var(--page);
+}
+.sheets-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  padding: 10px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.sheets-toolbar h1 {
+  margin: 0;
+  font-size: 16px;
+}
+.sheets-toolbar select {
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-input);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+.sheets-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.sheets-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.sheets-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-weight: 500;
+  text-decoration: none;
+}
+.sheets-back:hover {
+  background: var(--accent-soft);
+}
+.sheets-body {
+  display: grid;
+  gap: 24px;
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.sheets-hint,
+.sheets-loading {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.route-sheet {
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--text);
+}
+.sheet-head h2 {
+  margin: 2px 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+.sheet-company,
+.sheet-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.sheet-company {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sheet-day {
+  margin: 0;
+  font-size: 16px;
+}
+.sheet-meta {
+  text-align: right;
+}
+.sheet-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+.sheet-summary > div {
+  padding: 12px 16px 12px 0;
+}
+.sheet-summary dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+.sheet-summary dd {
+  margin: 0;
+}
+.sheet-summary strong,
+.sheet-time strong,
+.sheet-seq,
+.sheet-window {
+  font-variant-numeric: tabular-nums;
+}
+.sheet-summary strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.sheet-summary small,
+.sheet-time small,
+.sheet-where > span,
+.sheet-where small {
+  display: block;
+}
+.sheet-summary small,
+.sheet-time small,
+.sheet-where small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.sheet-stops {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+.sheet-stops th {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+.sheet-stops td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+.sheet-stops .num {
+  text-align: right;
+}
+.sheet-seq {
+  width: 32px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.sheet-time {
+  width: 96px;
+}
+.sheet-time strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.sheet-where strong {
+  display: block;
+  font-weight: 500;
+}
+.sheet-customer {
+  color: var(--muted);
+  font-weight: 400;
+}
+.sheet-instructions {
+  margin: 6px 0 0;
+  padding: 2px 8px;
+  border-left: 2px solid var(--text);
+  background: var(--surface-subtle);
+}
+.sheet-window {
+  white-space: nowrap;
+}
+.sheet-label {
+  display: none;
+}
+.sheet-load {
+  font-size: 12px;
+}
+.sheet-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+.sheet-nav a {
+  color: var(--link);
+  font-weight: 500;
+}
+.sheet-point,
+.sheet-check {
+  display: none;
+}
+.sheet-point {
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.sheet-check span {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--text);
+  border-radius: 3px;
+}
+.sheet-return td {
+  background: var(--surface-subtle);
+}
+.sheet-notes {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+.sheet-notes p {
+  margin: 2px 0;
+}
+/* Screens only: an A4 page is narrower than this too, and keeps its table. */
+@media screen and (max-width: 850px) {
+  /* Scrolls away on a phone, leaving the sheet the screen. */
+  .sheets-toolbar {
+    position: static;
+    padding: 10px 16px;
+  }
+  .sheets-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+  .sheets-actions > * {
+    flex: 1;
+    justify-content: center;
+  }
+  .sheets-body {
+    margin: 16px auto;
+  }
+  .route-sheet {
+    padding: 16px;
+  }
+  .sheet-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sheet-meta {
+    text-align: left;
+  }
+  .sheet-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Each stop becomes a card: its number on the left, everything else stacked beside it. */
+  .sheet-stops thead {
+    display: none;
+  }
+  .sheet-stops tr {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .sheet-stops td {
+    grid-column: 2;
+    padding: 2px 0;
+    border: 0;
+  }
+  .sheet-stops td.sheet-seq {
+    grid-column: 1;
+    grid-row: 1 / span 5;
+    text-align: left;
+  }
+  .sheet-stops td.sheet-check {
+    display: none;
+  }
+  .sheet-return {
+    background: var(--surface-subtle);
+  }
+  .sheet-return td {
+    background: none;
+  }
+  .sheet-time {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 8px;
+    align-items: baseline;
+    width: auto;
+  }
+  .sheet-time small {
+    display: inline;
+  }
+  .sheet-label {
+    display: inline;
+    color: var(--muted);
+  }
+  .sheet-nav {
+    flex-direction: row;
+    gap: 16px;
+    padding-top: 4px;
+  }
+  .sheet-nav a {
+    padding: 6px 0;
+  }
+}
+@media print {
+  /* Paper is white: the light theme whatever the screen uses. */
+  html:root,
+  html:root[data-theme='dark'],
+  html:root:not([data-theme='light']) {
+    color-scheme: light;
+    --page: #ffffff;
+    --surface: #ffffff;
+    --surface-subtle: #f2f2f2;
+    --border: #b8b8b8;
+    --border-soft: #d9d9d9;
+    --text: #000000;
+    --text-2: #000000;
+    --muted: #4a4a4a;
+    --link: #000000;
+  }
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  .sheets-toolbar,
+  .sheets-hint {
+    display: none;
+  }
+  .sheets-body {
+    display: block;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .route-sheet {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    break-after: page;
+  }
+  .sheet-head {
+    padding-bottom: 8px;
+  }
+  .sheet-head h2 {
+    font-size: 20px;
+  }
+  .sheet-summary > div {
+    padding: 6px 12px 6px 0;
+  }
+  .sheet-summary strong,
+  .sheet-time strong,
+  .sheet-seq {
+    font-size: 13px;
+  }
+  .sheet-summary small,
+  .sheet-time small,
+  .sheet-where small,
+  .sheet-notes,
+  .sheet-load,
+  .sheet-stops th {
+    font-size: 10px;
+  }
+  /* A4 is narrow: fixed columns leave the delivery and its address the room. */
+  .sheet-stops {
+    table-layout: fixed;
+  }
+  .sheet-stops th,
+  .sheet-stops td {
+    padding: 6px 5px;
+  }
+  .sheet-stops td {
+    font-size: 11px;
+  }
+  .sheet-stops .sheet-seq {
+    width: 24px;
+  }
+  .sheet-stops .sheet-time {
+    width: 66px;
+  }
+  .sheet-stops .sheet-window {
+    width: 76px;
+  }
+  .sheet-stops .sheet-load {
+    width: 92px;
+  }
+  .sheet-stops .sheet-go {
+    width: 92px;
+  }
+  .route-sheet:last-child {
+    break-after: auto;
+  }
+  .sheet-stops tr {
+    break-inside: avoid;
+  }
+  .sheet-point {
+    display: block;
+  }
+  .sheet-stops th.sheet-check,
+  .sheet-stops td.sheet-check {
+    display: table-cell;
+    width: 36px;
+    text-align: center;
+  }
+}
+
+/* ===== Setup guide: after first-use setup, vehicles, delivery numbers and first deliveries. ===== */
+.continue-setup {
+  margin-left: 12px;
+}
+.setup-wizard-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(10 10 10 / 0.4);
+}
+.setup-wizard {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.2);
+}
+.setup-wizard-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.setup-wizard-head .setup-steps {
+  margin: 0;
+}
+.setup-wizard h2 {
+  margin: 20px 0 4px;
+  font-size: 24px;
+}
+.setup-wizard h2:focus {
+  outline: none;
+}
+.setup-wizard-intro {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.preset-list {
+  display: grid;
+  gap: 8px;
+}
+.preset-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px 136px;
+  gap: 8px 16px;
+  align-items: start;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.preset-row.chosen {
+  border-color: var(--text);
+}
+.preset-name strong {
+  display: block;
+  font-weight: 500;
+}
+.preset-name small,
+.preset-row label small,
+.preset-hours small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.preset-row label {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.preset-adjust label,
+.preset-hours label {
+  margin: 0;
+}
+.preset-row input {
+  width: 100%;
+}
+.preset-adjust {
+  grid-column: 1 / -1;
+}
+.preset-adjust summary {
+  width: fit-content;
+  color: var(--text-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+.preset-adjust .fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+.preset-hours {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+}
+.preset-hours legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-weight: 500;
+}
+.preset-hours small {
+  flex-basis: 100%;
+}
+.setup-wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.setup-wizard-actions > span {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.setup-wizard-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.setup-wizard-choices button {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  text-align: left;
+}
+.setup-wizard-choices button span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.setup-wizard .numbering-settings {
+  margin: 12px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+@media (max-width: 850px) {
+  .setup-wizard-overlay {
+    place-items: stretch;
+    padding: 0;
+  }
+  .setup-wizard {
+    max-height: none;
+    padding: 16px;
+    border: 0;
+    border-radius: 0;
+  }
+  .preset-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .preset-name {
+    grid-column: 1 / -1;
+  }
+  .preset-adjust .fields,
+  .setup-wizard-choices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .setup-wizard-choices {
+    grid-template-columns: 1fr;
+  }
+  .setup-wizard-actions > span {
+    width: 100%;
+  }
+  .setup-wizard-actions > span > button {
+    flex: 1;
+  }
+}
+
+/* ===== Example records: fictional data to try the planner, marked wherever it appears. ===== */
+.example-badge {
+  margin-left: 6px;
+  border: 1px dashed var(--text-2);
+  background: transparent;
+  color: var(--text-2);
+}
+.example-notice strong {
+  font-weight: 500;
+}
+.example-plan {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.example-plan .example-badge {
+  margin-left: 0;
+}
+.example-settings .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+.example-day {
+  margin: 0;
+}
+.example-day input {
+  width: auto;
+}
+.sheet-example {
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  border: 2px dashed var(--text);
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+}
+.sheet-example span {
+  font-weight: 400;
+}
+/* On a phone the editor's foot holds the save state on its own line, then its actions,
+   and the example notice keeps to its first sentence (the plan says the rest). */
+@media (max-width: 520px) {
+  .example-notice-detail {
+    display: none;
+  }
+  .editor-save {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .editor-save > span {
+    flex-basis: 100%;
+  }
+  .editor-save .delete-record {
+    margin-right: auto;
+    padding-left: 0;
+  }
+  .editor-save > button:last-child {
+    margin-left: auto;
+  }
+}
+
+/* Accessibility floor (WCAG 2.2 AA). Placeholders use the muted ink of their theme instead of the
+   browser grey, which fails on the dark surface; small text controls keep a 24px target. */
+::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.source-table .location-badge,
+.route-title,
+.route-load button,
+.vehicle-route .stop-name,
+.selected-stop-detail > .text-button,
+.preparation .notice .text-button {
+  min-height: 24px;
+}
+
+/* Equipment: named equipment is ticked, any other code is typed below it. */
+.equipment-field legend {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0 0 6px;
+}
+.equipment-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+.equipment-field .equipment-choices label {
+  margin: 0;
+  min-height: 24px;
+  font-size: 14px;
+}
+.equipment-field .equipment-choices input {
+  min-height: 0;
+}
+
+/* Approval: the plan's state and the one next action, directly under the plan figures. A white sheet
+   like the cards, not a coloured box; green marks only a Ready plan, amber a plan with unassigned work. */
+.approval {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin: 0 0 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.approval-ready {
+  border-color: var(--success-border);
+}
+.approval-state {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-width: 0;
+}
+.approval-state > .icon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--muted);
+}
+.approval-ready .approval-state > .icon,
+.approval-ready .approval-state h3 {
+  color: var(--success);
+}
+.approval-partial .approval-state > .icon {
+  color: var(--warning);
+}
+.approval-state h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.approval-state p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.approval-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: none;
+}
+@media (max-width: 850px) {
+  .approval {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .approval-actions button {
+    flex: 1 1 auto;
+  }
+  .approval-partial .desktop-copy {
+    display: none;
+  }
+  .approval-partial .mobile-copy {
+    display: inline;
+  }
+}
+.approval-failed {
+  border-color: var(--danger-border);
+}
+.approval-failed .approval-state > .icon,
+.approval-failed .approval-state h3 {
+  color: var(--danger);
+}
+
+/* Import, first step: where the import is, a place to drop the file, and the file's exact columns. */
+ol.import-steps {
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.import-steps .done {
+  color: var(--text-2);
+}
+.import-drop {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: 4px;
+  min-height: 96px;
+  padding: 16px;
+  text-align: center;
+  border: 1px dashed var(--border-input);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+.import-drop:hover,
+.import-drop:focus-within {
+  border-color: var(--accent);
+}
+.import-drop:focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.import-drop.is-dragging {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.import-drop.has-file {
+  border-style: solid;
+}
+.import-drop .drop-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+.import-drop .drop-hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+/* The browser's own file button stays usable by keyboard and click, but is not drawn. */
+.import-drop input[type='file'] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.import-columns {
+  margin-top: 22px;
+}
+.import-columns h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.import-columns p {
+  font-size: 13px;
+  color: var(--text-2);
+}
+.import-header-row {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.import-header-row code {
+  font-family: inherit;
+  color: var(--text);
+}
+.import-header-row .optional-columns {
+  color: var(--muted);
+}
+.import-columns-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.import-notes {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-2);
+  list-style: disc;
+}
+.import-notes li {
+  margin: 4px 0;
+}
+/* After a preview the drop zone shrinks to the compact "choose another file" button. */
+.has-preview .import-drop {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.has-preview .import-drop:focus-within {
+  outline: 0;
+}
+@media (max-width: 850px) {
+  .import-file > .import-drop {
+    flex: 1 1 100%;
+  }
+  .import-file > button {
+    flex: 1 1 100%;
+  }
+}
+
+/* Truck size and margins: what chose the roads, and how much delay each stop can absorb. */
+.route-truck {
+  margin: 2px 0 0 17px;
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* Waiting for a window to open: the route's own colour, drawn hollow on the day strip. */
+.day-wait {
+  position: absolute;
+  top: 3px;
+  height: 6px;
+  min-width: 3px;
+  border-radius: 3px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.vehicle-route th {
+  white-space: nowrap;
+}
+.vehicle-route th:nth-child(5) {
+  width: 76px;
+}
+.vehicle-route td.margin-cell {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.stop-margin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+.stop-margin .icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+.stop-margin.tight {
+  color: var(--warning);
+}
+.stop-margin.late {
+  color: var(--danger);
+}
+.approval-state p.approval-margin {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 6px;
+  color: var(--warning);
+}
+.approval-margin .icon {
+  flex: none;
+  margin-top: 2px;
+}
+.truck-cell strong {
+  font-weight: 500;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.truck-cell small {
+  color: var(--muted);
+}
+/* The smallest margin names its stop beside the figure. Columns take their content's width,
+   so only a label that does not fit wraps, instead of every label colliding. */
+.plan-metrics .figure-stop {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+@media (min-width: 851px) {
+  .plan-metrics {
+    grid-template-columns: repeat(7, auto);
+  }
+  .plan-metrics small {
+    white-space: normal;
+  }
+}
+.vehicle-route td.window-cell {
+  white-space: nowrap;
+}
+.window-cell .margin-under {
+  display: none;
+}
+@media (max-width: 520px) {
+  .vehicle-route th:nth-child(5),
+  .vehicle-route td.margin-cell {
+    display: none;
+  }
+  .window-cell .margin-under {
+    display: block;
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+  }
+  .plan-metrics .figure-stop {
+    display: block;
+  }
+}
+@media (max-width: 850px) {
+  .plan-metrics {
+    height: auto;
+  }
+}
+/* A route's own start and end line up with its truck and figures, at their size. */
+.vehicle-route .route-ends {
+  margin: 2px 0 0 17px;
+  font-size: 13px;
+}
+
+/* Polish. The hour axis stays in view while the routes scroll under it: the bar carries the
+   background to the card's edges, the axis inside keeps the margins that align it with the strips. */
+.day-axis-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface);
+}
+/* Page actions share one text size, whichever component renders them. */
+.page-actions .plan-actions button {
+  font-size: 14px;
+}
+/* Settings: a table inside the settings panel is ruled, not boxed a second time, and notes keep a
+   readable measure. */
+.settings-layout .workspace .table-scroll {
+  border-width: 1px 0;
+  border-radius: 0;
+}
+.settings-layout .workspace p {
+  max-width: 72ch;
+}
+/* Depot and place markers carry an icon, centred. */
+.depot-pin {
+  display: grid;
+  place-items: center;
+}
+.unassigned-panel p {
+  text-wrap: pretty;
+}
+@media (max-width: 850px) {
+  /* The plan's actions menu: a full-size control, like every other button. */
+  .page-actions .mobile-actions-toggle {
+    height: 36px !important;
+    min-height: 36px !important;
+    min-width: 44px;
+    padding: 0 12px !important;
+  }
+}
+@media (max-width: 520px) {
+  /* A long load label wraps the row instead of pushing "On map" off the card. */
+  .route-load {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+}
+/* The map popup follows the theme (it kept the map library's white under light theme text), in the
+   interface's own type. */
+.maplibregl-popup-content {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  border-top-color: var(--surface);
+}
+.map-stop-popup {
+  font: inherit;
+  font-size: 13px;
+}
+/* A depot or place marker: its icon and its code, on the fixed black of depots. */
+.pin.depot-pin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px 0 5px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+/* Deliveries without a loading place: any vehicle may carry them. */
+.muted-value {
+  color: var(--muted);
+}
+/* A number with its unit beside it. */
+.input-unit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 4px;
+}
+.input-unit input {
+  width: 96px;
+}
+.calculation-settings form > label {
+  font-weight: 500;
+}

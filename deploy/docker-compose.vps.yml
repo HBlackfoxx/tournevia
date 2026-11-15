@@ -1,0 +1,5 @@
+# Apply AFTER docker-compose.https.yml. Only the HTTPS proxy becomes public.
+# No HTTP listener, API port, PostgreSQL port or routing-service port is exposed.
+services:
+  https:
+    ports: !override ["0.0.0.0:443:8443"]
