@@ -37,6 +37,14 @@ Sources: [S6, S9, S17–S19](docs/08-source-register.md).
 | libstdc++, libgcc | Debian bookworm 12.2.0 | GPL-3.0 with the GCC Runtime Library Exception |
 | Debian base packages | `python:3.14-slim-bookworm`, pinned by digest | Various; each package's copyright file is in the image |
 
+## Third-party source in this repository
+
+| File | From | Licence |
+|---|---|---|
+| [deploy/valhalla-graph.lua](deploy/valhalla-graph.lua) | Valhalla's `lua/graph.lua` at commit `0baa5c68`, with three lines changed ([why](deploy/README.md#weight-limits-tagged-maxweightrating)) | MIT, © 2018 Valhalla contributors, © 2015-2017 Mapillary AB, Mapzen; the licence text is at the top of the file |
+
+It is used when a routing graph is built and is not part of the application image.
+
 ## Software in the browser application
 
 | Component | Version | Licence |

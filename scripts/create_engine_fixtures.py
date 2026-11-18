@@ -57,16 +57,17 @@ def create_paris():
 def create_restrictions():
     import osmium
     path = ROOT / 'deploy/runtime/restrictions.osm.pbf'
-    if path.exists():
-        print('Existing controlled PBF preserved.')
-        return
+    path.unlink(missing_ok=True)  # The writer refuses an existing file.
     points = {1: (2, 48), 2: (2.002, 48), 3: (2.004, 48), 4: (2.006, 48),
               5: (2, 48.002), 6: (2, 48.004), 7: (2.02, 48), 8: (2.024, 48),
-              9: (2, 47.998), 10: (2, 47.996), 11: (2, 47.994)}
+              9: (2, 47.998), 10: (2, 47.996), 11: (2, 47.994),
+              12: (2, 48.02), 13: (2.002, 48.02), 14: (2.004, 48.02), 15: (2.006, 48.02)}
     roads = [([1, 2], {}), ([2, 3], {'maxheight': '3', 'maxwidth': '2.3', 'maxlength': '7',
                                      'maxweight': '7.5', 'maxaxleload': '4', 'maxaxles': '2'}),
              ([3, 4], {}), ([1, 5, 6], {'oneway': 'yes'}), ([7, 8], {}),
-             ([1, 9], {}), ([9, 10], {'hgv': 'no'}), ([10, 11], {})]
+             ([1, 9], {}), ([9, 10], {'hgv': 'no'}), ([10, 11], {}),
+             # A road of its own whose weight limit is tagged as France's roads tag it.
+             ([12, 13], {}), ([13, 14], {'maxweightrating': '7.5'}), ([14, 15], {})]
     path.parent.mkdir(parents=True, exist_ok=True)
     with osmium.SimpleWriter(str(path)) as writer:
         for key, point in points.items():
@@ -74,7 +75,8 @@ def create_restrictions():
         for index, (nodes, tags) in enumerate(roads, 1):
             writer.add_way(osmium.osm.mutable.Way(id=index, version=1, nodes=nodes,
                            tags={'highway': 'tertiary', 'maxspeed': '30', 'name': f'Synthetic road {index}', **tags}))
-    print('Created isolated synthetic restriction PBF; never use as regional road data.')
+    print('Wrote the isolated synthetic restriction PBF; never use as regional road data. '
+          'Rebuild its graph in an empty directory when these roads change.')
 
 
 if __name__ == '__main__':

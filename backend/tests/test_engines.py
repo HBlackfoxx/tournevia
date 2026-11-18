@@ -43,6 +43,17 @@ def test_actual_truck_restrictions(field, value):
     assert blocked.durations[0][1] is None and blocked.durations[1][0] is None
 
 
+def test_weight_limit_tagged_maxweightrating_blocks_a_heavier_truck():
+    # France's roads carry the limit in this tag; Valhalla's own tag file reads maxweight only.
+    engine = restrictions()
+    p = [Location(latitude=48.02, longitude=2.0005, reviewed=True), Location(latitude=48.02, longitude=2.0055, reviewed=True)]
+    small = engine.matrix(p, van(), 'TRUCK_STANDARD', Deadline.after(20))
+    assert small.durations[0][1] is not None and small.durations[1][0] is not None
+    heavy = van().model_copy(update={'gross_weight_kg': 19000})
+    blocked = engine.matrix(p, heavy, 'TRUCK_STANDARD', Deadline.after(20))
+    assert blocked.durations[0][1] is None and blocked.durations[1][0] is None
+
+
 def test_actual_directed_oneway_and_hgv_access():
     engine = restrictions()
     p = [points()[0], Location(latitude=48.0035, longitude=2, reviewed=True)]

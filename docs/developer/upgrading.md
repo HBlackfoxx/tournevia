@@ -25,7 +25,7 @@ real-engine suite and the benchmarks, not only the ordinary tests.
 | nginx | `deploy/docker-compose.https.yml`, `deploy/docker-compose.proxied.yml`, by digest | no |
 | addok and its Redis | `deploy/docker-compose.geocoder.yml`, by digest | no |
 | VROOM | `deploy/Dockerfile.vroom` (tag and verified commit), [deploy/engines.json](../../deploy/engines.json) | no |
-| Valhalla | `deploy/engines.json` (`valhalla_image`), `deploy/docker-compose.routing.yml` | no |
+| Valhalla | `deploy/engines.json` (`valhalla_image`, `valhalla_tag_file_sha256`), `deploy/docker-compose.routing.yml`, `deploy/valhalla-graph.lua` | no |
 | Road data (OpenStreetMap extract) | `deploy/engines.json` (source, date, size, SHA-256) | no |
 | Tournevia's own version | `backend/app/main.py`, `web/package.json` and its lock | — |
 
@@ -130,14 +130,20 @@ the exact commit of the release tag, and its binary is copied into the applicati
 
 1. Choose the new image and pin it by digest in `valhalla_image` and `valhalla_version` in
    `deploy/engines.json` and in `deploy/docker-compose.routing.yml`.
-2. **Rebuild the graphs** with the new version: tiles built by one version are not guaranteed to work with
+2. Make [deploy/valhalla-graph.lua](../../deploy/valhalla-graph.lua) again from the new version's
+   `lua/graph.lua`: keep the `--!` header and name the new commit in it, change the three lines listed
+   in [deploy/graph_tags.py](../../deploy/graph_tags.py), and set `valhalla_tag_file_sha256` in
+   `deploy/engines.json` to the SHA-256 of the unchanged upstream file. `build_graph.py` stops when the
+   file does not match the image. If the new version reads `maxweightrating` itself, remove the file,
+   the module and the test instead ([why the file exists](../../deploy/README.md#weight-limits-tagged-maxweightrating)).
+3. **Rebuild the graphs** with the new version: tiles built by one version are not guaranteed to work with
    another. Build into a new runtime directory with [deploy/build_graph.py](../../deploy/build_graph.py)
    and [deploy/configure_matrix.py](../../deploy/configure_matrix.py), as in
    [Build the local graphs](../../deploy/README.md#build-the-local-graphs).
-3. Check what [routing.py](../../backend/app/routing.py) relies on: truck costing options (dimensions,
+4. Check what [routing.py](../../backend/app/routing.py) relies on: truck costing options (dimensions,
    weights, axles, toll and motorway preferences in `costing`), the matrix response and its warnings,
    the route response and its encoded shape, and the error codes it turns into messages.
-4. Run the real-engine suite (which includes the deliberately artificial restriction graph), the worker
+5. Run the real-engine suite (which includes the deliberately artificial restriction graph), the worker
    suite and the benchmarks.
 
 ## Road data

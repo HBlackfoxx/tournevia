@@ -3,9 +3,11 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
 
 from configure_matrix import configure_matrix
+from graph_tags import tag_file
 
 pins = json.loads((Path(__file__).parent / 'engines.json').read_text())
 parser = argparse.ArgumentParser()
@@ -42,7 +44,9 @@ directory.mkdir(parents=True, exist_ok=True)
 config = json.loads(subprocess.check_output(['valhalla_build_config']))
 config['mjolnir'].update(tile_dir=str(directory / 'tiles'), tile_extract='',
                          admin=str(directory / 'admins.sqlite'),
-                         timezone=str(directory / 'timezones.sqlite'), concurrency=args.jobs)
+                         timezone=str(directory / 'timezones.sqlite'), concurrency=args.jobs,
+                         # Read only while tiles are built; without it, maxweightrating limits are lost.
+                         graph_lua_name=str(tag_file(Path(shutil.which('valhalla_build_tiles')))))
 config['httpd']['service']['listen'] = 'tcp://*:8002'
 config['service_limits']['truck'].update(max_matrix_distance=args.max_matrix_km * 1000, max_matrix_location_pairs=10000)
 config['loki']['actions'] = ['route', 'sources_to_targets', 'locate', 'status']

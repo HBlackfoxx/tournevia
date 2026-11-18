@@ -6,6 +6,17 @@ what an existing installation has to do.
 
 ## Unreleased
 
+- **Road weight limits tagged `maxweightrating` are kept.** Valhalla reads a road's
+  gross-weight limit from the `maxweight` tag only, and France's roads in OpenStreetMap
+  now carry it as `maxweightrating` (`maxweight` was removed on 7 November 2026). A
+  graph built with 0.8.0 from a later extract has none of these limits: a 19-tonne
+  truck is routed over roads limited to 15 tonnes. `deploy/build_graph.py` now builds
+  with a tag file that reads both tags. **Rebuild any graph built from an extract
+  downloaded after 7 November 2026**, in a new directory; see
+  [weight limits tagged `maxweightrating`](deploy/README.md#weight-limits-tagged-maxweightrating).
+  The artificial restriction graph of the engine tests has a new road:
+  `scripts/create_engine_fixtures.py` now rewrites its file, and its graph must be
+  built again in an empty `deploy/runtime/restrictions`.
 - `scripts/create_engine_fixtures.py` writes the planning fixture with dated vehicle
   windows again. Since vehicles gained weekly hours it wrote a file that the frontend
   build rejects, which stopped the weekly real-roads workflow at the image build.

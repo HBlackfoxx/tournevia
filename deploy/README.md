@@ -1423,6 +1423,38 @@ and builds the regional graph and passes that option only for a file that differ
 the pin; results recorded on the pinned extract then need rerunning on the new one
 before you rely on them, and the pin in `engines.json` updating.
 
+#### Weight limits tagged `maxweightrating`
+
+`build_graph.py` builds every graph with [valhalla-graph.lua](valhalla-graph.lua):
+Valhalla's own tag file with three lines changed, so that a road whose gross-weight
+limit is tagged `maxweightrating` keeps that limit when it has no `maxweight` tag.
+Valhalla 3.9.0 reads `maxweight` only. In OpenStreetMap, France's roads moved from one
+tag to the other: the two weight-limited roads of the engine tests received
+`maxweightrating` on 2 February 2026 and lost `maxweight` on 7 November 2026, in
+automated edits named "FR: migration `maxweight=*` vers `maxweightrating=*`". In the
+Île-de-France extract of 17 November 2026, 6,658 roads carry `maxweightrating` and none
+carries `maxweight`; in the pinned extract of 22 September, 6,005 carried `maxweight`
+and 593 carried `maxweightrating` alone.
+
+**A graph built with version 0.8.0 from an extract downloaded after 7 November 2026
+has none of these limits**: a 19-tonne truck is routed over roads limited to 15
+tonnes, and nothing reports it. Build that graph again, in a new directory, with this
+version. A graph built from an earlier extract kept the limits that still had
+`maxweight`.
+
+Checked on 18 November 2026: on graphs built this way from the pinned extract and
+from the 17 November extract, the real-engine suite passes (65 passed, 10 skipped, as
+in the weekly workflow). With Valhalla's own tag file, the suite's `maxweightrating`
+test fails and, on the 17 November extract, so do three regional tests. On the pinned
+extract the tag file adds the limit to the 593 roads that had `maxweightrating` alone;
+the benchmarks recorded on that extract were not rerun.
+
+The router compares the limit with each vehicle's gross weight. Variants such as
+`maxweightrating:hgv` and conditional limits are not read, as before. `build_graph.py`
+stops when `valhalla-graph.lua` does not match the tag file inside the Valhalla image
+it runs in; [upgrading Valhalla](../docs/developer/upgrading.md#valhalla) says how to
+make the file again.
+
 ```powershell
 .venv\Scripts\python -m pip install -r requirements-engines.txt
 .venv\Scripts\python scripts/create_engine_fixtures.py
