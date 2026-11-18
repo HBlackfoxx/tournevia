@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim@sha256:0e0ff40c39bc087845bfb27465a0df4ea419520094bc35842ff83dd8cbe6f9b6 AS web
+FROM node:26-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1 AS web
 WORKDIR /build/web
 COPY web/package*.json ./
 RUN npm ci
@@ -12,7 +12,7 @@ FROM tournevia-vroom:1.14.0 AS solver
 # The psycopg-binary wheel bundles native libraries without their licence texts. Keep Debian's
 # copyright file for each of the same libraries; scripts/runtime_notices.py fails the build when
 # the wheel bundles one that has none here. Debian's versions differ from the bundled ones.
-FROM debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251 AS bundled-notices
+FROM debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d96a961d3376b179bc AS bundled-notices
 WORKDIR /work
 RUN apt-get update     && apt-get download libpq5 libssl3 libldap-2.5-0 libsasl2-2 libkrb5-3 libkeyutils1 libcom-err2 libcrypt1 libpcre3 libselinux1     && mkdir /notices     && for deb in *.deb; do name="${deb%%_*}"; mkdir "$name" && dpkg-deb -x "$deb" "$name"        && cp "$name/usr/share/doc/$name/copyright" "/notices/$name.copyright" || exit 1; done
 

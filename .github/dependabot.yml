@@ -10,6 +10,10 @@ updates:
     directory: /web
     schedule:
       interval: weekly
+    groups:
+      # The two must be the same version: a pull request for one alone fails every test.
+      react:
+        patterns: ["react", "react-dom"]
   - package-ecosystem: github-actions
     directory: /
     schedule:

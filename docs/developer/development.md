@@ -9,7 +9,7 @@ what continuous integration runs. The exact, tested commands for every situation
 ## What you need
 
 - Git, Docker (Docker Desktop on Windows or macOS, Docker Engine on Linux) with Compose.
-- Python 3.14 and Node 24 for host development and tests.
+- Python 3.14 and Node 24 or 26 for host development and tests; the image and CI use Node 26.
 - For calculations: a Valhalla graph of Île-de-France, built once (several GB of disk, several minutes,
   6 GB of memory for the build). See [Build the local graphs](../../deploy/README.md#build-the-local-graphs).
 

@@ -497,7 +497,8 @@ or a real operator's deployment and certificate trust.
 
 ## Host development and tests
 
-Tested with Python 3.14.5 and Node 24.15.0 on Windows. Start PostgreSQL with Compose
+Tested with Python 3.14.5 and Node 24.15.0 on Windows; the image and CI build the
+frontend with Node 26, where its checks also pass (26.13.1). Start PostgreSQL with Compose
 and set `DB_PASSWORD` in `.env` equal to `RUNTIME_DB_PASSWORD`. Match the host-side
 `DB_PORT`, `DB_NAME` and `DB_USER` if their Compose equivalents were customized.
 

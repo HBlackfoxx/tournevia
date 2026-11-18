@@ -39,10 +39,10 @@ The Docker image installs **only** `backend/requirements.lock`, with `pip instal
 closure, with the SHA-256 of every file PyPI publishes for each version.
 
 1. Change the version in `requirements.txt` (and `requirements-dev.txt` for test tools).
-2. Refresh the lock to match. There is no script for this yet; the lock was produced by installing
-   `requirements.txt` in the Linux Python 3.14 image, recording the exact versions installed
-   (`pip freeze`), and adding every published file's SHA-256 for those versions (PyPI's JSON API lists
-   them as `digests.sha256`). Keep its header comment.
+2. Refresh the lock to match: `python scripts/refresh_lock.py`. It installs `requirements.txt` in the
+   image's pinned Python, records the exact versions installed (`pip freeze`) and writes each with the
+   SHA-256 of every file PyPI publishes for it. Packages that `requirements.txt` does not name move to
+   the newest version its pins allow: read the lock's diff.
 3. Build the image (`docker build --target runtime .`): it fails if a hash or a dependency is wrong.
 4. Run the backend checks. CI also runs `pip-audit` on the lock.
 

@@ -6,7 +6,12 @@ what an existing installation has to do.
 
 ## Unreleased
 
-Nothing yet.
+- **Dependencies updated.** The image builds the frontend with Node 26 and runs
+  FastAPI 0.162.5 (Starlette 1.10.0), uvicorn 0.54.0, Alembic 1.20.1,
+  pydantic-settings 2.16.2 and React 19.3.1. FastAPI now installs `opentelemetry-api`
+  (Apache-2.0); no OpenTelemetry SDK or exporter is installed.
+- `scripts/refresh_lock.py` rewrites `backend/requirements.lock` from
+  `backend/requirements.txt`, a step that was done by hand before.
 
 ## 0.8.1 — 18 November 2026
 

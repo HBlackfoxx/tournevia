@@ -31,7 +31,7 @@ Sources: [S6, S9, S17–S19](docs/08-source-register.md).
 | greenlet | as locked | MIT AND PSF-2.0 |
 | typing_extensions | as locked | PSF-2.0 |
 | cffi | as locked | MIT-0 |
-| tzdata | as locked | Apache-2.0 |
+| tzdata, opentelemetry-api | as locked | Apache-2.0 |
 | **psycopg, psycopg-binary** | 3.3.6 | **LGPL-3.0-only**: used unmodified and loaded dynamically; its licence text ships in the image |
 | VROOM | 1.14.0 (commit `1fd711bc`) | BSD-2-Clause, © 2016 Julien Coupey; its bundled cxxopts, polylineencoder and RapidJSON are MIT |
 | libstdc++, libgcc | Debian bookworm 12.2.0 | GPL-3.0 with the GCC Runtime Library Exception |
@@ -49,7 +49,7 @@ It is used when a routing graph is built and is not part of the application imag
 
 | Component | Version | Licence |
 |---|---|---|
-| React, React DOM, scheduler | 19.3.0, 19.3.0, 0.28.0 | MIT |
+| React, React DOM, scheduler | 19.3.1, 19.3.1, 0.28.0 | MIT |
 | MapLibre GL JS | 6.11.0 | BSD-3-Clause |
 | **Geist font** (`@fontsource-variable/geist`) | 5.3.0 | **SIL Open Font License 1.1**, © 2024 The Geist Project Authors. The font files ship with the interface; the font may not be sold on its own. |
 | MapLibre's dependencies | 24 packages | ISC (8), MIT (11), BSD-2-Clause (2), BSD-3-Clause (2), MIT OR Apache-2.0 (1) |
