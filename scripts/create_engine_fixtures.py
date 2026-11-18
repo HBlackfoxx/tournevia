@@ -1,15 +1,25 @@
 """Create synthetic fixtures; writes no customer data and makes no HTTP requests."""
+from datetime import date, datetime, time
 import json
 from pathlib import Path
 from uuid import UUID
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'backend/tests/fixtures'
 
 
-def create_paris():
+def dated(vehicle, day, zone):
+    """An example vehicle, saved with weekly hours, as a calculation takes it: that day's hours as a dated window."""
+    hours = vehicle['hours'][day.strftime('%A').lower()]
+    window = {edge: datetime.combine(day, time.fromisoformat(hours[edge]), zone).isoformat() for edge in ('start', 'end')}
+    return {'available_window' if key == 'hours' else key: window if key == 'hours' else value
+            for key, value in vehicle.items()}
+
+
+def paris():
     def read(name):
-        return json.loads((ROOT / f'examples/{name}.json').read_text())
+        return json.loads((ROOT / f'examples/{name}.json').read_text(encoding='utf-8'))
     owner = '00000000-0000-4000-8000-000000000001'
     def owned(number, data):
         return {'id': str(UUID(int=number)), 'organization_id': owner, 'version': 1, 'data': data}
@@ -29,14 +39,19 @@ def create_paris():
                              'pallet_eur_units': 1, 'pallet_ind_units': 0, 'loading_length_mm': 400},
                      time_window={'start': '2026-09-23T08:00:00+02:00', 'end': '2026-09-23T16:00:00+02:00'})
         orders.append(owned(100 + index, order))
-    vehicles = [owned(10, read('vehicle')), owned(11, read('vehicle-van'))]
+    depot = read('depot')
+    day, zone = date(2026, 9, 23), ZoneInfo(depot['timezone'])
+    vehicles = [owned(number, dated(read(name), day, zone)) for number, name in ((10, 'vehicle'), (11, 'vehicle-van'))]
     # A stated synthetic stop limit exercises both vehicles, without claiming customer requirements.
     vehicles[0]['data']['limits'] = {'max_stops': 6}
-    result = {'organization_id': owner, 'data_kind': 'SYNTHETIC', 'service_date': '2026-09-23',
-              'depot': owned(1, read('depot')), 'vehicles': vehicles, 'orders': orders,
-              'routing_policy': 'TRUCK_STANDARD', 'objective': 'TRAVEL_TIME', 'solver_time_limit_seconds': 5}
+    return {'organization_id': owner, 'data_kind': 'SYNTHETIC', 'service_date': day.isoformat(),
+            'depot': owned(1, depot), 'vehicles': vehicles, 'orders': orders,
+            'routing_policy': 'TRUCK_STANDARD', 'objective': 'TRAVEL_TIME', 'solver_time_limit_seconds': 5}
+
+
+def create_paris():
     TARGET.mkdir(parents=True, exist_ok=True)
-    (TARGET / 'paris-ten.json').write_text(json.dumps(result, indent=2) + '\n')
+    (TARGET / 'paris-ten.json').write_text(json.dumps(paris(), indent=2) + '\n', encoding='utf-8', newline='\n')
 
 
 def create_restrictions():

@@ -6,7 +6,9 @@ what an existing installation has to do.
 
 ## Unreleased
 
-Nothing yet.
+- `scripts/create_engine_fixtures.py` writes the planning fixture with dated vehicle
+  windows again. Since vehicles gained weekly hours it wrote a file that the frontend
+  build rejects, which stopped the weekly real-roads workflow at the image build.
 
 ## 0.8.0 — 15 November 2026
 
