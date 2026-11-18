@@ -16,7 +16,7 @@ FROM debian:bookworm-slim@sha256:734a72b3d6142a71993b4bc580ca01d8ca687f77a2c422d
 WORKDIR /work
 RUN apt-get update     && apt-get download libpq5 libssl3 libldap-2.5-0 libsasl2-2 libkrb5-3 libkeyutils1 libcom-err2 libcrypt1 libpcre3 libselinux1     && mkdir /notices     && for deb in *.deb; do name="${deb%%_*}"; mkdir "$name" && dpkg-deb -x "$deb" "$name"        && cp "$name/usr/share/doc/$name/copyright" "/notices/$name.copyright" || exit 1; done
 
-FROM python:3.14-slim-bookworm@sha256:82bc3c539b8813ada9d68c63b40158fa002f7f33de9bf3312a3dfdc0620dff56 AS runtime
+FROM python:3.15-slim-bookworm@sha256:96599df822d0e1c6bb700014a05c7f3c8cabc6e0f7ff3c4f9f69cee033b4b5d9 AS runtime
 ARG VCS_REF=development
 LABEL org.opencontainers.image.title="Tournevia Community"       org.opencontainers.image.source="https://github.com/HBlackfoxx/tournevia"       org.opencontainers.image.revision=$VCS_REF org.opencontainers.image.licenses="Apache-2.0"
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
