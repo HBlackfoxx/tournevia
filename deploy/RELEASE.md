@@ -29,8 +29,7 @@ Pushing a tag such as `v0.8.0` to GitHub runs
 A version with a suffix, such as `0.9.0-rc.1`, is marked as a pre-release. There is no
 `latest` tag: name a version or, better, the digest on the release's page. Started by
 hand from the Actions tab, the workflow rehearses every step except the two that
-publish. It was written for 0.8.0 and had not yet run on GitHub when that version was
-tagged; a release page that names no image has none.
+publish. A release page that names no image has none.
 
 To use a published image instead of building one, pull it, then give its name to a
 launcher from the kit or a checkout of the same version. The launchers only use an

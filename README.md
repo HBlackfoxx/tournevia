@@ -71,7 +71,8 @@ nothing in the planning model is held back for a paid edition.
 
 ## Status
 
-Version 0.8.0 is the first tagged release, and it is pre-1.0. A release is a source
+Version 0.8.1 is the current release, and it is pre-1.0; the
+[changelog](CHANGELOG.md) says what each version changed. A release is a source
 kit; the release workflow also builds the application image and publishes it to
 GitHub's container registry, named on the release's page (see
 [releases and source kits](deploy/RELEASE.md)). The steps below build the images from

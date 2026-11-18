@@ -3,7 +3,7 @@
   "info": {
     "title": "Tournevia Community — planning workspace",
     "description": "Company setup, named sessions, road-based calculation and manual review. Dispatch export requires a current validated READY plan; the demonstration mode (fictional data) cannot mark plans ready or export them.",
-    "version": "0.8.0"
+    "version": "0.8.1"
   },
   "paths": {
     "/api/v1/depot": {

@@ -50,7 +50,8 @@ jobs:
         run: |
           mkdir -p deploy/runtime
           source=$(jq -r .region_source deploy/engines.json)
-          curl -fsSL --retry 3 -o deploy/runtime/ile-de-france.osm.pbf "$source"
+          # Geofabrik sometimes refuses a runner's connection; plain --retry does not retry that.
+          curl -fsSL --retry 6 --retry-all-errors --retry-delay 20 -o deploy/runtime/ile-de-france.osm.pbf "$source"
           {
             echo "### Routing extract used by this run"
             echo "- Source: $source (downloaded $(date -u +%Y-%m-%d))"

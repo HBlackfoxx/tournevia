@@ -100,7 +100,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         finally:
             app.state.engine.dispose()
 
-    app = FastAPI(title='Tournevia Community — planning workspace', version='0.8.0',
+    app = FastAPI(title='Tournevia Community — planning workspace', version='0.8.1',
                   description='Company setup, named sessions, road-based calculation and manual review. Dispatch export requires a current validated READY plan; the demonstration mode (fictional data) cannot mark plans ready or export them.',
                   lifespan=lifespan, docs_url='/api/docs' if developer_docs else None,
                   openapi_url='/api/openapi.json' if developer_docs else None, redoc_url=None)

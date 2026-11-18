@@ -6,20 +6,39 @@ what an existing installation has to do.
 
 ## Unreleased
 
+Nothing yet.
+
+## 0.8.1 — 18 November 2026
+
+A correction to how routing graphs are built. The application itself is unchanged
+apart from its version number.
+
 - **Road weight limits tagged `maxweightrating` are kept.** Valhalla reads a road's
   gross-weight limit from the `maxweight` tag only, and France's roads in OpenStreetMap
   now carry it as `maxweightrating` (`maxweight` was removed on 7 November 2026). A
   graph built with 0.8.0 from a later extract has none of these limits: a 19-tonne
   truck is routed over roads limited to 15 tonnes. `deploy/build_graph.py` now builds
-  with a tag file that reads both tags. **Rebuild any graph built from an extract
-  downloaded after 7 November 2026**, in a new directory; see
+  with a tag file that reads both tags; see
   [weight limits tagged `maxweightrating`](deploy/README.md#weight-limits-tagged-maxweightrating).
-  The artificial restriction graph of the engine tests has a new road:
-  `scripts/create_engine_fixtures.py` now rewrites its file, and its graph must be
-  built again in an empty `deploy/runtime/restrictions`.
 - `scripts/create_engine_fixtures.py` writes the planning fixture with dated vehicle
   windows again. Since vehicles gained weekly hours it wrote a file that the frontend
   build rejects, which stopped the weekly real-roads workflow at the image build.
+
+### Upgrading from 0.8.0
+
+- **Routing graph.** Rebuild any graph built from an extract downloaded after
+  7 November 2026; a graph made by `scripts/prepare_routing.py` records that date as
+  `downloaded_on` in `deploy/runtime/region/source.json`. Stop the workspace or router
+  that uses the graph, rename `deploy/runtime/region`, and run
+  `python scripts/prepare_routing.py` from this version: it reuses the extract already
+  downloaded and builds a new graph, which the workspace uses when it starts again.
+  Plans calculated on the old graph are not recalculated: calculate again those whose
+  heavy vehicles may have used a weight-limited road.
+- **Database and image.** There is no migration. Switching the application image is
+  optional; `--upgrade-image tournevia-app:TAG` does it, with a backup first.
+- **Engine tests.** The artificial restriction graph has a new road:
+  `scripts/create_engine_fixtures.py` now rewrites its file, and its graph must be
+  built again in an empty `deploy/runtime/restrictions`.
 
 ## 0.8.0 — 15 November 2026
 
