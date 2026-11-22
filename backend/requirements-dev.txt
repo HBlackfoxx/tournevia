@@ -4,4 +4,4 @@ httpx==0.28.1
 PyYAML==6.0.3
 jsonschema[format]==4.26.0
 tzdata==2026.4
-ruff==0.16.10
+ruff==0.17.5
